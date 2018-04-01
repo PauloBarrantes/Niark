@@ -1,5 +1,6 @@
 public function Fibonacci(n)
     $booleano = true
+    $string = "Hola Mundo"
 	if (n > 1)
 		return Fibonacci(n-1) + Fibonacci(n-2)
 	else if (n == 1)
