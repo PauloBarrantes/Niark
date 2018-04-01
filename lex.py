@@ -7,17 +7,7 @@ Correr el archivo lex.py, colocar el nombre del archivo .nia que contiene el có
 """
 import ply.lex as lex
 import sys
-reserved = {    #Keywords
 
-    'public' : 'PUBLIC',
-    'private' : 'PRIVATE',
-    'function': 'FUNCTION',
-    'void' : 'VOID',
-    'if' : 'IF',
-    'for': 'FOR',
-    'switch' : 'SWITCH'
-
-}
 # Lista de Tokens
 tokens = [
 
@@ -25,6 +15,8 @@ tokens = [
     'INT',
     'DOUBLE',
     'NOMBRE',
+    'STRING',
+    'DECVARIABLE',
     'IGUAL',
     'MENOR',
     'MAYOR',
@@ -35,10 +27,12 @@ tokens = [
     'RESTA',
     'MULT',
     'DIV',
+    'PARIZQ',
+    'PARDER',
     'ID'
 
 
-] + list(reserved.values())
+]
 ## Expresiones Regulares
 t_SUMA = r'\+'
 t_RESTA = r'\-'
@@ -50,6 +44,8 @@ t_MENOR = r'\<'
 t_MAYOR = r'\>'
 t_MAYORIGUAL = r'\>='
 t_MENORIGUAL = r'\<='
+t_PARIZQ = r'\('
+t_PARDER = r'\)'
 
 t_ignore = r' '
 
@@ -58,7 +54,6 @@ def t_INT(t):
     r'd\+'
     t.value = int(t.value)
     return t
-
 def t_DOUBLE(t):
     r'\d+\.\d'
     t.value = float(t.value)
@@ -67,10 +62,11 @@ def t_NOMBRE(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = "NOMBRE"
     return t
-def t_ID(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value,'ID')    # Check for reserved words
+def t_DECVARIABLE(t):
+    r'$[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = "DECVARIABLE"
     return t
+
 def t_error(t):
     print("Caracteres Inválidos")
     t.lexer.skip(1)
