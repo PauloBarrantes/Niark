@@ -78,7 +78,7 @@ def t_DECVARIABLE(t):
     return t
 
 def t_INT(t):
-    r'd\+'
+    r'\d\+'
     t.value = int(t.value)
     return t
 
