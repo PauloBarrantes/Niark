@@ -1,8 +1,8 @@
 public function Fibonacci(n)
-    $booleano = true
+    $booleano = True
     $string = "Hola Mundo"
-    $num = 241241
-    $numnega = -124214
+    $num = +241241
+    $numnega = -124214.0
 	if (n > 1)
 		return Fibonacci(n-1) + Fibonacci(n-2)
 	else if (n == 1)

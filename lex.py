@@ -31,7 +31,7 @@ reserved = {
 
 # Lista de Tokens
 tokens = [
-
+    'TABULACION',
     'INT',
     'DOUBLE',
     'NOMBRE',
@@ -52,9 +52,21 @@ tokens = [
     'PARIZQ',
     'PARDER',
     'COMENTARIO',
+    'NEW_LINE',
 
 ] + list(reserved.values())
 ## Expresiones Regulares
+
+def t_DOUBLE(t):
+    r'-?\d+\.\d'
+    t.value = float(t.value)
+    return t
+
+def t_INT(t):
+    r'-?\d+'
+    t.value = int(t.value)
+    return t
+
 t_INCREMENTAR = r'\+\+'
 t_DECREMENTAR = r'\-\-'
 t_SUMA = r'\+'
@@ -77,31 +89,32 @@ def t_DECVARIABLE(t):
     t.type = "DECVARIABLE"
     return t
 
-def t_INT(t):
-    r'\d\+'
-    t.value = int(t.value)
-    return t
-
 def t_NOMBRE(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value,'NOMBRE')    # Check for reserved words
     return t
 
-def t_DOUBLE(t):
-    r'\d+\.\d'
-    t.value = float(t.value)
-    return t
 def t_STRING(t):
     r'("(\\"|[^"])*")|(\'(\\\'|[^\'])*\')'
     t.type = "STRING"
     return t
-
+def t_TABULACION(t):
+    r'\t'
+    t.value = "Tabulacion"
+    t.type = "TABULACION"
+    return t
+def t_NEWLINE(t):
+    r'\n'
+    t.value = "NEW_LINE"
+    t.type = "NEW_LINE"
+    return t
 
 
 #def t_COMENTARIO(t):
- #   r'\c'
-  #  pass
-    # No return value. Token discarded
+    #r'(\/\/)(.)*(\/\/)'
+    #r'((?P>string))[[:ascii:]]+(?P<string>(\/\/))'
+    #pass
+    #No return value. Token discarded
 
 
 
@@ -111,7 +124,7 @@ def t_error(t):
 
 
 lexer = lex.lex()
-name = raw_input("Escriba el nombre del archivo con el código fuente ")
+name = input("Escriba el nombre del archivo con el código fuente ")
 file = open(name, 'r')
 line = file.read()
 
