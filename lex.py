@@ -26,7 +26,6 @@ reserved = {
     'case' : 'CASE',
     'break' : 'BREAK',
 }
-
 # Lista de Tokens
 tokens = [
     'TABULACION',
@@ -55,6 +54,8 @@ tokens = [
 
 ] + list(reserved.values())
 ## Expresiones Regulares
+
+lineno  = 1 #Número de línea
 
 def t_DOUBLE(t):
     r'-?\d+\.\d'
@@ -103,11 +104,11 @@ def t_TABULACION(t):
     t.type = "TABULACION"
     return t
 def t_NEWLINE(t):
-    r'\n'
+    r'\n+'
+    t.lexer.lineno += t.value.count("\n")
     t.value = "NEW_LINE"
     t.type = "NEW_LINE"
     return t
-
 
 def t_COMENTARIO(t):
     r'//(.[^(//)]|\n)*//'
@@ -118,12 +119,12 @@ def t_COMENTARIO(t):
     #No return value. Token discarded
 
 def t_error(t):
-    print("Error Lexico ")
+    print("Error Lexico en la linea " ,t.lexer.lineno)
     t.lexer.skip(1)
 
 
 lexer = lex.lex()
-name = raw_input("Escriba el nombre del archivo con el código fuente ")
+name = input("Escriba el nombre del archivo con el código fuente ")
 file = open(name, 'r')
 line = file.read()
 
