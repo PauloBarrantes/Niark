@@ -14,10 +14,8 @@ reserved = {
     'void': 'VOID',
     'True': 'TRUE',
     'False': 'FALSE',
-
     'if' : 'IF',
     'for' : 'FOR',
-    'then' : 'THEN',
     'else' : 'ELSE',
     'while' : 'WHILE',
     'return' : 'RETURN',
@@ -32,6 +30,7 @@ reserved = {
 # Lista de Tokens
 tokens = [
     'TABULACION',
+    'COMA',
     'INT',
     'DOUBLE',
     'NOMBRE',
@@ -76,7 +75,7 @@ t_DIV = r'\/'
 t_IGUAL = r'\=='
 t_MAYORIGUAL = r'\>='
 t_MENORIGUAL = r'\<='
-
+t_COMA = r'\,'
 t_ASIGNACION = r'\='
 t_MENOR = r'\<'
 t_MAYOR = r'\>'
@@ -118,15 +117,13 @@ def t_COMENTARIO(t):
     pass
     #No return value. Token discarded
 
-
-
 def t_error(t):
-    print("Caracteres Inválidos")
+    print("Error Lexico ")
     t.lexer.skip(1)
 
 
 lexer = lex.lex()
-name = input("Escriba el nombre del archivo con el código fuente ")
+name = raw_input("Escriba el nombre del archivo con el código fuente ")
 file = open(name, 'r')
 line = file.read()
 
@@ -136,4 +133,4 @@ while True:
     tok = lexer.token()
     if not tok:
         break
-    print ('<',tok.value,'>' ,"-", '<',tok.type,'>')
+    print '<',tok.value,'>' ,"-", '<',tok.type,'>'
