@@ -110,10 +110,12 @@ def t_NEWLINE(t):
     return t
 
 
-#def t_COMENTARIO(t):
-    #r'(\/\/)(.)*(\/\/)'
+def t_COMENTARIO(t):
+    r'//(.[^(//)]|\n)*//'
+    #r'(//)(.)*(//)'
     #r'((?P>string))[[:ascii:]]+(?P<string>(\/\/))'
-    #pass
+    #print("comentario")
+    pass
     #No return value. Token discarded
 
 

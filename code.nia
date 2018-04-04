@@ -2,6 +2,7 @@ public function Fibonacci(n)
     $booleano = True
     $string = "Hola Mundo"
     $num = +241241
+	
     $numnega = -124214.0
 	if (n > 1)
 		return Fibonacci(n-1) + Fibonacci(n-2)
@@ -11,4 +12,6 @@ public function Fibonacci(n)
 		return 0
 	else
 		return -1
-		//El usuario colocó un número negativo //
+		//El usuario colocó un número negativo
+
+		//
