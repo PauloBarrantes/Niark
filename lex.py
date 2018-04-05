@@ -49,6 +49,8 @@ tokens = [
     'DIV',
     'PARIZQ',
     'PARDER',
+    'CORCHETEIZQ',
+    'CORCHETEDER',
     'COMENTARIO',
     'NEW_LINE',
     'AND',
@@ -88,6 +90,8 @@ t_MENOR = r'\<'
 t_MAYOR = r'\>'
 t_PARIZQ = r'\('
 t_PARDER = r'\)'
+t_CORCHETEIZQ = r'\['
+t_CORCHETEDER = r'\]'
 t_ignore = r' '
 
 def t_DECVARIABLE(t):
