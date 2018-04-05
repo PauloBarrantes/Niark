@@ -1,4 +1,5 @@
 # coding=utf-8
+#comment
 """
 Nombre del equipo: Byte_Me
 Prerequisitos: Tener instalado python 3.5
