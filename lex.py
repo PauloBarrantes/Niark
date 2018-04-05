@@ -1,7 +1,7 @@
 # coding=utf-8
 """
 Nombre del equipo: Byte_Me
-Prerequisitos: Tener instalado python 3.6 
+Prerequisitos: Tener instalado python 3.5
 
 Correr el archivo lex.py, colocar el nombre del archivo .nia que contiene el código fuente del lenguaje de programación Niark
 """
