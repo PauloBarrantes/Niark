@@ -34,6 +34,7 @@ tokens = [
     'DOUBLE',
     'NOMBRE',
     'STRING',
+    'PUNTOYCOMA',
     'DECVARIABLE',
     'IGUAL',
     'MENOR',
@@ -85,6 +86,7 @@ t_MENORIGUAL = r'\<='
 t_AND = r'\&&'
 t_OR = r'\|\|'
 t_COMA = r'\,'
+t_PUNTOYCOMA = r'\;'
 t_ASIGNACION = r'\='
 t_MENOR = r'\<'
 t_MAYOR = r'\>'
