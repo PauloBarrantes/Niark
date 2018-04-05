@@ -1,0 +1,12 @@
+public void Triangulo()
+  $c = ' ' // Vamos a guardar una string//
+	$n = 0 //Vamos a guardar un número entero//
+
+	print("Digite el caracter que desea utilizar")
+	read(c)
+	print("Digite el número que desea utilizar")
+	read(n)
+
+	for($i = 0; i < n; i++)
+		for($j = 0; j < i; ++j)
+			print(c);
