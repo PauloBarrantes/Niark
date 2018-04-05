@@ -8,7 +8,6 @@ public function Eratostenes(n)
 	for($i = 2; i < sqrt(n); ++i)
 		if(!criba[i])
 			for($j = i; j < (n/i); j++)
-				criba[i+j] = TRUE
+				criba[i+j] = True
 
 	return criba // Retorna un vector//
-}
