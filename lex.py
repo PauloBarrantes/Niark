@@ -51,6 +51,9 @@ tokens = [
     'PARDER',
     'COMENTARIO',
     'NEW_LINE',
+    'AND',
+    'OR',
+    'DIFERENTE'
 
 ] + list(reserved.values())
 ## Expresiones Regulares
@@ -74,8 +77,11 @@ t_RESTA = r'\-'
 t_MULT = r'\*'
 t_DIV = r'\/'
 t_IGUAL = r'\=='
+t_DIFERENTE = r'\!='
 t_MAYORIGUAL = r'\>='
 t_MENORIGUAL = r'\<='
+t_AND = r'\&&'
+t_OR = r'\|\|'
 t_COMA = r'\,'
 t_ASIGNACION = r'\='
 t_MENOR = r'\<'
@@ -112,9 +118,7 @@ def t_NEWLINE(t):
 
 def t_COMENTARIO(t):
     r'//(.[^(//)]|\n)*//'
-    #r'(//)(.)*(//)'
-    #r'((?P>string))[[:ascii:]]+(?P<string>(\/\/))'
-    #print("comentario")
+    print ("COMENTARIO")
     pass
     #No return value. Token discarded
 
@@ -134,4 +138,4 @@ while True:
     tok = lexer.token()
     if not tok:
         break
-    print '<',tok.value,'>' ,"-", '<',tok.type,'>'
+    print ('<',tok.value,'>' ,"-", '<',tok.type,'>')
