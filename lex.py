@@ -134,4 +134,4 @@ while True:
     tok = lexer.token()
     if not tok:
         break
-    print '<',tok.value,'>' ,"-", '<',tok.type,'>'
+    print ('<',tok.value,'>' ,"-", '<',tok.type,'>')
