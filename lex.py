@@ -135,7 +135,7 @@ def t_error(t):
 
 
 lexer = lex.lex()
-name = input("Escriba el nombre del archivo con el código fuente ")
+name = raw_input("Escriba el nombre del archivo con el código fuente ")
 file = open(name, 'r')
 line = file.read()
 
