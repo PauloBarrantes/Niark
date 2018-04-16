@@ -1,7 +1,8 @@
 # coding=utf-8
+#comment
 """
 Nombre del equipo: Byte_Me
-Prerequisitos: Tener instalado python 2.6 mínimo
+Prerequisitos: Tener instalado python 3.5
 
 Correr el archivo lex.py, colocar el nombre del archivo .nia que contiene el código fuente del lenguaje de programación Niark
 """
@@ -34,6 +35,7 @@ tokens = [
     'DOUBLE',
     'NOMBRE',
     'STRING',
+    'PUNTOYCOMA',
     'DECVARIABLE',
     'IGUAL',
     'MENOR',
@@ -49,8 +51,13 @@ tokens = [
     'DIV',
     'PARIZQ',
     'PARDER',
+    'CORCHETEIZQ',
+    'CORCHETEDER',
     'COMENTARIO',
     'NEW_LINE',
+    'AND',
+    'OR',
+    'DIFERENTE'
 
 ] + list(reserved.values())
 ## Expresiones Regulares
@@ -74,14 +81,20 @@ t_RESTA = r'\-'
 t_MULT = r'\*'
 t_DIV = r'\/'
 t_IGUAL = r'\=='
+t_DIFERENTE = r'\!='
 t_MAYORIGUAL = r'\>='
 t_MENORIGUAL = r'\<='
+t_AND = r'\&&'
+t_OR = r'\|\|'
 t_COMA = r'\,'
+t_PUNTOYCOMA = r'\;'
 t_ASIGNACION = r'\='
 t_MENOR = r'\<'
 t_MAYOR = r'\>'
 t_PARIZQ = r'\('
 t_PARDER = r'\)'
+t_CORCHETEIZQ = r'\['
+t_CORCHETEDER = r'\]'
 t_ignore = r' '
 
 def t_DECVARIABLE(t):
@@ -112,9 +125,7 @@ def t_NEWLINE(t):
 
 def t_COMENTARIO(t):
     r'//(.[^(//)]|\n)*//'
-    #r'(//)(.)*(//)'
-    #r'((?P>string))[[:ascii:]]+(?P<string>(\/\/))'
-    #print("comentario")
+    print ("COMENTARIO")
     pass
     #No return value. Token discarded
 
