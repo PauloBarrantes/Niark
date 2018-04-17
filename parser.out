@@ -1,0 +1,120 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ASIGNACION
+    BREAK
+    CASE
+    COMA
+    COMENTARIO
+    CORCHETEDER
+    CORCHETEIZQ
+    DECREMENTAR
+    DECVARIABLE
+    DIFERENTE
+    DOUBLE
+    ELSE
+    FALSE
+    FOR
+    FUNCTION
+    IF
+    IGUAL
+    IMPORT
+    INCREMENTAR
+    INT
+    MAYOR
+    MAYORIGUAL
+    MENOR
+    MENORIGUAL
+    MULT
+    NEW_LINE
+    NOMBRE
+    OR
+    PARDER
+    PARIZQ
+    PRINT
+    PRIVATE
+    PUBLIC
+    PUNTOYCOMA
+    READ
+    RETURN
+    STRING
+    SWITCH
+    TABULACION
+    TRUE
+    VOID
+    WHILE
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression SUMA term
+Rule 2     expression -> expression RESTA term
+Rule 3     expression -> term
+Rule 4     term -> term TIMES factor
+Rule 5     term -> term DIV factor
+Rule 6     term -> factor
+Rule 7     factor -> NUMBER
+Rule 8     factor -> LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASIGNACION           : 
+BREAK                : 
+CASE                 : 
+COMA                 : 
+COMENTARIO           : 
+CORCHETEDER          : 
+CORCHETEIZQ          : 
+DECREMENTAR          : 
+DECVARIABLE          : 
+DIFERENTE            : 
+DIV                  : 5
+DOUBLE               : 
+ELSE                 : 
+FALSE                : 
+FOR                  : 
+FUNCTION             : 
+IF                   : 
+IGUAL                : 
+IMPORT               : 
+INCREMENTAR          : 
+INT                  : 
+MAYOR                : 
+MAYORIGUAL           : 
+MENOR                : 
+MENORIGUAL           : 
+MULT                 : 
+NEW_LINE             : 
+NOMBRE               : 
+OR                   : 
+PARDER               : 
+PARIZQ               : 
+PRINT                : 
+PRIVATE              : 
+PUBLIC               : 
+PUNTOYCOMA           : 
+READ                 : 
+RESTA                : 2
+RETURN               : 
+STRING               : 
+SUMA                 : 1
+SWITCH               : 
+TABULACION           : 
+TRUE                 : 
+VOID                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+LPAREN               : 8
+NUMBER               : 7
+RPAREN               : 8
+TIMES                : 4
+expression           : 1 2 8 0
+factor               : 4 5 6
+term                 : 1 2 3 4 5
+
