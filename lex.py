@@ -7,7 +7,6 @@ Prerequisitos: Tener instalado python 3.5
 Correr el archivo lex.py, colocar el nombre del archivo .nia que contiene el código fuente del lenguaje de programación Niark
 """
 import ply.lex as lex
-import sys
 reserved = {
     'public' : 'PUBLIC',
     'private': 'PRIVATE',
@@ -125,7 +124,6 @@ def t_NEWLINE(t):
 
 def t_COMENTARIO(t):
     r'//(.[^(//)]|\n)*//'
-    print ("COMENTARIO")
     pass
     #No return value. Token discarded
 
@@ -145,4 +143,3 @@ while True:
     tok = lexer.token()
     if not tok:
         break
-    print ('<',tok.value,'>' ,"-", '<',tok.type,'>')
