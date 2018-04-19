@@ -2,7 +2,57 @@ import ply.yacc as yacc
 
 from lex import tokens
 
+def p_INT(p):
+    '''
+    expression : INT
+               | DOUBLE
+    '''
+    p[0] = p[1]
+    print(p[1])
+    print("numero")
 
+def p_NOMBRE(p):
+    '''
+    expression : NOMBRE
+    '''
+    p[0] = p[1]
+    print(p[1])
+
+def p_MULT(p):
+    '''
+    expression : expression MULT expression
+    '''
+    p[0] = p[1] * p[3]
+    print(p[0])
+
+def p_DIV(p):
+    '''
+    expression : expression DIV expression
+    '''
+    p[0] = p[1] / p[3]
+    print(p[0])
+
+def p_SUMA(p):
+    '''
+    expression : expression SUMA expression
+    '''
+    p[0] = p[1] + p[3]
+    print(p[0])
+
+def p_RESTA(p):
+    '''
+    expression : expression RESTA expression
+    '''
+    p[0] = p[1] - p[3]
+    print(p[0])
+
+
+def p_empty(p):
+    '''
+    empty :
+    '''
+    p[0] = None
+'''
 
 def p_PUBLIC(p):
     'expression : expression PUBLIC expression'
@@ -147,15 +197,15 @@ def p_expression(p):
 
 def p_empty(p):
     'expression : '
-
+'''
 # Build the parser
 parser = yacc.yacc()
 
+name = input("Escriba el nombre del archivo con el código fuente ")
+file = open(name, 'r')
+line = file.read()
+
+
 while True:
-   try:
-       s = input('calc > ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   print(result)
+    parser.parse(line)
+    break
