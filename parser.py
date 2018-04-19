@@ -2,14 +2,29 @@ import ply.yacc as yacc
 
 from lex import tokens
 
+
 def p_INT(p):
     '''
     expression : INT
-               | DOUBLE
     '''
     p[0] = p[1]
     print(p[1])
-    print("numero")
+    print("INT")
+
+def p_DOUBLE(p):
+    '''
+    expression : DOUBLE
+    '''
+    p[0] = p[1]
+    print(p[1])
+    print("DOUBLE")
+
+def p_STRING(p):
+    '''
+    expression : STRING
+    '''
+    p[0] = p[1]
+    print(p[1], "-STRING")
 
 def p_NOMBRE(p):
     '''
@@ -46,6 +61,11 @@ def p_RESTA(p):
     p[0] = p[1] - p[3]
     print(p[0])
 
+def p_NEWLINE(p):
+    '''
+    expression : NEWLINE
+    '''
+    print("NEWLINE")
 
 def p_empty(p):
     '''
