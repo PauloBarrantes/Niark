@@ -53,7 +53,7 @@ tokens = [
     'CORCHETEIZQ',
     'CORCHETEDER',
     'COMENTARIO',
-    'NEW_LINE',
+    'NEWLINE',
     'AND',
     'OR',
     'DIFERENTE'
@@ -64,7 +64,7 @@ tokens = [
 lineno  = 1 #Número de línea
 
 def t_DOUBLE(t):
-    r'-?\d+\.\d'
+    r'-?\d+\.(\d)+'
     t.value = float(t.value)
     return t
 
@@ -118,8 +118,8 @@ def t_TABULACION(t):
 def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
-    t.value = "NEW_LINE"
-    t.type = "NEW_LINE"
+    t.value = "NEWLINE"
+    t.type = "NEWLINE"
     return t
 
 def t_COMENTARIO(t):

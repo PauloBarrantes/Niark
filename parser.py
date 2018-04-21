@@ -1,223 +1,194 @@
 import ply.yacc as yacc
-
 from lex import tokens
 
 
-def p_INT(p):
-    '''
-    expression : INT
-    '''
-    p[0] = p[1]
-    print(p[1])
-    print("INT")
-
-def p_DOUBLE(p):
-    '''
-    expression : DOUBLE
-    '''
-    p[0] = p[1]
-    print(p[1])
-    print("DOUBLE")
-
-def p_STRING(p):
-    '''
-    expression : STRING
-    '''
-    p[0] = p[1]
-    print(p[1], "-STRING")
-
-def p_NOMBRE(p):
-    '''
-    expression : NOMBRE
-    '''
-    p[0] = p[1]
-    print(p[1])
-
-def p_MULT(p):
-    '''
-    expression : expression MULT expression
-    '''
-    p[0] = p[1] * p[3]
-    print(p[0])
-
-def p_DIV(p):
-    '''
-    expression : expression DIV expression
-    '''
-    p[0] = p[1] / p[3]
-    print(p[0])
-
-def p_SUMA(p):
-    '''
-    expression : expression SUMA expression
-    '''
-    p[0] = p[1] + p[3]
-    print(p[0])
-
-def p_RESTA(p):
-    '''
-    expression : expression RESTA expression
-    '''
-    p[0] = p[1] - p[3]
-    print(p[0])
-
-def p_NEWLINE(p):
-    '''
-    expression : NEWLINE
-    '''
-    print("NEWLINE")
-
-def p_empty(p):
-    '''
-    empty :
-    '''
-    p[0] = None
-'''
-
 def p_PUBLIC(p):
-    'expression : expression PUBLIC expression'
+    'expression : PUBLIC expression'
+    print("PUBLIC: ",p[1])
 
 def p_PRIVATE(p):
-    'expression : expression PRIVATE expression'
+    'expression : PRIVATE expression'
+    print("PRIVATE: ", p[1])
 
 def p_FUNCTION(p):
-    'expression : expression FUNCTION expression'
+    'expression : FUNCTION expression'
+    print("FUNCTION: ", p[1])
 
 def p_VOID(p):
-    'expression : expression VOID expression'
+    'expression : VOID expression'
+    print("VOID: ", p[1])
 
 def p_TRUE(p):
-    'expression : expression TRUE expression'
+    'expression : TRUE expression'
+    print("TRUE: ", p[1])
 
 def p_FALSE(p):
-    'expression : expression FALSE expression'
+    'expression : FALSE expression'
+    print("FALSE: ", p[1])
 
 def p_IF(p):
-    'expression : expression IF expression'
+    'expression : IF expression'
+    print("IF: ", p[1])
 
 def p_FOR(p):
-    'expression : expression FOR expression'
+    'expression : FOR expression'
+    print("FOR: ", p[1])
 
 def p_ELSE(p):
-    'expression : expression ELSE expression'
+    'expression : ELSE expression'
+    print("ELSE: ", p[1])
 
 def p_WHILE(p):
-    'expression : expression WHILE expression'
+    'expression : WHILE expression'
+    print("WHILE: ", p[1])
 
 def p_RETURN(p):
-    'expression : expression RETURN expression'
+    'expression : RETURN expression'
+    print("RETURN: ", p[1])
 
 def p_PRINT(p):
-    'expression : expression PRINT expression'
+    'expression : PRINT expression'
+    print("PRINT: ", p[1])
 
 def p_READ(p):
-    'expression : expression READ expression'
+    'expression : READ expression'
+    print("READ: ", p[1])
 
 def p_IMPORT(p):
-    'expression : expression IMPORT expression'
+    'expression : IMPORT expression'
+    print("IMPORT: ", p[1])
 
 def p_SWITCH(p):
-    'expression : expression SWITCH expression'
+    'expression : SWITCH expression'
+    print("SWITCH: ", p[1])
 
 def p_CASE(p):
-    'expression : expression CASE expression'
+    'expression : CASE expression'
+    print("CASE: ", p[1])
 
 def p_BREAK(p):
-    'expression : expression BREAK expression'
+    'expression : BREAK expression'
+    print("BREAK: ", p[1])
 
 def p_TABULACION(p):
-    'expression : expression TABULACION expression'
+    'expression : TABULACION expression'
+    print("TABULACION: ", p[1])
 
 def p_COMA(p):
-    'expression : expression COMA expression'
+    'expression : COMA expression'
+    print("COMA: ", p[1])
 
 def p_INT(p):
-    'expression : expression INT expression'
+    'expression : INT expression'
+    print("INT: ", p[1])
 
 def p_DOUBLE(p):
-    'expression : expression DOUBLE expression'
+    'expression : DOUBLE expression'
+    print("DOUBLE: ", p[1])
 
 def p_NOMBRE(p):
-    'expression : expression NOMBRE expression'
+    'expression : NOMBRE expression'
+    print("NOMBRE: ", p[1])
 
 def p_STRING(p):
-    'expression : expression STRING expression'
+    'expression : STRING expression'
+    print("STRING: ", p[1])
 
 def p_PUNTOYCOMA(p):
-    'expression : expression PUNTOYCOMA expression'
+    'expression : PUNTOYCOMA expression'
+    print("PUNTOYCOMA: ", p[1])
 
 def p_DECVARIABLE(p):
-    'expression : expression DECVARIABLE expression'
+    'expression : DECVARIABLE expression'
+    print("DECVARIABLE: ", p[1])
 
 def p_IGUAL(p):
-    'expression : expression IGUAL expression'
+    'expression : IGUAL expression'
+    print("IGUAL: ", p[1])
 
 def p_MENOR(p):
-    'expression : expression MENOR expression'
+    'expression : MENOR expression'
+    print("MENOR: ", p[1])
 
 def p_MAYOR(p):
-    'expression : expression MAYOR expression'
+    'expression : MAYOR expression'
+    print("MAYOR: ", p[1])
 
 def p_MAYORIGUAL(p):
-    'expression : expression MAYORIGUAL expression'
+    'expression : MAYORIGUAL expression'
+    print("MAYORIGUAL: ", p[1])
 
 def p_MENORIGUAL(p):
-    'expression : expression MENORIGUAL expression'
+    'expression : MENORIGUAL expression'
+    print("MENORIGUAL: ", p[1])
 
 def p_ASIGNACION(p):
-    'expression : expression ASIGNACION expression'
+    'expression : ASIGNACION expression'
+    print("ASIGNACION: ", p[1])
 
 def p_SUMA(p):
-    'expression : expression SUMA expression'
+    'expression : SUMA expression'
+    print("SUMA: ", p[1])
 
 def p_RESTA(p):
-    'expression : expression RESTA expression'
+    'expression : RESTA expression'
+    print("RESTA: ", p[1])
 
 def p_INCREMENTAR(p):
-    'expression : expression INCREMENTAR expression'
+    'expression : INCREMENTAR expression'
+    print("INCREMENTAR: ", p[1])
 
 def p_DECREMENTAR(p):
-    'expression : expression DECREMENTAR expression'
+    'expression : DECREMENTAR expression'
+    print("DECREMENTAR: ", p[1])
 
 def p_MULT(p):
-    'expression : expression MULT expression'
+    'expression : MULT expression'
+    print("MULT: ", p[1])
 
 def p_DIV(p):
-    'expression : expression DIV expression'
+    'expression : DIV expression'
+    print("DIV: ", p[1])
 
 def p_PARIZQ(p):
-    'expression : expression PARIZQ expression'
+    'expression : PARIZQ expression'
+    print("PARIZ: ", p[1])
 
 def p_PARDER(p):
-    'expression : expression PARDER expression'
+    'expression : PARDER expression'
+    print("PARDER: ", p[1])
 
 def p_CORCHETEIZQ(p):
-    'expression : expression CORCHETEIZQ expression'
+    'expression : CORCHETEIZQ expression'
+    print("CORCHETEIZQ: ", p[1])
 
 def p_CORCHETEDER(p):
-    'expression : expression CORCHETEDER expression'
+    'expression : CORCHETEDER expression'
+    print("CORCHETEDER: ", p[1])
 
 def p_COMENTARIO(p):
-    'expression : expression COMENTARIO expression'
+    'expression : COMENTARIO expression'
+    print("COMENTARIO: ", p[1])
 
-def p_NEW_LINE(p):
-    'expression : expression NEW_LINE expression'
+def p_NEWLINE(p):
+    'expression : NEWLINE expression'
+    print("NEWLINE: ", p[1])
 
 def p_AND(p):
-    'expression : expression AND expression'
+    'expression : AND expression'
+    print("AND: ", p[1])
 
 def p_OR(p):
-    'expression : expression OR expression'
+    'expression : OR expression'
+    print("OR: ", p[1])
 
 def p_DIFERENTE(p):
-    'expression : expression DIFERENTE expression'
-
-def p_expression(p):
-    'expression : expression'
+    'expression : DIFERENTE expression'
+    print("DIFERENTE: ", p[1])
 
 def p_empty(p):
     'expression : '
-'''
+
 # Build the parser
 parser = yacc.yacc()
 
