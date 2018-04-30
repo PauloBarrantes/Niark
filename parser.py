@@ -11,11 +11,17 @@ def p_PRIVATE(p):
     print("PRIVATE: ", p[1])
 
 def p_FUNCTION(p):
-    'expression : FUNCTION expression'
-    print("FUNCTION: ", p[1])
+    '''
+    expression : PUBLIC FUNCTION NOMBRE PARIZQ PARDER
+               | PRIVATE FUNCTION NOMBRE PARIZQ PARDER
+    '''
+    print("FUNCTION: ", p[1],p[2],p[3],p[4],p[5])
 
 def p_VOID(p):
-    'expression : VOID expression'
+    '''
+    expression : PUBLIC VOID NOMBRE PARIZQ PARDER
+               | PRIVATE VOID NOMBRE PARIZQ PARDER
+    '''
     print("VOID: ", p[1])
 
 def p_TRUE(p):
@@ -27,11 +33,15 @@ def p_FALSE(p):
     print("FALSE: ", p[1])
 
 def p_IF(p):
-    'expression : IF expression'
+    '''
+    expression : IF PARIZQ PARDER
+    '''
     print("IF: ", p[1])
 
 def p_FOR(p):
-    'expression : FOR expression'
+    '''
+    expression : IF PARIZQ PARDER
+    '''
     print("FOR: ", p[1])
 
 def p_ELSE(p):
@@ -188,6 +198,9 @@ def p_DIFERENTE(p):
 
 def p_empty(p):
     'expression : '
+    print("Empty")
+def p_error(p):
+    print("ERROR")
 
 # Build the parser
 parser = yacc.yacc()
