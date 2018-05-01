@@ -37,10 +37,14 @@ def p_IF(p):
     expression : IF PARIZQ PARDER
     '''
     print("IF: ", p[1])
+def p_OPERATION(p):
+    '''
+    expression :  p_SUMA NOMBRE
+    '''
 
 def p_FOR(p):
     '''
-    expression : IF PARIZQ PARDER
+    expression : FOR PARIZQ DECVARIABLE IGUAL INT PUNTOYCOMA PARDER
     '''
     print("FOR: ", p[1])
 
