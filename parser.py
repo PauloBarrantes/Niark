@@ -10,12 +10,25 @@ def p_PRIVATE(p):
     'expression : PRIVATE expression'
     print("PRIVATE: ", p[1])
 
+def p_FUNCDOMAIN(p):
+    '''
+    domain : PRIVATE
+           | PUBLIC
+    '''
+    print(p[1])
+
+def p_FUNCRETURN(p):
+    '''
+    return : VOID
+           | FUNCTION
+    '''
+    print(p[1])
+
 def p_FUNCTION(p):
     '''
-    expression : PUBLIC FUNCTION NOMBRE PARIZQ parameter PARDER
-               | PRIVATE FUNCTION NOMBRE PARIZQ parameter PARDER
+    expression : domain return NOMBRE PARIZQ parameter PARDER
     '''
-    print("FUNCTION: ", p[1],p[2],p[3],p[4],p[5],p[6])
+    print("FUNCTION: ", p[3],p[4],p[6])
 
 def p_PARAMETRO(p):
     '''
@@ -30,14 +43,6 @@ def p_PARAMETRO_EXTRA(p):
     parametro_extra : COMA NOMBRE parametro_extra
                     | empty
     '''
-    print(p[1])
-
-def p_VOID(p):
-    '''
-    expression : PUBLIC VOID NOMBRE PARIZQ parameter PARDER
-               | PRIVATE VOID NOMBRE PARIZQ parameter PARDER
-    '''
-    print("VOID: ", p[1])
 
 def p_TRUE(p):
     'expression : TRUE expression'
@@ -49,7 +54,7 @@ def p_FALSE(p):
 
 def p_IF(p):
     '''
-    expression : IF PARIZQ PARDER
+    expression : IF PARIZQ condition PARDER
     '''
     print("IF: ", p[1])
 
@@ -66,7 +71,7 @@ def p_FOR(p):
     '''
     expression : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER
     '''
-    print("FOR: ", p[1])
+    print("FOR: ", p[1],p[2],p[3],p[4],p[5],p[6],p[8],p[10],p[11])
 
 def p_CONDITION_OPERATOR(p):
     '''
@@ -81,7 +86,13 @@ def p_CONDITION_OPERATOR(p):
 
 def p_CONDITON(p):
     '''
-    condition : variabletypes condition_operator variabletypes
+    condition : variabletypes condition_operator variabletypes extra_condition
+    '''
+
+def p_EXTRA_CONDITON(p):
+    '''
+    extra_condition : variabletypes condition_operator variabletypes extra_condition
+                    | empty
     '''
 
 
@@ -148,10 +159,6 @@ def p_DOUBLE(p):
     'expression : DOUBLE expression'
     print("DOUBLE: ", p[1])
 
-def p_NOMBRE(p):
-    'expression : NOMBRE expression'
-    print("NOMBRE: ", p[1])
-
 def p_STRING(p):
     'expression : STRING expression'
     print("STRING: ", p[1])
@@ -212,14 +219,6 @@ def p_DIV(p):
     'expression : DIV expression'
     print("DIV: ", p[1])
 
-def p_PARIZQ(p):
-    'expression : PARIZQ expression'
-    print("PARIZ: ", p[1])
-
-def p_PARDER(p):
-    'expression : PARDER expression'
-    print("PARDER: ", p[1])
-
 def p_CORCHETEIZQ(p):
     'expression : CORCHETEIZQ expression'
     print("CORCHETEIZQ: ", p[1])
@@ -236,6 +235,12 @@ def p_NEWLINE(p):
     'expression : NEWLINE expression'
     print("NEWLINE: ", p[1])
 
+def p_LOGICOPERATOR(p):
+    '''
+    logic_operator : AND
+                   | OR
+    '''
+
 def p_AND(p):
     'expression : AND expression'
     print("AND: ", p[1])
@@ -250,7 +255,7 @@ def p_DIFERENTE(p):
 
 def p_empty(p):
     'empty : '
-    print("Empty")
+
 def p_error(p):
     print("ERROR")
 
