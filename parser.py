@@ -12,15 +12,30 @@ def p_PRIVATE(p):
 
 def p_FUNCTION(p):
     '''
-    expression : PUBLIC FUNCTION NOMBRE PARIZQ PARDER
-               | PRIVATE FUNCTION NOMBRE PARIZQ PARDER
+    expression : PUBLIC FUNCTION NOMBRE PARIZQ parameter PARDER
+               | PRIVATE FUNCTION NOMBRE PARIZQ parameter PARDER
     '''
-    print("FUNCTION: ", p[1],p[2],p[3],p[4],p[5])
+    print("FUNCTION: ", p[1],p[2],p[3],p[4],p[5],p[6])
+
+def p_PARAMETRO(p):
+    '''
+    parameter : empty
+              | NOMBRE parametro_extra
+
+    '''
+    print(p[1])
+
+def p_PARAMETRO_EXTRA(p):
+    '''
+    parametro_extra : COMA NOMBRE parametro_extra
+                    | empty
+    '''
+    print(p[1])
 
 def p_VOID(p):
     '''
-    expression : PUBLIC VOID NOMBRE PARIZQ PARDER
-               | PRIVATE VOID NOMBRE PARIZQ PARDER
+    expression : PUBLIC VOID NOMBRE PARIZQ parameter PARDER
+               | PRIVATE VOID NOMBRE PARIZQ parameter PARDER
     '''
     print("VOID: ", p[1])
 
@@ -37,20 +52,53 @@ def p_IF(p):
     expression : IF PARIZQ PARDER
     '''
     print("IF: ", p[1])
-def p_OPERATION(p):
-    '''
-    expression :  p_SUMA NOMBRE
-    '''
-
-def p_FOR(p):
-    '''
-    expression : FOR PARIZQ DECVARIABLE IGUAL INT PUNTOYCOMA PARDER
-    '''
-    print("FOR: ", p[1])
 
 def p_ELSE(p):
     'expression : ELSE expression'
     print("ELSE: ", p[1])
+
+def p_OPERATION(p):
+    '''
+    expression :  t NOMBRE
+    '''
+
+def p_FOR(p):
+    '''
+    expression : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER
+    '''
+    print("FOR: ", p[1])
+
+def p_CONDITION_OPERATOR(p):
+    '''
+    condition_operator : DIFERENTE
+              | IGUAL
+              | MAYOR
+              | MAYORIGUAL
+              | MENOR
+              | MENORIGUAL
+    '''
+    print(p[1])
+
+def p_CONDITON(p):
+    '''
+    condition : variabletypes condition_operator variabletypes
+    '''
+
+
+def p_VARIABLETYPES(p):
+    '''
+    variabletypes : NOMBRE
+                  | DOUBLE
+                  | INT
+                  | STRING
+    '''
+    print(p[1])
+
+def p_INCDEC(p):
+    '''
+    incdec : INCREMENTAR
+           | DECREMENTAR
+    '''
 
 def p_WHILE(p):
     'expression : WHILE expression'
@@ -141,7 +189,7 @@ def p_ASIGNACION(p):
     print("ASIGNACION: ", p[1])
 
 def p_SUMA(p):
-    'expression : SUMA expression'
+    't : SUMA expression'
     print("SUMA: ", p[1])
 
 def p_RESTA(p):
@@ -201,7 +249,7 @@ def p_DIFERENTE(p):
     print("DIFERENTE: ", p[1])
 
 def p_empty(p):
-    'expression : '
+    'empty : '
     print("Empty")
 def p_error(p):
     print("ERROR")
