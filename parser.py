@@ -2,14 +2,6 @@ import ply.yacc as yacc
 from lex import tokens
 
 
-def p_PUBLIC(p):
-    'expression : PUBLIC expression'
-    print("PUBLIC: ",p[1])
-
-def p_PRIVATE(p):
-    'expression : PRIVATE expression'
-    print("PRIVATE: ", p[1])
-
 def p_FUNCDOMAIN(p):
     '''
     domain : PRIVATE
@@ -26,7 +18,7 @@ def p_FUNCRETURN(p):
 
 def p_FUNCTION(p):
     '''
-    expression : domain return NOMBRE PARIZQ parameter PARDER
+    function : domain return NOMBRE PARIZQ parameter PARDER
     '''
     print("FUNCTION: ", p[3],p[4],p[6])
 
@@ -54,7 +46,7 @@ def p_FALSE(p):
 
 def p_IF(p):
     '''
-    expression : IF PARIZQ condition PARDER
+    if : IF PARIZQ condition PARDER
     '''
     print("IF: ", p[1])
 
@@ -86,22 +78,24 @@ def p_CONDITION_OPERATOR(p):
 
 def p_CONDITON(p):
     '''
-    condition : variabletypes condition_operator variabletypes extra_condition
+    condition : variable_types condition_operator variable_types extra_condition
     '''
 
 def p_EXTRA_CONDITON(p):
     '''
-    extra_condition : variabletypes condition_operator variabletypes extra_condition
+    extra_condition : logic_operator variable_types condition_operator variable_types extra_condition
                     | empty
     '''
 
 
-def p_VARIABLETYPES(p):
+def p_variable_types(p):
     '''
-    variabletypes : NOMBRE
+    variable_types : NOMBRE
                   | DOUBLE
                   | INT
                   | STRING
+                  | FALSE
+                  | TRUE
     '''
     print(p[1])
 
@@ -112,39 +106,36 @@ def p_INCDEC(p):
     '''
 
 def p_WHILE(p):
-    'expression : WHILE expression'
+    'while : WHILE PARIZQ condition PARDER'
     print("WHILE: ", p[1])
 
 def p_RETURN(p):
-    'expression : RETURN expression'
+    'expression : RETURN variable_types'
     print("RETURN: ", p[1])
 
 def p_PRINT(p):
-    'expression : PRINT expression'
+    'expression : PRINT PARIZQ variable_types PARDER'
     print("PRINT: ", p[1])
 
 def p_READ(p):
-    'expression : READ expression'
+    'expression : READ PARIZQ STRING PARDER'
     print("READ: ", p[1])
 
 def p_IMPORT(p):
-    'expression : IMPORT expression'
+    'expression : IMPORT STRING'
     print("IMPORT: ", p[1])
 
 def p_SWITCH(p):
     'expression : SWITCH expression'
-    print("SWITCH: ", p[1])
 
 def p_CASE(p):
     'expression : CASE expression'
-    print("CASE: ", p[1])
 
 def p_BREAK(p):
     'expression : BREAK expression'
-    print("BREAK: ", p[1])
 
 def p_TABULACION(p):
-    'expression : TABULACION expression'
+    'tab : TABULACION expression'
     print("TABULACION: ", p[1])
 
 def p_COMA(p):
