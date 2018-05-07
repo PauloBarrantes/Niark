@@ -5,107 +5,4693 @@ Grammar
 Rule 0     S' -> expression
 Rule 1     expression -> PUBLIC expression
 Rule 2     expression -> PRIVATE expression
-Rule 3     expression -> PUBLIC FUNCTION NOMBRE PARIZQ PARDER
-Rule 4     expression -> PRIVATE FUNCTION NOMBRE PARIZQ PARDER
-Rule 5     expression -> PUBLIC VOID NOMBRE PARIZQ PARDER
-Rule 6     expression -> PRIVATE VOID NOMBRE PARIZQ PARDER
-Rule 7     expression -> TRUE expression
-Rule 8     expression -> FALSE expression
-Rule 9     expression -> IF PARIZQ PARDER
-Rule 10    expression -> p_SUMA NOMBRE
-Rule 11    expression -> FOR PARIZQ DECVARIABLE IGUAL INT PUNTOYCOMA PARDER
-Rule 12    expression -> ELSE expression
-Rule 13    expression -> WHILE expression
-Rule 14    expression -> RETURN expression
-Rule 15    expression -> PRINT expression
-Rule 16    expression -> READ expression
-Rule 17    expression -> IMPORT expression
-Rule 18    expression -> SWITCH expression
-Rule 19    expression -> CASE expression
-Rule 20    expression -> BREAK expression
-Rule 21    expression -> TABULACION expression
-Rule 22    expression -> COMA expression
-Rule 23    expression -> INT expression
-Rule 24    expression -> DOUBLE expression
-Rule 25    expression -> NOMBRE expression
-Rule 26    expression -> STRING expression
-Rule 27    expression -> PUNTOYCOMA expression
-Rule 28    expression -> DECVARIABLE expression
-Rule 29    expression -> IGUAL expression
-Rule 30    expression -> MENOR expression
-Rule 31    expression -> MAYOR expression
-Rule 32    expression -> MAYORIGUAL expression
-Rule 33    expression -> MENORIGUAL expression
-Rule 34    expression -> ASIGNACION expression
-Rule 35    expression -> SUMA expression
-Rule 36    expression -> RESTA expression
-Rule 37    expression -> INCREMENTAR expression
-Rule 38    expression -> DECREMENTAR expression
-Rule 39    expression -> MULT expression
-Rule 40    expression -> DIV expression
-Rule 41    expression -> PARIZQ expression
-Rule 42    expression -> PARDER expression
-Rule 43    expression -> CORCHETEIZQ expression
-Rule 44    expression -> CORCHETEDER expression
-Rule 45    expression -> COMENTARIO expression
-Rule 46    expression -> NEWLINE expression
-Rule 47    expression -> AND expression
-Rule 48    expression -> OR expression
-Rule 49    expression -> DIFERENTE expression
-Rule 50    expression -> <empty>
+Rule 3     domain -> PRIVATE
+Rule 4     domain -> PUBLIC
+Rule 5     return -> VOID
+Rule 6     return -> FUNCTION
+Rule 7     expression -> domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+Rule 8     parameter -> empty
+Rule 9     parameter -> NOMBRE parametro_extra
+Rule 10    parametro_extra -> COMA NOMBRE parametro_extra
+Rule 11    parametro_extra -> empty
+Rule 12    expression -> TRUE expression
+Rule 13    expression -> FALSE expression
+Rule 14    expression -> IF PARIZQ PARDER
+Rule 15    expression -> ELSE expression
+Rule 16    expression -> t NOMBRE
+Rule 17    expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+Rule 18    condition_operator -> DIFERENTE
+Rule 19    condition_operator -> IGUAL
+Rule 20    condition_operator -> MAYOR
+Rule 21    condition_operator -> MAYORIGUAL
+Rule 22    condition_operator -> MENOR
+Rule 23    condition_operator -> MENORIGUAL
+Rule 24    condition -> variabletypes condition_operator variabletypes
+Rule 25    variabletypes -> NOMBRE
+Rule 26    variabletypes -> DOUBLE
+Rule 27    variabletypes -> INT
+Rule 28    variabletypes -> STRING
+Rule 29    incdec -> INCREMENTAR
+Rule 30    incdec -> DECREMENTAR
+Rule 31    expression -> WHILE expression
+Rule 32    expression -> RETURN expression
+Rule 33    expression -> PRINT expression
+Rule 34    expression -> READ expression
+Rule 35    expression -> IMPORT expression
+Rule 36    expression -> SWITCH expression
+Rule 37    expression -> CASE expression
+Rule 38    expression -> BREAK expression
+Rule 39    expression -> TABULACION expression
+Rule 40    expression -> COMA expression
+Rule 41    expression -> INT expression
+Rule 42    expression -> DOUBLE expression
+Rule 43    expression -> STRING expression
+Rule 44    expression -> PUNTOYCOMA expression
+Rule 45    expression -> DECVARIABLE expression
+Rule 46    expression -> IGUAL expression
+Rule 47    expression -> MENOR expression
+Rule 48    expression -> MAYOR expression
+Rule 49    expression -> MAYORIGUAL expression
+Rule 50    expression -> MENORIGUAL expression
+Rule 51    expression -> ASIGNACION expression
+Rule 52    t -> SUMA expression
+Rule 53    expression -> RESTA expression
+Rule 54    expression -> INCREMENTAR expression
+Rule 55    expression -> DECREMENTAR expression
+Rule 56    expression -> MULT expression
+Rule 57    expression -> DIV expression
+Rule 58    expression -> CORCHETEIZQ expression
+Rule 59    expression -> CORCHETEDER expression
+Rule 60    expression -> COMENTARIO expression
+Rule 61    expression -> NEWLINE expression
+Rule 62    expression -> AND expression
+Rule 63    expression -> OR expression
+Rule 64    expression -> DIFERENTE expression
+Rule 65    empty -> <empty>
 
 Terminals, with rules where they appear
 
-AND                  : 47
-ASIGNACION           : 34
-BREAK                : 20
-CASE                 : 19
-COMA                 : 22
-COMENTARIO           : 45
-CORCHETEDER          : 44
-CORCHETEIZQ          : 43
-DECREMENTAR          : 38
-DECVARIABLE          : 11 28
-DIFERENTE            : 49
-DIV                  : 40
-DOUBLE               : 24
-ELSE                 : 12
-FALSE                : 8
-FOR                  : 11
-FUNCTION             : 3 4
-IF                   : 9
-IGUAL                : 11 29
-IMPORT               : 17
-INCREMENTAR          : 37
-INT                  : 11 23
-MAYOR                : 31
-MAYORIGUAL           : 32
-MENOR                : 30
-MENORIGUAL           : 33
-MULT                 : 39
-NEWLINE              : 46
-NOMBRE               : 3 4 5 6 10 25
-OR                   : 48
-PARDER               : 3 4 5 6 9 11 42
-PARIZQ               : 3 4 5 6 9 11 41
-PRINT                : 15
-PRIVATE              : 2 4 6
-PUBLIC               : 1 3 5
-PUNTOYCOMA           : 11 27
-READ                 : 16
-RESTA                : 36
-RETURN               : 14
-STRING               : 26
-SUMA                 : 35
-SWITCH               : 18
-TABULACION           : 21
-TRUE                 : 7
-VOID                 : 5 6
-WHILE                : 13
+AND                  : 62
+ASIGNACION           : 17 51
+BREAK                : 38
+CASE                 : 37
+COMA                 : 10 40
+COMENTARIO           : 60
+CORCHETEDER          : 59
+CORCHETEIZQ          : 58
+DECREMENTAR          : 30 55
+DECVARIABLE          : 17 45
+DIFERENTE            : 18 64
+DIV                  : 57
+DOUBLE               : 26 42
+ELSE                 : 15
+FALSE                : 13
+FOR                  : 17
+FUNCTION             : 6
+IF                   : 14
+IGUAL                : 19 46
+IMPORT               : 35
+INCREMENTAR          : 29 54
+INT                  : 17 27 41
+MAYOR                : 20 48
+MAYORIGUAL           : 21 49
+MENOR                : 22 47
+MENORIGUAL           : 23 50
+MULT                 : 56
+NEWLINE              : 7 17 61
+NOMBRE               : 7 9 10 16 17 25
+OR                   : 63
+PARDER               : 7 14 17
+PARIZQ               : 7 14 17
+PRINT                : 33
+PRIVATE              : 2 3
+PUBLIC               : 1 4
+PUNTOYCOMA           : 17 17 44
+READ                 : 34
+RESTA                : 53
+RETURN               : 32
+STRING               : 28 43
+SUMA                 : 52
+SWITCH               : 36
+TABULACION           : 39
+TRUE                 : 12
+VOID                 : 5
+WHILE                : 31
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 1 2 7 8 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 0
-p_SUMA               : 10
+condition            : 17
+condition_operator   : 24
+domain               : 7
+empty                : 8 11
+expression           : 1 2 12 13 15 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 0
+incdec               : 17
+parameter            : 7
+parametro_extra      : 9 10
+return               : 7
+t                    : 16
+variabletypes        : 24 24
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 1
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> PUBLIC . expression
+    (4) domain -> PUBLIC .
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    VOID            reduce using rule 4 (domain -> PUBLIC .)
+    FUNCTION        reduce using rule 4 (domain -> PUBLIC .)
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 45
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 3
+
+    (2) expression -> PRIVATE . expression
+    (3) domain -> PRIVATE .
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    VOID            reduce using rule 3 (domain -> PRIVATE .)
+    FUNCTION        reduce using rule 3 (domain -> PRIVATE .)
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 46
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 4
+
+    (7) expression -> domain . return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (5) return -> . VOID
+    (6) return -> . FUNCTION
+
+    VOID            shift and go to state 48
+    FUNCTION        shift and go to state 49
+
+    return                         shift and go to state 47
+
+state 5
+
+    (61) expression -> NEWLINE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 50
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 6
+
+    (12) expression -> TRUE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 51
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 7
+
+    (13) expression -> FALSE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 52
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 8
+
+    (14) expression -> IF . PARIZQ PARDER
+
+    PARIZQ          shift and go to state 53
+
+
+state 9
+
+    (15) expression -> ELSE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 54
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 10
+
+    (16) expression -> t . NOMBRE
+
+    NOMBRE          shift and go to state 55
+
+
+state 11
+
+    (17) expression -> FOR . PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+
+    PARIZQ          shift and go to state 56
+
+
+state 12
+
+    (45) expression -> DECVARIABLE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 57
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 13
+
+    (51) expression -> ASIGNACION . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 58
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 14
+
+    (41) expression -> INT . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 59
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 15
+
+    (44) expression -> PUNTOYCOMA . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 60
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 16
+
+    (31) expression -> WHILE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 61
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 17
+
+    (32) expression -> RETURN . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 62
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 18
+
+    (33) expression -> PRINT . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 63
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 19
+
+    (34) expression -> READ . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 64
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 20
+
+    (35) expression -> IMPORT . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 65
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 21
+
+    (36) expression -> SWITCH . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 66
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 22
+
+    (37) expression -> CASE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 67
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 23
+
+    (38) expression -> BREAK . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 68
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 24
+
+    (39) expression -> TABULACION . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 69
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 25
+
+    (40) expression -> COMA . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 70
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 26
+
+    (42) expression -> DOUBLE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 71
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 27
+
+    (43) expression -> STRING . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 72
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 28
+
+    (46) expression -> IGUAL . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 73
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 29
+
+    (47) expression -> MENOR . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 74
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 30
+
+    (48) expression -> MAYOR . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 75
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 31
+
+    (49) expression -> MAYORIGUAL . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 76
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 32
+
+    (50) expression -> MENORIGUAL . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 77
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 33
+
+    (53) expression -> RESTA . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 78
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 34
+
+    (54) expression -> INCREMENTAR . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 79
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 35
+
+    (55) expression -> DECREMENTAR . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 80
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 36
+
+    (56) expression -> MULT . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 81
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 37
+
+    (57) expression -> DIV . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 82
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 38
+
+    (58) expression -> CORCHETEIZQ . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 83
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 39
+
+    (59) expression -> CORCHETEDER . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 84
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 40
+
+    (60) expression -> COMENTARIO . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 85
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 41
+
+    (62) expression -> AND . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 86
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 42
+
+    (63) expression -> OR . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 87
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 43
+
+    (64) expression -> DIFERENTE . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 88
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 44
+
+    (52) t -> SUMA . expression
+    (1) expression -> . PUBLIC expression
+    (2) expression -> . PRIVATE expression
+    (7) expression -> . domain return NOMBRE PARIZQ parameter PARDER NEWLINE
+    (12) expression -> . TRUE expression
+    (13) expression -> . FALSE expression
+    (14) expression -> . IF PARIZQ PARDER
+    (15) expression -> . ELSE expression
+    (16) expression -> . t NOMBRE
+    (17) expression -> . FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (31) expression -> . WHILE expression
+    (32) expression -> . RETURN expression
+    (33) expression -> . PRINT expression
+    (34) expression -> . READ expression
+    (35) expression -> . IMPORT expression
+    (36) expression -> . SWITCH expression
+    (37) expression -> . CASE expression
+    (38) expression -> . BREAK expression
+    (39) expression -> . TABULACION expression
+    (40) expression -> . COMA expression
+    (41) expression -> . INT expression
+    (42) expression -> . DOUBLE expression
+    (43) expression -> . STRING expression
+    (44) expression -> . PUNTOYCOMA expression
+    (45) expression -> . DECVARIABLE expression
+    (46) expression -> . IGUAL expression
+    (47) expression -> . MENOR expression
+    (48) expression -> . MAYOR expression
+    (49) expression -> . MAYORIGUAL expression
+    (50) expression -> . MENORIGUAL expression
+    (51) expression -> . ASIGNACION expression
+    (53) expression -> . RESTA expression
+    (54) expression -> . INCREMENTAR expression
+    (55) expression -> . DECREMENTAR expression
+    (56) expression -> . MULT expression
+    (57) expression -> . DIV expression
+    (58) expression -> . CORCHETEIZQ expression
+    (59) expression -> . CORCHETEDER expression
+    (60) expression -> . COMENTARIO expression
+    (61) expression -> . NEWLINE expression
+    (62) expression -> . AND expression
+    (63) expression -> . OR expression
+    (64) expression -> . DIFERENTE expression
+    (3) domain -> . PRIVATE
+    (4) domain -> . PUBLIC
+    (52) t -> . SUMA expression
+
+    PUBLIC          shift and go to state 2
+    PRIVATE         shift and go to state 3
+    TRUE            shift and go to state 6
+    FALSE           shift and go to state 7
+    IF              shift and go to state 8
+    ELSE            shift and go to state 9
+    FOR             shift and go to state 11
+    WHILE           shift and go to state 16
+    RETURN          shift and go to state 17
+    PRINT           shift and go to state 18
+    READ            shift and go to state 19
+    IMPORT          shift and go to state 20
+    SWITCH          shift and go to state 21
+    CASE            shift and go to state 22
+    BREAK           shift and go to state 23
+    TABULACION      shift and go to state 24
+    COMA            shift and go to state 25
+    INT             shift and go to state 14
+    DOUBLE          shift and go to state 26
+    STRING          shift and go to state 27
+    PUNTOYCOMA      shift and go to state 15
+    DECVARIABLE     shift and go to state 12
+    IGUAL           shift and go to state 28
+    MENOR           shift and go to state 29
+    MAYOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
+    ASIGNACION      shift and go to state 13
+    RESTA           shift and go to state 33
+    INCREMENTAR     shift and go to state 34
+    DECREMENTAR     shift and go to state 35
+    MULT            shift and go to state 36
+    DIV             shift and go to state 37
+    CORCHETEIZQ     shift and go to state 38
+    CORCHETEDER     shift and go to state 39
+    COMENTARIO      shift and go to state 40
+    NEWLINE         shift and go to state 5
+    AND             shift and go to state 41
+    OR              shift and go to state 42
+    DIFERENTE       shift and go to state 43
+    SUMA            shift and go to state 44
+
+    expression                     shift and go to state 89
+    domain                         shift and go to state 4
+    t                              shift and go to state 10
+
+state 45
+
+    (1) expression -> PUBLIC expression .
+
+    $end            reduce using rule 1 (expression -> PUBLIC expression .)
+    NOMBRE          reduce using rule 1 (expression -> PUBLIC expression .)
+
+
+state 46
+
+    (2) expression -> PRIVATE expression .
+
+    $end            reduce using rule 2 (expression -> PRIVATE expression .)
+    NOMBRE          reduce using rule 2 (expression -> PRIVATE expression .)
+
+
+state 47
+
+    (7) expression -> domain return . NOMBRE PARIZQ parameter PARDER NEWLINE
+
+    NOMBRE          shift and go to state 90
+
+
+state 48
+
+    (5) return -> VOID .
+
+    NOMBRE          reduce using rule 5 (return -> VOID .)
+
+
+state 49
+
+    (6) return -> FUNCTION .
+
+    NOMBRE          reduce using rule 6 (return -> FUNCTION .)
+
+
+state 50
+
+    (61) expression -> NEWLINE expression .
+
+    $end            reduce using rule 61 (expression -> NEWLINE expression .)
+    NOMBRE          reduce using rule 61 (expression -> NEWLINE expression .)
+
+
+state 51
+
+    (12) expression -> TRUE expression .
+
+    $end            reduce using rule 12 (expression -> TRUE expression .)
+    NOMBRE          reduce using rule 12 (expression -> TRUE expression .)
+
+
+state 52
+
+    (13) expression -> FALSE expression .
+
+    $end            reduce using rule 13 (expression -> FALSE expression .)
+    NOMBRE          reduce using rule 13 (expression -> FALSE expression .)
+
+
+state 53
+
+    (14) expression -> IF PARIZQ . PARDER
+
+    PARDER          shift and go to state 91
+
+
+state 54
+
+    (15) expression -> ELSE expression .
+
+    $end            reduce using rule 15 (expression -> ELSE expression .)
+    NOMBRE          reduce using rule 15 (expression -> ELSE expression .)
+
+
+state 55
+
+    (16) expression -> t NOMBRE .
+
+    $end            reduce using rule 16 (expression -> t NOMBRE .)
+    NOMBRE          reduce using rule 16 (expression -> t NOMBRE .)
+
+
+state 56
+
+    (17) expression -> FOR PARIZQ . DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+
+    DECVARIABLE     shift and go to state 92
+
+
+state 57
+
+    (45) expression -> DECVARIABLE expression .
+
+    $end            reduce using rule 45 (expression -> DECVARIABLE expression .)
+    NOMBRE          reduce using rule 45 (expression -> DECVARIABLE expression .)
+
+
+state 58
+
+    (51) expression -> ASIGNACION expression .
+
+    $end            reduce using rule 51 (expression -> ASIGNACION expression .)
+    NOMBRE          reduce using rule 51 (expression -> ASIGNACION expression .)
+
+
+state 59
+
+    (41) expression -> INT expression .
+
+    $end            reduce using rule 41 (expression -> INT expression .)
+    NOMBRE          reduce using rule 41 (expression -> INT expression .)
+
+
+state 60
+
+    (44) expression -> PUNTOYCOMA expression .
+
+    $end            reduce using rule 44 (expression -> PUNTOYCOMA expression .)
+    NOMBRE          reduce using rule 44 (expression -> PUNTOYCOMA expression .)
+
+
+state 61
+
+    (31) expression -> WHILE expression .
+
+    $end            reduce using rule 31 (expression -> WHILE expression .)
+    NOMBRE          reduce using rule 31 (expression -> WHILE expression .)
+
+
+state 62
+
+    (32) expression -> RETURN expression .
+
+    $end            reduce using rule 32 (expression -> RETURN expression .)
+    NOMBRE          reduce using rule 32 (expression -> RETURN expression .)
+
+
+state 63
+
+    (33) expression -> PRINT expression .
+
+    $end            reduce using rule 33 (expression -> PRINT expression .)
+    NOMBRE          reduce using rule 33 (expression -> PRINT expression .)
+
+
+state 64
+
+    (34) expression -> READ expression .
+
+    $end            reduce using rule 34 (expression -> READ expression .)
+    NOMBRE          reduce using rule 34 (expression -> READ expression .)
+
+
+state 65
+
+    (35) expression -> IMPORT expression .
+
+    $end            reduce using rule 35 (expression -> IMPORT expression .)
+    NOMBRE          reduce using rule 35 (expression -> IMPORT expression .)
+
+
+state 66
+
+    (36) expression -> SWITCH expression .
+
+    $end            reduce using rule 36 (expression -> SWITCH expression .)
+    NOMBRE          reduce using rule 36 (expression -> SWITCH expression .)
+
+
+state 67
+
+    (37) expression -> CASE expression .
+
+    $end            reduce using rule 37 (expression -> CASE expression .)
+    NOMBRE          reduce using rule 37 (expression -> CASE expression .)
+
+
+state 68
+
+    (38) expression -> BREAK expression .
+
+    $end            reduce using rule 38 (expression -> BREAK expression .)
+    NOMBRE          reduce using rule 38 (expression -> BREAK expression .)
+
+
+state 69
+
+    (39) expression -> TABULACION expression .
+
+    $end            reduce using rule 39 (expression -> TABULACION expression .)
+    NOMBRE          reduce using rule 39 (expression -> TABULACION expression .)
+
+
+state 70
+
+    (40) expression -> COMA expression .
+
+    $end            reduce using rule 40 (expression -> COMA expression .)
+    NOMBRE          reduce using rule 40 (expression -> COMA expression .)
+
+
+state 71
+
+    (42) expression -> DOUBLE expression .
+
+    $end            reduce using rule 42 (expression -> DOUBLE expression .)
+    NOMBRE          reduce using rule 42 (expression -> DOUBLE expression .)
+
+
+state 72
+
+    (43) expression -> STRING expression .
+
+    $end            reduce using rule 43 (expression -> STRING expression .)
+    NOMBRE          reduce using rule 43 (expression -> STRING expression .)
+
+
+state 73
+
+    (46) expression -> IGUAL expression .
+
+    $end            reduce using rule 46 (expression -> IGUAL expression .)
+    NOMBRE          reduce using rule 46 (expression -> IGUAL expression .)
+
+
+state 74
+
+    (47) expression -> MENOR expression .
+
+    $end            reduce using rule 47 (expression -> MENOR expression .)
+    NOMBRE          reduce using rule 47 (expression -> MENOR expression .)
+
+
+state 75
+
+    (48) expression -> MAYOR expression .
+
+    $end            reduce using rule 48 (expression -> MAYOR expression .)
+    NOMBRE          reduce using rule 48 (expression -> MAYOR expression .)
+
+
+state 76
+
+    (49) expression -> MAYORIGUAL expression .
+
+    $end            reduce using rule 49 (expression -> MAYORIGUAL expression .)
+    NOMBRE          reduce using rule 49 (expression -> MAYORIGUAL expression .)
+
+
+state 77
+
+    (50) expression -> MENORIGUAL expression .
+
+    $end            reduce using rule 50 (expression -> MENORIGUAL expression .)
+    NOMBRE          reduce using rule 50 (expression -> MENORIGUAL expression .)
+
+
+state 78
+
+    (53) expression -> RESTA expression .
+
+    $end            reduce using rule 53 (expression -> RESTA expression .)
+    NOMBRE          reduce using rule 53 (expression -> RESTA expression .)
+
+
+state 79
+
+    (54) expression -> INCREMENTAR expression .
+
+    $end            reduce using rule 54 (expression -> INCREMENTAR expression .)
+    NOMBRE          reduce using rule 54 (expression -> INCREMENTAR expression .)
+
+
+state 80
+
+    (55) expression -> DECREMENTAR expression .
+
+    $end            reduce using rule 55 (expression -> DECREMENTAR expression .)
+    NOMBRE          reduce using rule 55 (expression -> DECREMENTAR expression .)
+
+
+state 81
+
+    (56) expression -> MULT expression .
+
+    $end            reduce using rule 56 (expression -> MULT expression .)
+    NOMBRE          reduce using rule 56 (expression -> MULT expression .)
+
+
+state 82
+
+    (57) expression -> DIV expression .
+
+    $end            reduce using rule 57 (expression -> DIV expression .)
+    NOMBRE          reduce using rule 57 (expression -> DIV expression .)
+
+
+state 83
+
+    (58) expression -> CORCHETEIZQ expression .
+
+    $end            reduce using rule 58 (expression -> CORCHETEIZQ expression .)
+    NOMBRE          reduce using rule 58 (expression -> CORCHETEIZQ expression .)
+
+
+state 84
+
+    (59) expression -> CORCHETEDER expression .
+
+    $end            reduce using rule 59 (expression -> CORCHETEDER expression .)
+    NOMBRE          reduce using rule 59 (expression -> CORCHETEDER expression .)
+
+
+state 85
+
+    (60) expression -> COMENTARIO expression .
+
+    $end            reduce using rule 60 (expression -> COMENTARIO expression .)
+    NOMBRE          reduce using rule 60 (expression -> COMENTARIO expression .)
+
+
+state 86
+
+    (62) expression -> AND expression .
+
+    $end            reduce using rule 62 (expression -> AND expression .)
+    NOMBRE          reduce using rule 62 (expression -> AND expression .)
+
+
+state 87
+
+    (63) expression -> OR expression .
+
+    $end            reduce using rule 63 (expression -> OR expression .)
+    NOMBRE          reduce using rule 63 (expression -> OR expression .)
+
+
+state 88
+
+    (64) expression -> DIFERENTE expression .
+
+    $end            reduce using rule 64 (expression -> DIFERENTE expression .)
+    NOMBRE          reduce using rule 64 (expression -> DIFERENTE expression .)
+
+
+state 89
+
+    (52) t -> SUMA expression .
+
+    NOMBRE          reduce using rule 52 (t -> SUMA expression .)
+
+
+state 90
+
+    (7) expression -> domain return NOMBRE . PARIZQ parameter PARDER NEWLINE
+
+    PARIZQ          shift and go to state 93
+
+
+state 91
+
+    (14) expression -> IF PARIZQ PARDER .
+
+    $end            reduce using rule 14 (expression -> IF PARIZQ PARDER .)
+    NOMBRE          reduce using rule 14 (expression -> IF PARIZQ PARDER .)
+
+
+state 92
+
+    (17) expression -> FOR PARIZQ DECVARIABLE . ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+
+    ASIGNACION      shift and go to state 94
+
+
+state 93
+
+    (7) expression -> domain return NOMBRE PARIZQ . parameter PARDER NEWLINE
+    (8) parameter -> . empty
+    (9) parameter -> . NOMBRE parametro_extra
+    (65) empty -> .
+
+    NOMBRE          shift and go to state 95
+    PARDER          reduce using rule 65 (empty -> .)
+
+    parameter                      shift and go to state 96
+    empty                          shift and go to state 97
+
+state 94
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION . INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+
+    INT             shift and go to state 98
+
+
+state 95
+
+    (9) parameter -> NOMBRE . parametro_extra
+    (10) parametro_extra -> . COMA NOMBRE parametro_extra
+    (11) parametro_extra -> . empty
+    (65) empty -> .
+
+    COMA            shift and go to state 100
+    PARDER          reduce using rule 65 (empty -> .)
+
+    parametro_extra                shift and go to state 99
+    empty                          shift and go to state 101
+
+state 96
+
+    (7) expression -> domain return NOMBRE PARIZQ parameter . PARDER NEWLINE
+
+    PARDER          shift and go to state 102
+
+
+state 97
+
+    (8) parameter -> empty .
+
+    PARDER          reduce using rule 8 (parameter -> empty .)
+
+
+state 98
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT . PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+
+    PUNTOYCOMA      shift and go to state 103
+
+
+state 99
+
+    (9) parameter -> NOMBRE parametro_extra .
+
+    PARDER          reduce using rule 9 (parameter -> NOMBRE parametro_extra .)
+
+
+state 100
+
+    (10) parametro_extra -> COMA . NOMBRE parametro_extra
+
+    NOMBRE          shift and go to state 104
+
+
+state 101
+
+    (11) parametro_extra -> empty .
+
+    PARDER          reduce using rule 11 (parametro_extra -> empty .)
+
+
+state 102
+
+    (7) expression -> domain return NOMBRE PARIZQ parameter PARDER . NEWLINE
+
+    NEWLINE         shift and go to state 105
+
+
+state 103
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA . condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+    (24) condition -> . variabletypes condition_operator variabletypes
+    (25) variabletypes -> . NOMBRE
+    (26) variabletypes -> . DOUBLE
+    (27) variabletypes -> . INT
+    (28) variabletypes -> . STRING
+
+    NOMBRE          shift and go to state 108
+    DOUBLE          shift and go to state 110
+    INT             shift and go to state 106
+    STRING          shift and go to state 111
+
+    condition                      shift and go to state 107
+    variabletypes                  shift and go to state 109
+
+state 104
+
+    (10) parametro_extra -> COMA NOMBRE . parametro_extra
+    (10) parametro_extra -> . COMA NOMBRE parametro_extra
+    (11) parametro_extra -> . empty
+    (65) empty -> .
+
+    COMA            shift and go to state 100
+    PARDER          reduce using rule 65 (empty -> .)
+
+    parametro_extra                shift and go to state 112
+    empty                          shift and go to state 101
+
+state 105
+
+    (7) expression -> domain return NOMBRE PARIZQ parameter PARDER NEWLINE .
+
+    $end            reduce using rule 7 (expression -> domain return NOMBRE PARIZQ parameter PARDER NEWLINE .)
+    NOMBRE          reduce using rule 7 (expression -> domain return NOMBRE PARIZQ parameter PARDER NEWLINE .)
+
+
+state 106
+
+    (27) variabletypes -> INT .
+
+    DIFERENTE       reduce using rule 27 (variabletypes -> INT .)
+    IGUAL           reduce using rule 27 (variabletypes -> INT .)
+    MAYOR           reduce using rule 27 (variabletypes -> INT .)
+    MAYORIGUAL      reduce using rule 27 (variabletypes -> INT .)
+    MENOR           reduce using rule 27 (variabletypes -> INT .)
+    MENORIGUAL      reduce using rule 27 (variabletypes -> INT .)
+    PUNTOYCOMA      reduce using rule 27 (variabletypes -> INT .)
+
+
+state 107
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition . PUNTOYCOMA incdec NOMBRE PARDER NEWLINE
+
+    PUNTOYCOMA      shift and go to state 113
+
+
+state 108
+
+    (25) variabletypes -> NOMBRE .
+
+    DIFERENTE       reduce using rule 25 (variabletypes -> NOMBRE .)
+    IGUAL           reduce using rule 25 (variabletypes -> NOMBRE .)
+    MAYOR           reduce using rule 25 (variabletypes -> NOMBRE .)
+    MAYORIGUAL      reduce using rule 25 (variabletypes -> NOMBRE .)
+    MENOR           reduce using rule 25 (variabletypes -> NOMBRE .)
+    MENORIGUAL      reduce using rule 25 (variabletypes -> NOMBRE .)
+    PUNTOYCOMA      reduce using rule 25 (variabletypes -> NOMBRE .)
+
+
+state 109
+
+    (24) condition -> variabletypes . condition_operator variabletypes
+    (18) condition_operator -> . DIFERENTE
+    (19) condition_operator -> . IGUAL
+    (20) condition_operator -> . MAYOR
+    (21) condition_operator -> . MAYORIGUAL
+    (22) condition_operator -> . MENOR
+    (23) condition_operator -> . MENORIGUAL
+
+    DIFERENTE       shift and go to state 115
+    IGUAL           shift and go to state 116
+    MAYOR           shift and go to state 117
+    MAYORIGUAL      shift and go to state 118
+    MENOR           shift and go to state 119
+    MENORIGUAL      shift and go to state 120
+
+    condition_operator             shift and go to state 114
+
+state 110
+
+    (26) variabletypes -> DOUBLE .
+
+    DIFERENTE       reduce using rule 26 (variabletypes -> DOUBLE .)
+    IGUAL           reduce using rule 26 (variabletypes -> DOUBLE .)
+    MAYOR           reduce using rule 26 (variabletypes -> DOUBLE .)
+    MAYORIGUAL      reduce using rule 26 (variabletypes -> DOUBLE .)
+    MENOR           reduce using rule 26 (variabletypes -> DOUBLE .)
+    MENORIGUAL      reduce using rule 26 (variabletypes -> DOUBLE .)
+    PUNTOYCOMA      reduce using rule 26 (variabletypes -> DOUBLE .)
+
+
+state 111
+
+    (28) variabletypes -> STRING .
+
+    DIFERENTE       reduce using rule 28 (variabletypes -> STRING .)
+    IGUAL           reduce using rule 28 (variabletypes -> STRING .)
+    MAYOR           reduce using rule 28 (variabletypes -> STRING .)
+    MAYORIGUAL      reduce using rule 28 (variabletypes -> STRING .)
+    MENOR           reduce using rule 28 (variabletypes -> STRING .)
+    MENORIGUAL      reduce using rule 28 (variabletypes -> STRING .)
+    PUNTOYCOMA      reduce using rule 28 (variabletypes -> STRING .)
+
+
+state 112
+
+    (10) parametro_extra -> COMA NOMBRE parametro_extra .
+
+    PARDER          reduce using rule 10 (parametro_extra -> COMA NOMBRE parametro_extra .)
+
+
+state 113
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA . incdec NOMBRE PARDER NEWLINE
+    (29) incdec -> . INCREMENTAR
+    (30) incdec -> . DECREMENTAR
+
+    INCREMENTAR     shift and go to state 122
+    DECREMENTAR     shift and go to state 123
+
+    incdec                         shift and go to state 121
+
+state 114
+
+    (24) condition -> variabletypes condition_operator . variabletypes
+    (25) variabletypes -> . NOMBRE
+    (26) variabletypes -> . DOUBLE
+    (27) variabletypes -> . INT
+    (28) variabletypes -> . STRING
+
+    NOMBRE          shift and go to state 108
+    DOUBLE          shift and go to state 110
+    INT             shift and go to state 106
+    STRING          shift and go to state 111
+
+    variabletypes                  shift and go to state 124
+
+state 115
+
+    (18) condition_operator -> DIFERENTE .
+
+    NOMBRE          reduce using rule 18 (condition_operator -> DIFERENTE .)
+    DOUBLE          reduce using rule 18 (condition_operator -> DIFERENTE .)
+    INT             reduce using rule 18 (condition_operator -> DIFERENTE .)
+    STRING          reduce using rule 18 (condition_operator -> DIFERENTE .)
+
+
+state 116
+
+    (19) condition_operator -> IGUAL .
+
+    NOMBRE          reduce using rule 19 (condition_operator -> IGUAL .)
+    DOUBLE          reduce using rule 19 (condition_operator -> IGUAL .)
+    INT             reduce using rule 19 (condition_operator -> IGUAL .)
+    STRING          reduce using rule 19 (condition_operator -> IGUAL .)
+
+
+state 117
+
+    (20) condition_operator -> MAYOR .
+
+    NOMBRE          reduce using rule 20 (condition_operator -> MAYOR .)
+    DOUBLE          reduce using rule 20 (condition_operator -> MAYOR .)
+    INT             reduce using rule 20 (condition_operator -> MAYOR .)
+    STRING          reduce using rule 20 (condition_operator -> MAYOR .)
+
+
+state 118
+
+    (21) condition_operator -> MAYORIGUAL .
+
+    NOMBRE          reduce using rule 21 (condition_operator -> MAYORIGUAL .)
+    DOUBLE          reduce using rule 21 (condition_operator -> MAYORIGUAL .)
+    INT             reduce using rule 21 (condition_operator -> MAYORIGUAL .)
+    STRING          reduce using rule 21 (condition_operator -> MAYORIGUAL .)
+
+
+state 119
+
+    (22) condition_operator -> MENOR .
+
+    NOMBRE          reduce using rule 22 (condition_operator -> MENOR .)
+    DOUBLE          reduce using rule 22 (condition_operator -> MENOR .)
+    INT             reduce using rule 22 (condition_operator -> MENOR .)
+    STRING          reduce using rule 22 (condition_operator -> MENOR .)
+
+
+state 120
+
+    (23) condition_operator -> MENORIGUAL .
+
+    NOMBRE          reduce using rule 23 (condition_operator -> MENORIGUAL .)
+    DOUBLE          reduce using rule 23 (condition_operator -> MENORIGUAL .)
+    INT             reduce using rule 23 (condition_operator -> MENORIGUAL .)
+    STRING          reduce using rule 23 (condition_operator -> MENORIGUAL .)
+
+
+state 121
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec . NOMBRE PARDER NEWLINE
+
+    NOMBRE          shift and go to state 125
+
+
+state 122
+
+    (29) incdec -> INCREMENTAR .
+
+    NOMBRE          reduce using rule 29 (incdec -> INCREMENTAR .)
+
+
+state 123
+
+    (30) incdec -> DECREMENTAR .
+
+    NOMBRE          reduce using rule 30 (incdec -> DECREMENTAR .)
+
+
+state 124
+
+    (24) condition -> variabletypes condition_operator variabletypes .
+
+    PUNTOYCOMA      reduce using rule 24 (condition -> variabletypes condition_operator variabletypes .)
+
+
+state 125
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE . PARDER NEWLINE
+
+    PARDER          shift and go to state 126
+
+
+state 126
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER . NEWLINE
+
+    NEWLINE         shift and go to state 127
+
+
+state 127
+
+    (17) expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE .
+
+    $end            reduce using rule 17 (expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE .)
+    NOMBRE          reduce using rule 17 (expression -> FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER NEWLINE .)
 

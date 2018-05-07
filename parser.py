@@ -2,27 +2,39 @@ import ply.yacc as yacc
 from lex import tokens
 
 
-def p_PUBLIC(p):
-    'expression : PUBLIC expression'
-    print("PUBLIC: ",p[1])
+def p_FUNCDOMAIN(p):
+    '''
+    domain : PRIVATE
+           | PUBLIC
+    '''
+    print(p[1])
 
-def p_PRIVATE(p):
-    'expression : PRIVATE expression'
-    print("PRIVATE: ", p[1])
+def p_FUNCRETURN(p):
+    '''
+    return : VOID
+           | FUNCTION
+    '''
+    print(p[1])
 
 def p_FUNCTION(p):
     '''
-    expression : PUBLIC FUNCTION NOMBRE PARIZQ PARDER
-               | PRIVATE FUNCTION NOMBRE PARIZQ PARDER
+    function : domain return NOMBRE PARIZQ parameter PARDER
     '''
-    print("FUNCTION: ", p[1],p[2],p[3],p[4],p[5])
+    print("FUNCTION: ", p[3],p[4],p[6])
 
-def p_VOID(p):
+def p_PARAMETRO(p):
     '''
-    expression : PUBLIC VOID NOMBRE PARIZQ PARDER
-               | PRIVATE VOID NOMBRE PARIZQ PARDER
+    parameter : empty
+              | NOMBRE parametro_extra
+
     '''
-    print("VOID: ", p[1])
+    print(p[1])
+
+def p_PARAMETRO_EXTRA(p):
+    '''
+    parametro_extra : COMA NOMBRE parametro_extra
+                    | empty
+    '''
 
 def p_TRUE(p):
     'expression : TRUE expression'
@@ -34,58 +46,96 @@ def p_FALSE(p):
 
 def p_IF(p):
     '''
-    expression : IF PARIZQ PARDER
+    if : IF PARIZQ condition PARDER
     '''
     print("IF: ", p[1])
-def p_OPERATION(p):
-    '''
-    expression :  p_SUMA NOMBRE
-    '''
-
-def p_FOR(p):
-    '''
-    expression : FOR PARIZQ DECVARIABLE IGUAL INT PUNTOYCOMA PARDER
-    '''
-    print("FOR: ", p[1])
 
 def p_ELSE(p):
     'expression : ELSE expression'
     print("ELSE: ", p[1])
 
+def p_OPERATION(p):
+    '''
+    expression :  t NOMBRE
+    '''
+
+def p_FOR(p):
+    '''
+    expression : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER
+    '''
+    print("FOR: ", p[1],p[2],p[3],p[4],p[5],p[6],p[8],p[10],p[11])
+
+def p_CONDITION_OPERATOR(p):
+    '''
+    condition_operator : DIFERENTE
+              | IGUAL
+              | MAYOR
+              | MAYORIGUAL
+              | MENOR
+              | MENORIGUAL
+    '''
+    print(p[1])
+
+def p_CONDITON(p):
+    '''
+    condition : variable_types condition_operator variable_types extra_condition
+    '''
+
+def p_EXTRA_CONDITON(p):
+    '''
+    extra_condition : logic_operator variable_types condition_operator variable_types extra_condition
+                    | empty
+    '''
+
+
+def p_variable_types(p):
+    '''
+    variable_types : NOMBRE
+                  | DOUBLE
+                  | INT
+                  | STRING
+                  | FALSE
+                  | TRUE
+    '''
+    print(p[1])
+
+def p_INCDEC(p):
+    '''
+    incdec : INCREMENTAR
+           | DECREMENTAR
+    '''
+
 def p_WHILE(p):
-    'expression : WHILE expression'
+    'while : WHILE PARIZQ condition PARDER'
     print("WHILE: ", p[1])
 
 def p_RETURN(p):
-    'expression : RETURN expression'
+    'expression : RETURN variable_types'
     print("RETURN: ", p[1])
 
 def p_PRINT(p):
-    'expression : PRINT expression'
+    'expression : PRINT PARIZQ variable_types PARDER'
     print("PRINT: ", p[1])
 
 def p_READ(p):
-    'expression : READ expression'
+    'expression : READ PARIZQ STRING PARDER'
     print("READ: ", p[1])
 
 def p_IMPORT(p):
-    'expression : IMPORT expression'
+    'expression : IMPORT STRING'
     print("IMPORT: ", p[1])
 
 def p_SWITCH(p):
     'expression : SWITCH expression'
-    print("SWITCH: ", p[1])
 
 def p_CASE(p):
     'expression : CASE expression'
-    print("CASE: ", p[1])
 
 def p_BREAK(p):
     'expression : BREAK expression'
-    print("BREAK: ", p[1])
 
 def p_TABULACION(p):
-    'expression : TABULACION expression'
+    'tab : TABULACION expression'
     print("TABULACION: ", p[1])
 
 def p_COMA(p):
@@ -99,10 +149,6 @@ def p_INT(p):
 def p_DOUBLE(p):
     'expression : DOUBLE expression'
     print("DOUBLE: ", p[1])
-
-def p_NOMBRE(p):
-    'expression : NOMBRE expression'
-    print("NOMBRE: ", p[1])
 
 def p_STRING(p):
     'expression : STRING expression'
@@ -141,7 +187,7 @@ def p_ASIGNACION(p):
     print("ASIGNACION: ", p[1])
 
 def p_SUMA(p):
-    'expression : SUMA expression'
+    't : SUMA expression'
     print("SUMA: ", p[1])
 
 def p_RESTA(p):
@@ -164,14 +210,6 @@ def p_DIV(p):
     'expression : DIV expression'
     print("DIV: ", p[1])
 
-def p_PARIZQ(p):
-    'expression : PARIZQ expression'
-    print("PARIZ: ", p[1])
-
-def p_PARDER(p):
-    'expression : PARDER expression'
-    print("PARDER: ", p[1])
-
 def p_CORCHETEIZQ(p):
     'expression : CORCHETEIZQ expression'
     print("CORCHETEIZQ: ", p[1])
@@ -188,6 +226,12 @@ def p_NEWLINE(p):
     'expression : NEWLINE expression'
     print("NEWLINE: ", p[1])
 
+def p_LOGICOPERATOR(p):
+    '''
+    logic_operator : AND
+                   | OR
+    '''
+
 def p_AND(p):
     'expression : AND expression'
     print("AND: ", p[1])
@@ -201,8 +245,8 @@ def p_DIFERENTE(p):
     print("DIFERENTE: ", p[1])
 
 def p_empty(p):
-    'expression : '
-    print("Empty")
+    'empty : '
+
 def p_error(p):
     line = p.lineno(0);
     index = p.lexpos(0);
