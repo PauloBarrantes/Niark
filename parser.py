@@ -2,29 +2,29 @@ import ply.yacc as yacc
 from lex import tokens
 
 
-def p_FUNCDOMAIN(p):
+def p_DOMINIO_FUNC(p):
     '''
-    domain : PRIVATE
-           | PUBLIC
+    dominio : PRIVATE
+            | PUBLIC
     '''
     print(p[1])
 
-def p_FUNCRETURN(p):
+def p_RETURN_FUNC(p):
     '''
     return : VOID
            | FUNCTION
     '''
     print(p[1])
 
-def p_FUNCTION(p):
+def p_FUNCION(p):
     '''
-    function : domain return NOMBRE PARIZQ parameter PARDER
+    funcion : dominio return NOMBRE PARIZQ parameter PARDER
     '''
     print("FUNCTION: ", p[3],p[4],p[6])
 
 def p_PARAMETRO(p):
     '''
-    parameter : empty
+    parametro : vacio
               | NOMBRE parametro_extra
 
     '''
@@ -33,16 +33,27 @@ def p_PARAMETRO(p):
 def p_PARAMETRO_EXTRA(p):
     '''
     parametro_extra : COMA NOMBRE parametro_extra
-                    | empty
+                    | vacio
     '''
 
-def p_TRUE(p):
-    'expression : TRUE expression'
-    print("TRUE: ", p[1])
+def p_LLAMADO_FUNCION(p):
+    '''
+    llamado_funcion : NOMBRE PARIZQ parametro_llamado PARDER
+    '''
 
-def p_FALSE(p):
-    'expression : FALSE expression'
-    print("FALSE: ", p[1])
+def p_PARAMETRO_LLAMADO(p):
+    '''
+    parametro_llamado : vacio
+                      | tipo_variable parametro_llamado_extra
+
+    '''
+    print(p[1])
+
+def p_PARAMETRO_LLAMADO_EXTRA(p):
+    '''
+    parametro_llamado_extra : COMA NOMBRE parametro_llamado_extra
+                            | vacio
+    '''
 
 def p_IF(p):
     '''
@@ -61,48 +72,51 @@ def p_OPERATION(p):
 
 def p_FOR(p):
     '''
-    expression : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec NOMBRE PARDER
+    expression : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec PARDER
     '''
     print("FOR: ", p[1],p[2],p[3],p[4],p[5],p[6],p[8],p[10],p[11])
 
 def p_CONDITION_OPERATOR(p):
     '''
     condition_operator : DIFERENTE
-              | IGUAL
-              | MAYOR
-              | MAYORIGUAL
-              | MENOR
-              | MENORIGUAL
+                       | IGUAL
+                       | MAYOR
+                       | MAYORIGUAL
+                       | MENOR
+                       | MENORIGUAL
     '''
     print(p[1])
 
-def p_CONDITON(p):
+def p_CONDICION(p):
     '''
-    condition : variable_types condition_operator variable_types extra_condition
-    '''
-
-def p_EXTRA_CONDITON(p):
-    '''
-    extra_condition : logic_operator variable_types condition_operator variable_types extra_condition
-                    | empty
+    condicion : tipo_variable condition_operator tipo_variable extra_condition
     '''
 
-
-def p_variable_types(p):
+def p_CONDICION_EXTRA(p):
     '''
-    variable_types : NOMBRE
-                  | DOUBLE
-                  | INT
-                  | STRING
-                  | FALSE
-                  | TRUE
+    condicion_extra : logic_operator tipo_variable condition_operator tipo_variable extra_condition
+                    | vacio
+    '''
+
+
+def p_tipo_variable(p):
+    '''
+    tipo_variable : NOMBRE
+                   | DOUBLE
+                   | INT
+                   | STRING
+                   | FALSE
+                   | TRUE
+                   | llamado_funcion
     '''
     print(p[1])
 
 def p_INCDEC(p):
     '''
-    incdec : INCREMENTAR
-           | DECREMENTAR
+    incdec : INCREMENTAR NOMBRE
+           | DECREMENTAR NOMBRE
+           | NOMBRE INCREMENTAR
+           | NOMBRE DECREMENTAR
     '''
 
 def p_WHILE(p):
@@ -110,11 +124,11 @@ def p_WHILE(p):
     print("WHILE: ", p[1])
 
 def p_RETURN(p):
-    'expression : RETURN variable_types'
+    'expression : RETURN tipo_variable'
     print("RETURN: ", p[1])
 
 def p_PRINT(p):
-    'expression : PRINT PARIZQ variable_types PARDER'
+    'expression : PRINT PARIZQ tipo_variable PARDER'
     print("PRINT: ", p[1])
 
 def p_READ(p):
@@ -129,123 +143,50 @@ def p_SWITCH(p):
     'expression : SWITCH expression'
 
 def p_CASE(p):
-    'expression : CASE expression'
+    'case : CASE expression'
 
 def p_BREAK(p):
-    'expression : BREAK expression'
+    'break : BREAK PUNTOYCOMA'
 
 def p_TABULACION(p):
     'tab : TABULACION expression'
     print("TABULACION: ", p[1])
 
-def p_COMA(p):
-    'expression : COMA expression'
-    print("COMA: ", p[1])
-
-def p_INT(p):
-    'expression : INT expression'
-    print("INT: ", p[1])
-
-def p_DOUBLE(p):
-    'expression : DOUBLE expression'
-    print("DOUBLE: ", p[1])
-
-def p_STRING(p):
-    'expression : STRING expression'
-    print("STRING: ", p[1])
-
-def p_PUNTOYCOMA(p):
-    'expression : PUNTOYCOMA expression'
-    print("PUNTOYCOMA: ", p[1])
-
 def p_DECVARIABLE(p):
-    'expression : DECVARIABLE expression'
+    'dec_variable : DECVARIABLE ASIGNACION tipo_variable Op_Aritmetica'
     print("DECVARIABLE: ", p[1])
 
-def p_IGUAL(p):
-    'expression : IGUAL expression'
-    print("IGUAL: ", p[1])
+def p_ASIGNACION(p):
+    'asignacion : NOMBRE ASIGNACION tipo_variable Op_Aritmetica'
 
-def p_MENOR(p):
-    'expression : MENOR expression'
-    print("MENOR: ", p[1])
+def p_OP_ARITMETICA(p):
+    '''
+    Op_Aritmetica : Operador_Aritmetico tipo_variable Op_Aritmetica
+                  | vacio
 
-def p_MAYOR(p):
-    'expression : MAYOR expression'
-    print("MAYOR: ", p[1])
+    '''
 
-def p_MAYORIGUAL(p):
-    'expression : MAYORIGUAL expression'
-    print("MAYORIGUAL: ", p[1])
-
-def p_MENORIGUAL(p):
-    'expression : MENORIGUAL expression'
-    print("MENORIGUAL: ", p[1])
+def p_OPERADOR_ARITMETICO(p):
+    '''
+    Operador_Aritmetico : SUMA
+                        | RESTA
+                        | MULT
+                        | DIV
+    '''
 
 def p_ASIGNACION(p):
     'expression : ASIGNACION expression'
     print("ASIGNACION: ", p[1])
 
-def p_SUMA(p):
-    't : SUMA expression'
-    print("SUMA: ", p[1])
 
-def p_RESTA(p):
-    'expression : RESTA expression'
-    print("RESTA: ", p[1])
-
-def p_INCREMENTAR(p):
-    'expression : INCREMENTAR expression'
-    print("INCREMENTAR: ", p[1])
-
-def p_DECREMENTAR(p):
-    'expression : DECREMENTAR expression'
-    print("DECREMENTAR: ", p[1])
-
-def p_MULT(p):
-    'expression : MULT expression'
-    print("MULT: ", p[1])
-
-def p_DIV(p):
-    'expression : DIV expression'
-    print("DIV: ", p[1])
-
-def p_CORCHETEIZQ(p):
-    'expression : CORCHETEIZQ expression'
-    print("CORCHETEIZQ: ", p[1])
-
-def p_CORCHETEDER(p):
-    'expression : CORCHETEDER expression'
-    print("CORCHETEDER: ", p[1])
-
-def p_COMENTARIO(p):
-    'expression : COMENTARIO expression'
-    print("COMENTARIO: ", p[1])
-
-def p_NEWLINE(p):
-    'expression : NEWLINE expression'
-    print("NEWLINE: ", p[1])
-
-def p_LOGICOPERATOR(p):
+def p_OPERADOR_LOGICO(p):
     '''
-    logic_operator : AND
-                   | OR
+    operador_logico : AND
+                    | OR
     '''
 
-def p_AND(p):
-    'expression : AND expression'
-    print("AND: ", p[1])
-
-def p_OR(p):
-    'expression : OR expression'
-    print("OR: ", p[1])
-
-def p_DIFERENTE(p):
-    'expression : DIFERENTE expression'
-    print("DIFERENTE: ", p[1])
-
-def p_empty(p):
-    'empty : '
+def p_vacio(p):
+    'vacio : '
 
 def p_error(p):
     print("ERROR")
