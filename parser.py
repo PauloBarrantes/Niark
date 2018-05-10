@@ -1,26 +1,42 @@
 import ply.yacc as yacc
 from lex import tokens
 
+#GENERAL
+def p_INICIAL(p):
+    '''
+    inicial : funcion instrucciones
+    '''
+
+def p_INDENTACION(p):
+    '''
+    indentacion : vacio
+                | TABULACION indentacion
+
+    '''
+
+#FUNCION
+def p_FUNCION(p):
+    '''
+    funcion : definicion_funcion instrucciones
+            | vacio
+    '''
+
+def p_DEFINICION_FUNCION(p):
+    '''
+    definicion_funcion : dominio return NOMBRE PARIZQ parameter PARDER
+    '''
 
 def p_DOMINIO_FUNC(p):
     '''
     dominio : PRIVATE
             | PUBLIC
     '''
-    print(p[1])
 
 def p_RETURN_FUNC(p):
     '''
     return : VOID
            | FUNCTION
     '''
-    print(p[1])
-
-def p_FUNCION(p):
-    '''
-    funcion : dominio return NOMBRE PARIZQ parameter PARDER
-    '''
-    print("FUNCTION: ", p[3],p[4],p[6])
 
 def p_PARAMETRO(p):
     '''
@@ -28,7 +44,6 @@ def p_PARAMETRO(p):
               | NOMBRE parametro_extra
 
     '''
-    print(p[1])
 
 def p_PARAMETRO_EXTRA(p):
     '''
@@ -36,9 +51,10 @@ def p_PARAMETRO_EXTRA(p):
                     | vacio
     '''
 
+#INSTRUCCIONES
 def p_LLAMADO_FUNCION(p):
     '''
-    llamado_funcion : NOMBRE PARIZQ parametro_llamado PARDER
+    llamado_funcion : indentacion NOMBRE PARIZQ parametro_llamado PARDER
     '''
 
 def p_PARAMETRO_LLAMADO(p):
@@ -47,7 +63,6 @@ def p_PARAMETRO_LLAMADO(p):
                       | tipo_variable parametro_llamado_extra
 
     '''
-    print(p[1])
 
 def p_PARAMETRO_LLAMADO_EXTRA(p):
     '''
@@ -55,49 +70,91 @@ def p_PARAMETRO_LLAMADO_EXTRA(p):
                             | vacio
     '''
 
+def p_INSTRUCCIONES(p):
+    '''
+    instrucciones : if NEWLINE
+                  | for NEWLINE
+                  | while NEWLINE
+                  | print NEWLINE
+                  | read NEWLINE
+                  | incdec NEWLINE
+                  | dec_variable NEWLINE
+                  | asignacion NEWLINE
+                  | llamado_funcion NEWLINE
+                  | RETURN tipo_variable NEWLINE
+                  | vacio
+    '''
+
 def p_IF(p):
     '''
-    if : IF PARIZQ condition PARDER
+    if : indentacion IF PARIZQ condition PARDER
     '''
-    print("IF: ", p[1])
 
 def p_ELSE(p):
-    'expression : ELSE expression'
-    print("ELSE: ", p[1])
-
-def p_OPERATION(p):
-    '''
-    expression :  t NOMBRE
-    '''
+    'expression : indentacion ELSE expression'
 
 def p_FOR(p):
     '''
-    expression : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec PARDER
+    expression : indentacion FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec PARDER
     '''
-    print("FOR: ", p[1],p[2],p[3],p[4],p[5],p[6],p[8],p[10],p[11])
 
-def p_CONDITION_OPERATOR(p):
+def p_INCDEC(p):
     '''
-    condition_operator : DIFERENTE
+    incdec : indentacion pre_incdec
+           | indentacion post_incdec
+    '''
+
+def p_PRE_INCDEC(p):
+    '''
+    pre_incdec : INCREMENTAR NOMBRE
+               | DECREMENTAR NOMBRE
+
+    '''
+
+def p_POST_INCDEC(p):
+    '''
+    post_incdec : NOMBRE INCREMENTAR
+                | NOMBRE DECREMENTAR
+    '''
+
+
+def p_WHILE(p):
+    'while : indentacion WHILE PARIZQ condition PARDER'
+
+def p_PRINT(p):
+    'expression : indentacion PRINT PARIZQ tipo_variable PARDER'
+
+def p_READ(p):
+    'expression : indentacion READ PARIZQ STRING PARDER'
+
+def p_DECVARIABLE(p):
+    'dec_variable : indentacion DECVARIABLE ASIGNACION tipo_variable Op_Aritmetica'
+
+def p_ASIGNACION(p):
+    'asignacion : indentacion NOMBRE ASIGNACION tipo_variable Op_Aritmetica'
+
+
+#OPERACIONES Y OPERANDOS
+def p_operador_condicional(p):
+    '''
+    operador_condicional : DIFERENTE
                        | IGUAL
                        | MAYOR
                        | MAYORIGUAL
                        | MENOR
                        | MENORIGUAL
     '''
-    print(p[1])
 
 def p_CONDICION(p):
     '''
-    condicion : tipo_variable condition_operator tipo_variable extra_condition
+    condicion : tipo_variable operador_condicional tipo_variable extra_condition
     '''
 
 def p_CONDICION_EXTRA(p):
     '''
-    condicion_extra : logic_operator tipo_variable condition_operator tipo_variable extra_condition
+    condicion_extra : operador_logico tipo_variable operador_condicional tipo_variable extra_condition
                     | vacio
     '''
-
 
 def p_tipo_variable(p):
     '''
@@ -109,55 +166,6 @@ def p_tipo_variable(p):
                    | TRUE
                    | llamado_funcion
     '''
-    print(p[1])
-
-def p_INCDEC(p):
-    '''
-    incdec : INCREMENTAR NOMBRE
-           | DECREMENTAR NOMBRE
-           | NOMBRE INCREMENTAR
-           | NOMBRE DECREMENTAR
-    '''
-
-def p_WHILE(p):
-    'while : WHILE PARIZQ condition PARDER'
-    print("WHILE: ", p[1])
-
-def p_RETURN(p):
-    'expression : RETURN tipo_variable'
-    print("RETURN: ", p[1])
-
-def p_PRINT(p):
-    'expression : PRINT PARIZQ tipo_variable PARDER'
-    print("PRINT: ", p[1])
-
-def p_READ(p):
-    'expression : READ PARIZQ STRING PARDER'
-    print("READ: ", p[1])
-
-def p_IMPORT(p):
-    'expression : IMPORT STRING'
-    print("IMPORT: ", p[1])
-
-def p_SWITCH(p):
-    'expression : SWITCH expression'
-
-def p_CASE(p):
-    'case : CASE expression'
-
-def p_BREAK(p):
-    'break : BREAK PUNTOYCOMA'
-
-def p_TABULACION(p):
-    'tab : TABULACION expression'
-    print("TABULACION: ", p[1])
-
-def p_DECVARIABLE(p):
-    'dec_variable : DECVARIABLE ASIGNACION tipo_variable Op_Aritmetica'
-    print("DECVARIABLE: ", p[1])
-
-def p_ASIGNACION(p):
-    'asignacion : NOMBRE ASIGNACION tipo_variable Op_Aritmetica'
 
 def p_OP_ARITMETICA(p):
     '''
@@ -173,11 +181,6 @@ def p_OPERADOR_ARITMETICO(p):
                         | MULT
                         | DIV
     '''
-
-def p_ASIGNACION(p):
-    'expression : ASIGNACION expression'
-    print("ASIGNACION: ", p[1])
-
 
 def p_OPERADOR_LOGICO(p):
     '''
