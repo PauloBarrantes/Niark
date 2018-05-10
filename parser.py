@@ -192,16 +192,11 @@ def p_vacio(p):
     'vacio : '
 
 def p_error(p):
-    line = p.lineno(0);
-    index = p.lexpos(0);
-    print("Error en la línea ", line,)
-    if p:
-         print("Syntax error at token", p.type)
-         # Just discard the token and tell the parser it's okay.
-         parser.errok()
-    else:
-         print("Syntax error at EOF")
-
+    while True:
+        tok = parser.token()
+        print(tok)
+        if not tok or  tok.value == 'NEWLINE': break        # Get the next token
+    parser.errok()
 # Build the parser
 parser = yacc.yacc()
 
