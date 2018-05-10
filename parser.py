@@ -4,7 +4,7 @@ from lex import tokens
 #GENERAL
 def p_INICIAL(p):
     '''
-    inicial : funcion instrucciones
+    inicial : funcion instrucciones NEWLINE
     '''
 
 def p_INDENTACION(p):
@@ -23,7 +23,7 @@ def p_FUNCION(p):
 
 def p_DEFINICION_FUNCION(p):
     '''
-    definicion_funcion : dominio return NOMBRE PARIZQ parameter PARDER
+    definicion_funcion : dominio return NOMBRE PARIZQ parametro PARDER
     '''
 
 def p_DOMINIO_FUNC(p):
@@ -87,15 +87,15 @@ def p_INSTRUCCIONES(p):
 
 def p_IF(p):
     '''
-    if : indentacion IF PARIZQ condition PARDER
+    if : indentacion IF PARIZQ condicion PARDER
     '''
 
 def p_ELSE(p):
-    'expression : indentacion ELSE expression'
+    'else : indentacion ELSE NEWLINE'
 
 def p_FOR(p):
     '''
-    expression : indentacion FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condition PUNTOYCOMA incdec PARDER
+    for : indentacion FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER
     '''
 
 def p_INCDEC(p):
@@ -119,13 +119,13 @@ def p_POST_INCDEC(p):
 
 
 def p_WHILE(p):
-    'while : indentacion WHILE PARIZQ condition PARDER'
+    'while : indentacion WHILE PARIZQ condicion PARDER'
 
 def p_PRINT(p):
-    'expression : indentacion PRINT PARIZQ tipo_variable PARDER'
+    'print : indentacion PRINT PARIZQ tipo_variable PARDER'
 
 def p_READ(p):
-    'expression : indentacion READ PARIZQ STRING PARDER'
+    'read : indentacion READ PARIZQ STRING PARDER'
 
 def p_DECVARIABLE(p):
     'dec_variable : indentacion DECVARIABLE ASIGNACION tipo_variable Op_Aritmetica'
@@ -147,12 +147,12 @@ def p_operador_condicional(p):
 
 def p_CONDICION(p):
     '''
-    condicion : tipo_variable operador_condicional tipo_variable extra_condition
+    condicion : tipo_variable operador_condicional tipo_variable condicion_extra
     '''
 
 def p_CONDICION_EXTRA(p):
     '''
-    condicion_extra : operador_logico tipo_variable operador_condicional tipo_variable extra_condition
+    condicion_extra : operador_logico tipo_variable operador_condicional tipo_variable condicion_extra
                     | vacio
     '''
 

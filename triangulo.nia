@@ -1,5 +1,5 @@
 public void Triangulo()
-  $c = ' ' // Vamos a guardar una string//
+  $c = " " // Vamos a guardar una string//
 	$n = 0 //Vamos a guardar un número entero//
 
 	print("Digite el caracter que desea utilizar")
