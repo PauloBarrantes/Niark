@@ -1,6 +1,6 @@
 public void Triangulo()
   $c = " " // Vamos a guardar una string//
-	$n = 0 //Vamos a guardar un número entero//
+	$n = 0 //Vamos a guardar un numero entero//
 
 	print("Digite el caracter que desea utilizar")
 	read(c)
