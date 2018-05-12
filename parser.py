@@ -4,14 +4,14 @@ from lex import tokens
 #GENERAL
 def p_INICIAL(p):
     '''
-    inicial : funcion instrucciones NEWLINE
+    inicial : funcion inicial instrucciones NEWLINE
+            | vacio
     '''
 
 def p_INDENTACION(p):
     '''
     indentacion : vacio
                 | TABULACION indentacion
-
     '''
 
 #FUNCION
@@ -79,9 +79,10 @@ def p_INSTRUCCIONES(p):
                   | read NEWLINE
                   | incdec NEWLINE
                   | dec_variable NEWLINE
+                  | dec_vector NEWLINE
                   | asignacion NEWLINE
                   | llamado_funcion NEWLINE
-                  | RETURN tipo_variable NEWLINE
+                  | retorno NEWLINE
                   | vacio
     '''
 
@@ -128,10 +129,28 @@ def p_READ(p):
     'read : indentacion READ PARIZQ STRING PARDER'
 
 def p_DECVARIABLE(p):
-    'dec_variable : indentacion DECVARIABLE ASIGNACION tipo_variable Op_Aritmetica'
+    'dec_variable : indentacion DECVARIABLE ASIGNACION op_aritmetica'
+
+def p_DECVECTOR(p):
+    '''
+    dec_vector : indentacion DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
+               | indentacion DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
+    '''
 
 def p_ASIGNACION(p):
-    'asignacion : indentacion NOMBRE ASIGNACION tipo_variable Op_Aritmetica'
+    'asignacion : indentacion NOMBRE ASIGNACION op_aritmetica'
+
+def p_ASIGNACIONVECTOR(p):
+    '''
+    asignacion_vector : indentacion NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
+                      | indentacion NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
+    '''
+
+def p_RETORNAR(p):
+    '''
+    retorno : RETURN tipo_variable
+            | RETURN op_aritmetica
+    '''
 
 
 #OPERACIONES Y OPERANDOS
@@ -167,16 +186,24 @@ def p_tipo_variable(p):
                    | llamado_funcion
     '''
 
-def p_OP_ARITMETICA(p):
+def p_op_aritmetica(p):
     '''
-    Op_Aritmetica : Operador_Aritmetico tipo_variable Op_Aritmetica
+    op_aritmetica : tipo_variable operador_aritmetico tipo_variable op_aritmetica_extra
                   | vacio
 
     '''
 
-def p_OPERADOR_ARITMETICO(p):
+def p_op_aritmetica(p):
     '''
-    Operador_Aritmetico : SUMA
+    op_aritmetica_extra : operador_aritmetico tipo_variable op_aritmetica_extra
+                        | operador_aritmetico PARIZQ tipo_variable op_aritmetica_extra PARDER
+                        | vacio
+
+    '''
+
+def p_operador_aritmetico(p):
+    '''
+    operador_aritmetico : SUMA
                         | RESTA
                         | MULT
                         | DIV

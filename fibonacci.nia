@@ -11,6 +11,6 @@ public function Fibonacci(n)
 		return 0
 	else
 		return -1
-		//El usuario colocó un número negativo
+		//El usuario coloco un numero negativo
 
 		//
