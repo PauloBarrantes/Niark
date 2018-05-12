@@ -154,7 +154,7 @@ def p_RETORNAR(p):
 
 
 #OPERACIONES Y OPERANDOS
-def p_operador_condicional(p):
+def p_OPERADOR_CONDICIONAL(p):
     '''
     operador_condicional : DIFERENTE
                        | IGUAL
@@ -175,7 +175,7 @@ def p_CONDICION_EXTRA(p):
                     | vacio
     '''
 
-def p_tipo_variable(p):
+def p_TIPO_VARIABLE(p):
     '''
     tipo_variable : NOMBRE
                    | DOUBLE
@@ -186,14 +186,14 @@ def p_tipo_variable(p):
                    | llamado_funcion
     '''
 
-def p_op_aritmetica(p):
+def p_OP_ARITMETICA(p):
     '''
     op_aritmetica : tipo_variable operador_aritmetico tipo_variable op_aritmetica_extra
                   | vacio
 
     '''
 
-def p_op_aritmetica(p):
+def p_OP_ARITMETICA_EXTRA(p):
     '''
     op_aritmetica_extra : operador_aritmetico tipo_variable op_aritmetica_extra
                         | operador_aritmetico PARIZQ tipo_variable op_aritmetica_extra PARDER
@@ -201,7 +201,7 @@ def p_op_aritmetica(p):
 
     '''
 
-def p_operador_aritmetico(p):
+def p_OPERADOR_ARITMETICO(p):
     '''
     operador_aritmetico : SUMA
                         | RESTA
