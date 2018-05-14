@@ -2,25 +2,19 @@ import ply.yacc as yacc
 from lex import tokens
 
 #GENERAL
-def p_INICIAL(p):
+def p_Niark(p):
     '''
-    inicial : funcion inicial instrucciones NEWLINE
-            | vacio
+    Niark : definicion_funcion instrucciones Niark NEWLINE
+          | vacio
     '''
 
 def p_INDENTACION(p):
     '''
-    indentacion : vacio
-                | TABULACION indentacion
+    indentacion : TABULACION indentacion
+                | vacio
     '''
 
 #FUNCION
-def p_FUNCION(p):
-    '''
-    funcion : definicion_funcion instrucciones
-            | vacio
-    '''
-
 def p_DEFINICION_FUNCION(p):
     '''
     definicion_funcion : dominio return NOMBRE PARIZQ parametro PARDER
@@ -73,6 +67,7 @@ def p_PARAMETRO_LLAMADO_EXTRA(p):
 def p_INSTRUCCIONES(p):
     '''
     instrucciones : if NEWLINE
+                  | else NEWLINE
                   | for NEWLINE
                   | while NEWLINE
                   | print NEWLINE
@@ -81,8 +76,10 @@ def p_INSTRUCCIONES(p):
                   | dec_variable NEWLINE
                   | dec_vector NEWLINE
                   | asignacion NEWLINE
+                  | asignacion_vector NEWLINE
                   | llamado_funcion NEWLINE
                   | retorno NEWLINE
+                  | COMENTARIO NEWLINE
                   | vacio
     '''
 
@@ -92,7 +89,10 @@ def p_IF(p):
     '''
 
 def p_ELSE(p):
-    'else : indentacion ELSE NEWLINE'
+    '''
+    else : ELSE
+         | ELSE if
+    '''
 
 def p_FOR(p):
     '''
