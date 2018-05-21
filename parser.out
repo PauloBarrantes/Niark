@@ -86,32 +86,33 @@ Rule 73    operador_condicional -> MAYORIGUAL
 Rule 74    operador_condicional -> MENOR
 Rule 75    operador_condicional -> MENORIGUAL
 Rule 76    condicion -> tipo_variable operador_condicional tipo_variable condicion_extra
-Rule 77    condicion_extra -> operador_logico tipo_variable operador_condicional tipo_variable condicion_extra
-Rule 78    condicion_extra -> vacio
-Rule 79    tipo_variable -> NOMBRE
-Rule 80    tipo_variable -> DOUBLE
-Rule 81    tipo_variable -> INT
-Rule 82    tipo_variable -> STRING
-Rule 83    tipo_variable -> FALSE
-Rule 84    tipo_variable -> TRUE
-Rule 85    tipo_variable -> llamado_funcion
-Rule 86    op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable
-Rule 87    op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-Rule 88    op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-Rule 89    op_aritmetica_extra -> tipo_variable
-Rule 90    op_aritmetica_extra -> op_aritmetica
-Rule 91    op_aritmetica_extra -> vacio
-Rule 92    operador_aritmetico -> SUMA
-Rule 93    operador_aritmetico -> RESTA
-Rule 94    operador_aritmetico -> MULT
-Rule 95    operador_aritmetico -> DIV
-Rule 96    operador_logico -> AND
-Rule 97    operador_logico -> OR
-Rule 98    vacio -> <empty>
+Rule 77    condicion -> PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+Rule 78    condicion_extra -> operador_logico condicion
+Rule 79    condicion_extra -> vacio
+Rule 80    tipo_variable -> NOMBRE
+Rule 81    tipo_variable -> DOUBLE
+Rule 82    tipo_variable -> INT
+Rule 83    tipo_variable -> STRING
+Rule 84    tipo_variable -> FALSE
+Rule 85    tipo_variable -> TRUE
+Rule 86    tipo_variable -> llamado_funcion
+Rule 87    op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable
+Rule 88    op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+Rule 89    op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+Rule 90    op_aritmetica_extra -> tipo_variable
+Rule 91    op_aritmetica_extra -> op_aritmetica
+Rule 92    op_aritmetica_extra -> vacio
+Rule 93    operador_aritmetico -> SUMA
+Rule 94    operador_aritmetico -> RESTA
+Rule 95    operador_aritmetico -> MULT
+Rule 96    operador_aritmetico -> DIV
+Rule 97    operador_logico -> AND
+Rule 98    operador_logico -> OR
+Rule 99    vacio -> <empty>
 
 Terminals, with rules where they appear
 
-AND                  : 96
+AND                  : 97
 ASIGNACION           : 54 55 58 59 60 61 62 63 64 65 66 67
 BREAK                : 
 CASE                 : 
@@ -122,41 +123,41 @@ CORCHETEIZQ          : 56 57 58 59 60 61 64 65 66 67
 DECREMENTAR          : 48 50
 DECVARIABLE          : 54 55 56 57 58 59 60 61
 DIFERENTE            : 70
-DIV                  : 95
-DOUBLE               : 80
+DIV                  : 96
+DOUBLE               : 81
 ELSE                 : 42 43
-FALSE                : 83
+FALSE                : 84
 FOR                  : 44
 FUNCTION             : 10
 IF                   : 41
 IGUAL                : 71
 IMPORT               : 
 INCREMENTAR          : 47 49
-INT                  : 57 59 61 65 67 81
+INT                  : 57 59 61 65 67 82
 LLAVEDER             : 1 41 42 44
 LLAVEIZQ             : 1 41 42 44 51
 MAYOR                : 72
 MAYORIGUAL           : 73
 MENOR                : 74
 MENORIGUAL           : 75
-MULT                 : 94
+MULT                 : 95
 NEWLINE              : 1 1 21 22 23 24 25 26 27 28 29 30 31 32 33 34 41 42 44
-NOMBRE               : 6 12 13 15 16 47 48 49 50 53 56 58 60 62 63 64 64 65 66 66 67 79
-OR                   : 97
-PARDER               : 6 15 16 41 44 51 52 53 87 88
-PARIZQ               : 6 15 16 41 44 51 52 53 87 88
+NOMBRE               : 6 12 13 15 16 47 48 49 50 53 56 58 60 62 63 64 64 65 66 66 67 80
+OR                   : 98
+PARDER               : 6 15 16 41 44 51 52 53 77 88 89
+PARIZQ               : 6 15 16 41 44 51 52 53 77 88 89
 PRINT                : 52
 PRIVATE              : 7
 PUBLIC               : 8
 PUNTOYCOMA           : 44 44
 READ                 : 53
-RESTA                : 93
+RESTA                : 94
 RETURN               : 68 69
-STRING               : 82
-SUMA                 : 92
+STRING               : 83
+SUMA                 : 93
 SWITCH               : 
 TABULACION           : 4
-TRUE                 : 84
+TRUE                 : 85
 VOID                 : 9
 WHILE                : 51
 error                : 
@@ -170,9 +171,9 @@ ciclo_for            : 23
 ciclo_while          : 24
 comentario           : 21 22 23 24 25 26 27 28 29 30 31 32 33 34
 concat_instruccion   : 37 39
-condicion            : 41 44 51
+condicion            : 41 44 51 78
 condicion_else       : 22
-condicion_extra      : 76 77
+condicion_extra      : 76 77 77
 condicion_if         : 21 43
 dec_variable         : 28 44
 dec_vector           : 29
@@ -184,12 +185,12 @@ indentacion          : 4 37 39 41 42 44
 instruccion          : 37 39
 instrucciones        : 1 2 41 42 44
 leer                 : 26
-llamado_funcion      : 32 85
-op_aritmetica        : 18 54 58 59 62 64 65 69 90
-op_aritmetica_extra  : 86 87 87 88
-operador_aritmetico  : 86 87 87 88
+llamado_funcion      : 32 86
+op_aritmetica        : 18 54 58 59 62 64 65 69 91
+op_aritmetica_extra  : 87 88 88 89
+operador_aritmetico  : 87 88 88 89
 operador_condicional : 76 77
-operador_logico      : 77
+operador_logico      : 78
 parametro            : 6
 parametro_extra      : 12 13
 parametro_llamado    : 15 19
@@ -198,8 +199,8 @@ post_incdec          : 46
 pre_incdec           : 45
 retorno              : 33
 tipo_return          : 6
-tipo_variable        : 17 52 55 60 61 63 66 67 68 76 76 77 77 86 87 88 89
-vacio                : 3 5 11 14 16 20 36 38 40 78 91
+tipo_variable        : 17 52 55 60 61 63 66 67 68 76 76 77 77 87 88 89 90
+vacio                : 3 5 11 14 16 20 36 38 40 79 92
 
 Parsing method: LALR
 
@@ -212,7 +213,7 @@ state 0
     (6) definicion_funcion -> . dominio tipo_return NOMBRE PARIZQ parametro PARDER
     (37) instrucciones -> . indentacion instruccion concat_instruccion
     (38) instrucciones -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
     (7) dominio -> . PRIVATE
     (8) dominio -> . PUBLIC
     (4) indentacion -> . TABULACION indentacion
@@ -221,27 +222,27 @@ state 0
   ! shift/reduce conflict for PRIVATE resolved as shift
   ! shift/reduce conflict for PUBLIC resolved as shift
   ! shift/reduce conflict for TABULACION resolved as shift
-    $end            reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    $end            reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
     PRIVATE         shift and go to state 7
     PUBLIC          shift and go to state 8
     TABULACION      shift and go to state 9
 
-  ! PRIVATE         [ reduce using rule 98 (vacio -> .) ]
-  ! PUBLIC          [ reduce using rule 98 (vacio -> .) ]
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! PRIVATE         [ reduce using rule 99 (vacio -> .) ]
+  ! PUBLIC          [ reduce using rule 99 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
     Niark                          shift and go to state 1
     definicion_funcion             shift and go to state 2
@@ -272,7 +273,7 @@ state 3
     (6) definicion_funcion -> . dominio tipo_return NOMBRE PARIZQ parametro PARDER
     (37) instrucciones -> . indentacion instruccion concat_instruccion
     (38) instrucciones -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
     (7) dominio -> . PRIVATE
     (8) dominio -> . PUBLIC
     (4) indentacion -> . TABULACION indentacion
@@ -281,27 +282,27 @@ state 3
   ! shift/reduce conflict for PRIVATE resolved as shift
   ! shift/reduce conflict for PUBLIC resolved as shift
   ! shift/reduce conflict for TABULACION resolved as shift
-    $end            reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    $end            reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
     PRIVATE         shift and go to state 7
     PUBLIC          shift and go to state 8
     TABULACION      shift and go to state 9
 
-  ! PRIVATE         [ reduce using rule 98 (vacio -> .) ]
-  ! PUBLIC          [ reduce using rule 98 (vacio -> .) ]
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! PRIVATE         [ reduce using rule 99 (vacio -> .) ]
+  ! PUBLIC          [ reduce using rule 99 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
     instrucciones                  shift and go to state 3
     Niark                          shift and go to state 11
@@ -425,7 +426,7 @@ state 6
     (48) pre_incdec -> . DECREMENTAR NOMBRE
     (49) post_incdec -> . NOMBRE INCREMENTAR
     (50) post_incdec -> . NOMBRE DECREMENTAR
-    (98) vacio -> .
+    (99) vacio -> .
 
     IF              shift and go to state 30
     ELSE            shift and go to state 31
@@ -439,7 +440,7 @@ state 6
     COMENTARIO      shift and go to state 42
     INCREMENTAR     shift and go to state 43
     DECREMENTAR     shift and go to state 44
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     instruccion                    shift and go to state 15
     condicion_if                   shift and go to state 16
@@ -481,23 +482,23 @@ state 9
     (4) indentacion -> TABULACION . indentacion
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     TABULACION      shift and go to state 9
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
-    LLAVEDER        reduce using rule 98 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
 
     indentacion                    shift and go to state 45
     vacio                          shift and go to state 46
@@ -544,29 +545,29 @@ state 15
     (40) concat_instruccion -> . vacio
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
   ! shift/reduce conflict for TABULACION resolved as shift
     TABULACION      shift and go to state 9
-    PRIVATE         reduce using rule 98 (vacio -> .)
-    PUBLIC          reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
-    $end            reduce using rule 98 (vacio -> .)
-    LLAVEDER        reduce using rule 98 (vacio -> .)
+    PRIVATE         reduce using rule 99 (vacio -> .)
+    PUBLIC          reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
+    $end            reduce using rule 99 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
 
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
     indentacion                    shift and go to state 49
     concat_instruccion             shift and go to state 50
@@ -577,10 +578,10 @@ state 16
     (21) instruccion -> condicion_if . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 52
     vacio                          shift and go to state 40
@@ -597,10 +598,10 @@ state 18
     (22) instruccion -> condicion_else . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 54
     vacio                          shift and go to state 40
@@ -610,10 +611,10 @@ state 19
     (23) instruccion -> ciclo_for . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 55
     vacio                          shift and go to state 40
@@ -623,10 +624,10 @@ state 20
     (24) instruccion -> ciclo_while . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 56
     vacio                          shift and go to state 40
@@ -636,10 +637,10 @@ state 21
     (25) instruccion -> imprimir . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 57
     vacio                          shift and go to state 40
@@ -649,10 +650,10 @@ state 22
     (26) instruccion -> leer . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 58
     vacio                          shift and go to state 40
@@ -662,10 +663,10 @@ state 23
     (27) instruccion -> incdec . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 59
     vacio                          shift and go to state 40
@@ -675,10 +676,10 @@ state 24
     (28) instruccion -> dec_variable . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 60
     vacio                          shift and go to state 40
@@ -688,10 +689,10 @@ state 25
     (29) instruccion -> dec_vector . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 61
     vacio                          shift and go to state 40
@@ -701,10 +702,10 @@ state 26
     (30) instruccion -> asigna . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 62
     vacio                          shift and go to state 40
@@ -714,10 +715,10 @@ state 27
     (31) instruccion -> asignacion_vector . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 63
     vacio                          shift and go to state 40
@@ -727,10 +728,10 @@ state 28
     (32) instruccion -> llamado_funcion . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 64
     vacio                          shift and go to state 40
@@ -740,10 +741,10 @@ state 29
     (33) instruccion -> retorno . comentario NEWLINE
     (35) comentario -> . COMENTARIO
     (36) comentario -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     COMENTARIO      shift and go to state 42
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     comentario                     shift and go to state 65
     vacio                          shift and go to state 40
@@ -858,22 +859,22 @@ state 41
 
     (68) retorno -> RETURN . tipo_variable
     (69) retorno -> RETURN . op_aritmetica
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
-    (98) vacio -> .
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
+    (99) vacio -> .
 
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
@@ -882,10 +883,10 @@ state 41
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
     PARIZQ          shift and go to state 90
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
     tipo_variable                  shift and go to state 80
     op_aritmetica                  shift and go to state 81
@@ -961,23 +962,23 @@ state 47
     (38) instrucciones -> . vacio
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     instrucciones                  shift and go to state 94
     indentacion                    shift and go to state 6
@@ -1040,7 +1041,7 @@ state 49
     (48) pre_incdec -> . DECREMENTAR NOMBRE
     (49) post_incdec -> . NOMBRE INCREMENTAR
     (50) post_incdec -> . NOMBRE DECREMENTAR
-    (98) vacio -> .
+    (99) vacio -> .
 
     IF              shift and go to state 30
     ELSE            shift and go to state 31
@@ -1054,7 +1055,7 @@ state 49
     COMENTARIO      shift and go to state 42
     INCREMENTAR     shift and go to state 43
     DECREMENTAR     shift and go to state 44
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
     instruccion                    shift and go to state 97
     condicion_if                   shift and go to state 16
@@ -1270,16 +1271,18 @@ state 66
 
     (41) condicion_if -> IF PARIZQ . condicion PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     (76) condicion -> . tipo_variable operador_condicional tipo_variable condicion_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (77) condicion -> . PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
+    PARIZQ          shift and go to state 111
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -1287,15 +1290,15 @@ state 66
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    condicion                      shift and go to state 111
-    tipo_variable                  shift and go to state 112
+    condicion                      shift and go to state 112
+    tipo_variable                  shift and go to state 113
     llamado_funcion                shift and go to state 88
 
 state 67
 
     (42) condicion_else -> ELSE LLAVEIZQ . NEWLINE instrucciones indentacion LLAVEDER
 
-    NEWLINE         shift and go to state 113
+    NEWLINE         shift and go to state 114
 
 
 state 68
@@ -1312,24 +1315,26 @@ state 69
     (54) dec_variable -> . DECVARIABLE ASIGNACION op_aritmetica
     (55) dec_variable -> . DECVARIABLE ASIGNACION tipo_variable
 
-    DECVARIABLE     shift and go to state 115
+    DECVARIABLE     shift and go to state 116
 
-    dec_variable                   shift and go to state 114
+    dec_variable                   shift and go to state 115
 
 state 70
 
     (51) ciclo_while -> WHILE PARIZQ . condicion PARDER LLAVEIZQ
     (76) condicion -> . tipo_variable operador_condicional tipo_variable condicion_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (77) condicion -> . PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
+    PARIZQ          shift and go to state 111
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -1337,20 +1342,20 @@ state 70
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    condicion                      shift and go to state 116
-    tipo_variable                  shift and go to state 112
+    condicion                      shift and go to state 117
+    tipo_variable                  shift and go to state 113
     llamado_funcion                shift and go to state 88
 
 state 71
 
     (52) imprimir -> PRINT PARIZQ . tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
@@ -1361,36 +1366,36 @@ state 71
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    tipo_variable                  shift and go to state 117
+    tipo_variable                  shift and go to state 118
     llamado_funcion                shift and go to state 88
 
 state 72
 
     (53) leer -> READ PARIZQ . NOMBRE PARDER
 
-    NOMBRE          shift and go to state 118
+    NOMBRE          shift and go to state 119
 
 
 state 73
 
     (62) asigna -> NOMBRE ASIGNACION . op_aritmetica
     (63) asigna -> NOMBRE ASIGNACION . tipo_variable
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (98) vacio -> .
+    (99) vacio -> .
 
     PARIZQ          shift and go to state 90
     NOMBRE          shift and go to state 82
@@ -1399,13 +1404,13 @@ state 73
     STRING          shift and go to state 85
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
-    op_aritmetica                  shift and go to state 119
-    tipo_variable                  shift and go to state 120
+    op_aritmetica                  shift and go to state 120
+    tipo_variable                  shift and go to state 121
     op_aritmetica_extra            shift and go to state 89
     llamado_funcion                shift and go to state 88
     vacio                          shift and go to state 91
@@ -1417,8 +1422,8 @@ state 74
     (66) asignacion_vector -> NOMBRE CORCHETEIZQ . NOMBRE CORCHETEDER ASIGNACION tipo_variable
     (67) asignacion_vector -> NOMBRE CORCHETEIZQ . INT CORCHETEDER ASIGNACION tipo_variable
 
-    NOMBRE          shift and go to state 121
-    INT             shift and go to state 122
+    NOMBRE          shift and go to state 122
+    INT             shift and go to state 123
 
 
 state 75
@@ -1427,28 +1432,28 @@ state 75
     (16) llamado_funcion -> NOMBRE PARIZQ . vacio PARDER
     (17) parametro_llamado -> . tipo_variable parametro_llamado_extra
     (18) parametro_llamado -> . op_aritmetica parametro_llamado_extra
-    (98) vacio -> .
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (99) vacio -> .
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
 
-    PARDER          reduce using rule 98 (vacio -> .)
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    PARDER          reduce using rule 99 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -1457,10 +1462,10 @@ state 75
     TRUE            shift and go to state 87
     PARIZQ          shift and go to state 90
 
-    parametro_llamado              shift and go to state 123
-    vacio                          shift and go to state 124
-    tipo_variable                  shift and go to state 125
-    op_aritmetica                  shift and go to state 126
+    parametro_llamado              shift and go to state 124
+    vacio                          shift and go to state 125
+    tipo_variable                  shift and go to state 126
+    op_aritmetica                  shift and go to state 127
     llamado_funcion                shift and go to state 88
     op_aritmetica_extra            shift and go to state 89
 
@@ -1486,22 +1491,22 @@ state 78
 
     (54) dec_variable -> DECVARIABLE ASIGNACION . op_aritmetica
     (55) dec_variable -> DECVARIABLE ASIGNACION . tipo_variable
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (98) vacio -> .
+    (99) vacio -> .
 
     PARIZQ          shift and go to state 90
     NOMBRE          shift and go to state 82
@@ -1510,13 +1515,13 @@ state 78
     STRING          shift and go to state 85
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
-    op_aritmetica                  shift and go to state 127
-    tipo_variable                  shift and go to state 128
+    op_aritmetica                  shift and go to state 128
+    tipo_variable                  shift and go to state 129
     op_aritmetica_extra            shift and go to state 89
     llamado_funcion                shift and go to state 88
     vacio                          shift and go to state 91
@@ -1530,233 +1535,233 @@ state 79
     (60) dec_vector -> DECVARIABLE CORCHETEIZQ . NOMBRE CORCHETEDER ASIGNACION tipo_variable
     (61) dec_vector -> DECVARIABLE CORCHETEIZQ . INT CORCHETEDER ASIGNACION tipo_variable
 
-    NOMBRE          shift and go to state 129
-    INT             shift and go to state 130
+    NOMBRE          shift and go to state 130
+    INT             shift and go to state 131
 
 
 state 80
 
     (68) retorno -> RETURN tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
 
     COMENTARIO      reduce using rule 68 (retorno -> RETURN tipo_variable .)
     NEWLINE         reduce using rule 68 (retorno -> RETURN tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
 
 
 state 81
 
     (69) retorno -> RETURN op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
 
     COMENTARIO      reduce using rule 69 (retorno -> RETURN op_aritmetica .)
     NEWLINE         reduce using rule 69 (retorno -> RETURN op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
 
 
 state 82
 
-    (79) tipo_variable -> NOMBRE .
+    (80) tipo_variable -> NOMBRE .
     (15) llamado_funcion -> NOMBRE . PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> NOMBRE . PARIZQ vacio PARDER
 
-    COMENTARIO      reduce using rule 79 (tipo_variable -> NOMBRE .)
-    NEWLINE         reduce using rule 79 (tipo_variable -> NOMBRE .)
-    SUMA            reduce using rule 79 (tipo_variable -> NOMBRE .)
-    RESTA           reduce using rule 79 (tipo_variable -> NOMBRE .)
-    MULT            reduce using rule 79 (tipo_variable -> NOMBRE .)
-    DIV             reduce using rule 79 (tipo_variable -> NOMBRE .)
-    DIFERENTE       reduce using rule 79 (tipo_variable -> NOMBRE .)
-    IGUAL           reduce using rule 79 (tipo_variable -> NOMBRE .)
-    MAYOR           reduce using rule 79 (tipo_variable -> NOMBRE .)
-    MAYORIGUAL      reduce using rule 79 (tipo_variable -> NOMBRE .)
-    MENOR           reduce using rule 79 (tipo_variable -> NOMBRE .)
-    MENORIGUAL      reduce using rule 79 (tipo_variable -> NOMBRE .)
-    PARDER          reduce using rule 79 (tipo_variable -> NOMBRE .)
-    COMA            reduce using rule 79 (tipo_variable -> NOMBRE .)
-    PUNTOYCOMA      reduce using rule 79 (tipo_variable -> NOMBRE .)
-    AND             reduce using rule 79 (tipo_variable -> NOMBRE .)
-    OR              reduce using rule 79 (tipo_variable -> NOMBRE .)
+    COMENTARIO      reduce using rule 80 (tipo_variable -> NOMBRE .)
+    NEWLINE         reduce using rule 80 (tipo_variable -> NOMBRE .)
+    SUMA            reduce using rule 80 (tipo_variable -> NOMBRE .)
+    RESTA           reduce using rule 80 (tipo_variable -> NOMBRE .)
+    MULT            reduce using rule 80 (tipo_variable -> NOMBRE .)
+    DIV             reduce using rule 80 (tipo_variable -> NOMBRE .)
+    DIFERENTE       reduce using rule 80 (tipo_variable -> NOMBRE .)
+    IGUAL           reduce using rule 80 (tipo_variable -> NOMBRE .)
+    MAYOR           reduce using rule 80 (tipo_variable -> NOMBRE .)
+    MAYORIGUAL      reduce using rule 80 (tipo_variable -> NOMBRE .)
+    MENOR           reduce using rule 80 (tipo_variable -> NOMBRE .)
+    MENORIGUAL      reduce using rule 80 (tipo_variable -> NOMBRE .)
+    PARDER          reduce using rule 80 (tipo_variable -> NOMBRE .)
+    COMA            reduce using rule 80 (tipo_variable -> NOMBRE .)
+    PUNTOYCOMA      reduce using rule 80 (tipo_variable -> NOMBRE .)
+    AND             reduce using rule 80 (tipo_variable -> NOMBRE .)
+    OR              reduce using rule 80 (tipo_variable -> NOMBRE .)
     PARIZQ          shift and go to state 75
 
 
 state 83
 
-    (80) tipo_variable -> DOUBLE .
+    (81) tipo_variable -> DOUBLE .
 
-    COMENTARIO      reduce using rule 80 (tipo_variable -> DOUBLE .)
-    NEWLINE         reduce using rule 80 (tipo_variable -> DOUBLE .)
-    SUMA            reduce using rule 80 (tipo_variable -> DOUBLE .)
-    RESTA           reduce using rule 80 (tipo_variable -> DOUBLE .)
-    MULT            reduce using rule 80 (tipo_variable -> DOUBLE .)
-    DIV             reduce using rule 80 (tipo_variable -> DOUBLE .)
-    DIFERENTE       reduce using rule 80 (tipo_variable -> DOUBLE .)
-    IGUAL           reduce using rule 80 (tipo_variable -> DOUBLE .)
-    MAYOR           reduce using rule 80 (tipo_variable -> DOUBLE .)
-    MAYORIGUAL      reduce using rule 80 (tipo_variable -> DOUBLE .)
-    MENOR           reduce using rule 80 (tipo_variable -> DOUBLE .)
-    MENORIGUAL      reduce using rule 80 (tipo_variable -> DOUBLE .)
-    PARDER          reduce using rule 80 (tipo_variable -> DOUBLE .)
-    COMA            reduce using rule 80 (tipo_variable -> DOUBLE .)
-    PUNTOYCOMA      reduce using rule 80 (tipo_variable -> DOUBLE .)
-    AND             reduce using rule 80 (tipo_variable -> DOUBLE .)
-    OR              reduce using rule 80 (tipo_variable -> DOUBLE .)
+    COMENTARIO      reduce using rule 81 (tipo_variable -> DOUBLE .)
+    NEWLINE         reduce using rule 81 (tipo_variable -> DOUBLE .)
+    SUMA            reduce using rule 81 (tipo_variable -> DOUBLE .)
+    RESTA           reduce using rule 81 (tipo_variable -> DOUBLE .)
+    MULT            reduce using rule 81 (tipo_variable -> DOUBLE .)
+    DIV             reduce using rule 81 (tipo_variable -> DOUBLE .)
+    DIFERENTE       reduce using rule 81 (tipo_variable -> DOUBLE .)
+    IGUAL           reduce using rule 81 (tipo_variable -> DOUBLE .)
+    MAYOR           reduce using rule 81 (tipo_variable -> DOUBLE .)
+    MAYORIGUAL      reduce using rule 81 (tipo_variable -> DOUBLE .)
+    MENOR           reduce using rule 81 (tipo_variable -> DOUBLE .)
+    MENORIGUAL      reduce using rule 81 (tipo_variable -> DOUBLE .)
+    PARDER          reduce using rule 81 (tipo_variable -> DOUBLE .)
+    COMA            reduce using rule 81 (tipo_variable -> DOUBLE .)
+    PUNTOYCOMA      reduce using rule 81 (tipo_variable -> DOUBLE .)
+    AND             reduce using rule 81 (tipo_variable -> DOUBLE .)
+    OR              reduce using rule 81 (tipo_variable -> DOUBLE .)
 
 
 state 84
 
-    (81) tipo_variable -> INT .
+    (82) tipo_variable -> INT .
 
-    COMENTARIO      reduce using rule 81 (tipo_variable -> INT .)
-    NEWLINE         reduce using rule 81 (tipo_variable -> INT .)
-    SUMA            reduce using rule 81 (tipo_variable -> INT .)
-    RESTA           reduce using rule 81 (tipo_variable -> INT .)
-    MULT            reduce using rule 81 (tipo_variable -> INT .)
-    DIV             reduce using rule 81 (tipo_variable -> INT .)
-    DIFERENTE       reduce using rule 81 (tipo_variable -> INT .)
-    IGUAL           reduce using rule 81 (tipo_variable -> INT .)
-    MAYOR           reduce using rule 81 (tipo_variable -> INT .)
-    MAYORIGUAL      reduce using rule 81 (tipo_variable -> INT .)
-    MENOR           reduce using rule 81 (tipo_variable -> INT .)
-    MENORIGUAL      reduce using rule 81 (tipo_variable -> INT .)
-    PARDER          reduce using rule 81 (tipo_variable -> INT .)
-    COMA            reduce using rule 81 (tipo_variable -> INT .)
-    PUNTOYCOMA      reduce using rule 81 (tipo_variable -> INT .)
-    AND             reduce using rule 81 (tipo_variable -> INT .)
-    OR              reduce using rule 81 (tipo_variable -> INT .)
+    COMENTARIO      reduce using rule 82 (tipo_variable -> INT .)
+    NEWLINE         reduce using rule 82 (tipo_variable -> INT .)
+    SUMA            reduce using rule 82 (tipo_variable -> INT .)
+    RESTA           reduce using rule 82 (tipo_variable -> INT .)
+    MULT            reduce using rule 82 (tipo_variable -> INT .)
+    DIV             reduce using rule 82 (tipo_variable -> INT .)
+    DIFERENTE       reduce using rule 82 (tipo_variable -> INT .)
+    IGUAL           reduce using rule 82 (tipo_variable -> INT .)
+    MAYOR           reduce using rule 82 (tipo_variable -> INT .)
+    MAYORIGUAL      reduce using rule 82 (tipo_variable -> INT .)
+    MENOR           reduce using rule 82 (tipo_variable -> INT .)
+    MENORIGUAL      reduce using rule 82 (tipo_variable -> INT .)
+    PARDER          reduce using rule 82 (tipo_variable -> INT .)
+    COMA            reduce using rule 82 (tipo_variable -> INT .)
+    PUNTOYCOMA      reduce using rule 82 (tipo_variable -> INT .)
+    AND             reduce using rule 82 (tipo_variable -> INT .)
+    OR              reduce using rule 82 (tipo_variable -> INT .)
 
 
 state 85
 
-    (82) tipo_variable -> STRING .
+    (83) tipo_variable -> STRING .
 
-    COMENTARIO      reduce using rule 82 (tipo_variable -> STRING .)
-    NEWLINE         reduce using rule 82 (tipo_variable -> STRING .)
-    SUMA            reduce using rule 82 (tipo_variable -> STRING .)
-    RESTA           reduce using rule 82 (tipo_variable -> STRING .)
-    MULT            reduce using rule 82 (tipo_variable -> STRING .)
-    DIV             reduce using rule 82 (tipo_variable -> STRING .)
-    DIFERENTE       reduce using rule 82 (tipo_variable -> STRING .)
-    IGUAL           reduce using rule 82 (tipo_variable -> STRING .)
-    MAYOR           reduce using rule 82 (tipo_variable -> STRING .)
-    MAYORIGUAL      reduce using rule 82 (tipo_variable -> STRING .)
-    MENOR           reduce using rule 82 (tipo_variable -> STRING .)
-    MENORIGUAL      reduce using rule 82 (tipo_variable -> STRING .)
-    PARDER          reduce using rule 82 (tipo_variable -> STRING .)
-    COMA            reduce using rule 82 (tipo_variable -> STRING .)
-    PUNTOYCOMA      reduce using rule 82 (tipo_variable -> STRING .)
-    AND             reduce using rule 82 (tipo_variable -> STRING .)
-    OR              reduce using rule 82 (tipo_variable -> STRING .)
+    COMENTARIO      reduce using rule 83 (tipo_variable -> STRING .)
+    NEWLINE         reduce using rule 83 (tipo_variable -> STRING .)
+    SUMA            reduce using rule 83 (tipo_variable -> STRING .)
+    RESTA           reduce using rule 83 (tipo_variable -> STRING .)
+    MULT            reduce using rule 83 (tipo_variable -> STRING .)
+    DIV             reduce using rule 83 (tipo_variable -> STRING .)
+    DIFERENTE       reduce using rule 83 (tipo_variable -> STRING .)
+    IGUAL           reduce using rule 83 (tipo_variable -> STRING .)
+    MAYOR           reduce using rule 83 (tipo_variable -> STRING .)
+    MAYORIGUAL      reduce using rule 83 (tipo_variable -> STRING .)
+    MENOR           reduce using rule 83 (tipo_variable -> STRING .)
+    MENORIGUAL      reduce using rule 83 (tipo_variable -> STRING .)
+    PARDER          reduce using rule 83 (tipo_variable -> STRING .)
+    COMA            reduce using rule 83 (tipo_variable -> STRING .)
+    PUNTOYCOMA      reduce using rule 83 (tipo_variable -> STRING .)
+    AND             reduce using rule 83 (tipo_variable -> STRING .)
+    OR              reduce using rule 83 (tipo_variable -> STRING .)
 
 
 state 86
 
-    (83) tipo_variable -> FALSE .
+    (84) tipo_variable -> FALSE .
 
-    COMENTARIO      reduce using rule 83 (tipo_variable -> FALSE .)
-    NEWLINE         reduce using rule 83 (tipo_variable -> FALSE .)
-    SUMA            reduce using rule 83 (tipo_variable -> FALSE .)
-    RESTA           reduce using rule 83 (tipo_variable -> FALSE .)
-    MULT            reduce using rule 83 (tipo_variable -> FALSE .)
-    DIV             reduce using rule 83 (tipo_variable -> FALSE .)
-    DIFERENTE       reduce using rule 83 (tipo_variable -> FALSE .)
-    IGUAL           reduce using rule 83 (tipo_variable -> FALSE .)
-    MAYOR           reduce using rule 83 (tipo_variable -> FALSE .)
-    MAYORIGUAL      reduce using rule 83 (tipo_variable -> FALSE .)
-    MENOR           reduce using rule 83 (tipo_variable -> FALSE .)
-    MENORIGUAL      reduce using rule 83 (tipo_variable -> FALSE .)
-    PARDER          reduce using rule 83 (tipo_variable -> FALSE .)
-    COMA            reduce using rule 83 (tipo_variable -> FALSE .)
-    PUNTOYCOMA      reduce using rule 83 (tipo_variable -> FALSE .)
-    AND             reduce using rule 83 (tipo_variable -> FALSE .)
-    OR              reduce using rule 83 (tipo_variable -> FALSE .)
+    COMENTARIO      reduce using rule 84 (tipo_variable -> FALSE .)
+    NEWLINE         reduce using rule 84 (tipo_variable -> FALSE .)
+    SUMA            reduce using rule 84 (tipo_variable -> FALSE .)
+    RESTA           reduce using rule 84 (tipo_variable -> FALSE .)
+    MULT            reduce using rule 84 (tipo_variable -> FALSE .)
+    DIV             reduce using rule 84 (tipo_variable -> FALSE .)
+    DIFERENTE       reduce using rule 84 (tipo_variable -> FALSE .)
+    IGUAL           reduce using rule 84 (tipo_variable -> FALSE .)
+    MAYOR           reduce using rule 84 (tipo_variable -> FALSE .)
+    MAYORIGUAL      reduce using rule 84 (tipo_variable -> FALSE .)
+    MENOR           reduce using rule 84 (tipo_variable -> FALSE .)
+    MENORIGUAL      reduce using rule 84 (tipo_variable -> FALSE .)
+    PARDER          reduce using rule 84 (tipo_variable -> FALSE .)
+    COMA            reduce using rule 84 (tipo_variable -> FALSE .)
+    PUNTOYCOMA      reduce using rule 84 (tipo_variable -> FALSE .)
+    AND             reduce using rule 84 (tipo_variable -> FALSE .)
+    OR              reduce using rule 84 (tipo_variable -> FALSE .)
 
 
 state 87
 
-    (84) tipo_variable -> TRUE .
+    (85) tipo_variable -> TRUE .
 
-    COMENTARIO      reduce using rule 84 (tipo_variable -> TRUE .)
-    NEWLINE         reduce using rule 84 (tipo_variable -> TRUE .)
-    SUMA            reduce using rule 84 (tipo_variable -> TRUE .)
-    RESTA           reduce using rule 84 (tipo_variable -> TRUE .)
-    MULT            reduce using rule 84 (tipo_variable -> TRUE .)
-    DIV             reduce using rule 84 (tipo_variable -> TRUE .)
-    DIFERENTE       reduce using rule 84 (tipo_variable -> TRUE .)
-    IGUAL           reduce using rule 84 (tipo_variable -> TRUE .)
-    MAYOR           reduce using rule 84 (tipo_variable -> TRUE .)
-    MAYORIGUAL      reduce using rule 84 (tipo_variable -> TRUE .)
-    MENOR           reduce using rule 84 (tipo_variable -> TRUE .)
-    MENORIGUAL      reduce using rule 84 (tipo_variable -> TRUE .)
-    PARDER          reduce using rule 84 (tipo_variable -> TRUE .)
-    COMA            reduce using rule 84 (tipo_variable -> TRUE .)
-    PUNTOYCOMA      reduce using rule 84 (tipo_variable -> TRUE .)
-    AND             reduce using rule 84 (tipo_variable -> TRUE .)
-    OR              reduce using rule 84 (tipo_variable -> TRUE .)
+    COMENTARIO      reduce using rule 85 (tipo_variable -> TRUE .)
+    NEWLINE         reduce using rule 85 (tipo_variable -> TRUE .)
+    SUMA            reduce using rule 85 (tipo_variable -> TRUE .)
+    RESTA           reduce using rule 85 (tipo_variable -> TRUE .)
+    MULT            reduce using rule 85 (tipo_variable -> TRUE .)
+    DIV             reduce using rule 85 (tipo_variable -> TRUE .)
+    DIFERENTE       reduce using rule 85 (tipo_variable -> TRUE .)
+    IGUAL           reduce using rule 85 (tipo_variable -> TRUE .)
+    MAYOR           reduce using rule 85 (tipo_variable -> TRUE .)
+    MAYORIGUAL      reduce using rule 85 (tipo_variable -> TRUE .)
+    MENOR           reduce using rule 85 (tipo_variable -> TRUE .)
+    MENORIGUAL      reduce using rule 85 (tipo_variable -> TRUE .)
+    PARDER          reduce using rule 85 (tipo_variable -> TRUE .)
+    COMA            reduce using rule 85 (tipo_variable -> TRUE .)
+    PUNTOYCOMA      reduce using rule 85 (tipo_variable -> TRUE .)
+    AND             reduce using rule 85 (tipo_variable -> TRUE .)
+    OR              reduce using rule 85 (tipo_variable -> TRUE .)
 
 
 state 88
 
-    (85) tipo_variable -> llamado_funcion .
+    (86) tipo_variable -> llamado_funcion .
 
-    COMENTARIO      reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    NEWLINE         reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    SUMA            reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    RESTA           reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    MULT            reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    DIV             reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    DIFERENTE       reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    IGUAL           reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    MAYOR           reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    MAYORIGUAL      reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    MENOR           reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    MENORIGUAL      reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    PARDER          reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    COMA            reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    PUNTOYCOMA      reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    AND             reduce using rule 85 (tipo_variable -> llamado_funcion .)
-    OR              reduce using rule 85 (tipo_variable -> llamado_funcion .)
+    COMENTARIO      reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    NEWLINE         reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    SUMA            reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    RESTA           reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    MULT            reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    DIV             reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    DIFERENTE       reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    IGUAL           reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    MAYOR           reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    MAYORIGUAL      reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    MENOR           reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    MENORIGUAL      reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    PARDER          reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    COMA            reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    PUNTOYCOMA      reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    AND             reduce using rule 86 (tipo_variable -> llamado_funcion .)
+    OR              reduce using rule 86 (tipo_variable -> llamado_funcion .)
 
 
 state 89
 
-    (86) op_aritmetica -> op_aritmetica_extra . operador_aritmetico tipo_variable
-    (87) op_aritmetica -> op_aritmetica_extra . operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (92) operador_aritmetico -> . SUMA
-    (93) operador_aritmetico -> . RESTA
-    (94) operador_aritmetico -> . MULT
-    (95) operador_aritmetico -> . DIV
+    (87) op_aritmetica -> op_aritmetica_extra . operador_aritmetico tipo_variable
+    (88) op_aritmetica -> op_aritmetica_extra . operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (93) operador_aritmetico -> . SUMA
+    (94) operador_aritmetico -> . RESTA
+    (95) operador_aritmetico -> . MULT
+    (96) operador_aritmetico -> . DIV
 
-    SUMA            shift and go to state 132
-    RESTA           shift and go to state 133
-    MULT            shift and go to state 134
-    DIV             shift and go to state 135
+    SUMA            shift and go to state 133
+    RESTA           shift and go to state 134
+    MULT            shift and go to state 135
+    DIV             shift and go to state 136
 
-    operador_aritmetico            shift and go to state 131
+    operador_aritmetico            shift and go to state 132
 
 state 90
 
-    (88) op_aritmetica -> PARIZQ . op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (98) vacio -> .
+    (89) op_aritmetica -> PARIZQ . op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (99) vacio -> .
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
@@ -1767,25 +1772,25 @@ state 90
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
     PARIZQ          shift and go to state 90
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
-    op_aritmetica_extra            shift and go to state 136
-    tipo_variable                  shift and go to state 137
-    op_aritmetica                  shift and go to state 138
+    op_aritmetica_extra            shift and go to state 137
+    tipo_variable                  shift and go to state 138
+    op_aritmetica                  shift and go to state 139
     vacio                          shift and go to state 91
     llamado_funcion                shift and go to state 88
 
 state 91
 
-    (91) op_aritmetica_extra -> vacio .
+    (92) op_aritmetica_extra -> vacio .
 
-    SUMA            reduce using rule 91 (op_aritmetica_extra -> vacio .)
-    RESTA           reduce using rule 91 (op_aritmetica_extra -> vacio .)
-    MULT            reduce using rule 91 (op_aritmetica_extra -> vacio .)
-    DIV             reduce using rule 91 (op_aritmetica_extra -> vacio .)
+    SUMA            reduce using rule 92 (op_aritmetica_extra -> vacio .)
+    RESTA           reduce using rule 92 (op_aritmetica_extra -> vacio .)
+    MULT            reduce using rule 92 (op_aritmetica_extra -> vacio .)
+    DIV             reduce using rule 92 (op_aritmetica_extra -> vacio .)
 
 
 state 92
@@ -1810,7 +1815,7 @@ state 94
 
     (1) Niark -> definicion_funcion LLAVEIZQ NEWLINE instrucciones . LLAVEDER NEWLINE Niark
 
-    LLAVEDER        shift and go to state 139
+    LLAVEDER        shift and go to state 140
 
 
 state 95
@@ -1840,13 +1845,13 @@ state 96
     (6) definicion_funcion -> dominio tipo_return NOMBRE PARIZQ . parametro PARDER
     (11) parametro -> . vacio
     (12) parametro -> . NOMBRE parametro_extra
-    (98) vacio -> .
+    (99) vacio -> .
 
-    NOMBRE          shift and go to state 140
-    PARDER          reduce using rule 98 (vacio -> .)
+    NOMBRE          shift and go to state 141
+    PARDER          reduce using rule 99 (vacio -> .)
 
-    parametro                      shift and go to state 141
-    vacio                          shift and go to state 142
+    parametro                      shift and go to state 142
+    vacio                          shift and go to state 143
 
 state 97
 
@@ -1855,32 +1860,32 @@ state 97
     (40) concat_instruccion -> . vacio
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
   ! shift/reduce conflict for TABULACION resolved as shift
     TABULACION      shift and go to state 9
-    PRIVATE         reduce using rule 98 (vacio -> .)
-    PUBLIC          reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
-    $end            reduce using rule 98 (vacio -> .)
-    LLAVEDER        reduce using rule 98 (vacio -> .)
+    PRIVATE         reduce using rule 99 (vacio -> .)
+    PUBLIC          reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
+    $end            reduce using rule 99 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
 
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
     indentacion                    shift and go to state 49
-    concat_instruccion             shift and go to state 143
+    concat_instruccion             shift and go to state 144
     vacio                          shift and go to state 51
 
 state 98
@@ -2197,12 +2202,35 @@ state 110
 
 state 111
 
-    (41) condicion_if -> IF PARIZQ condicion . PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
+    (77) condicion -> PARIZQ . tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
+    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
-    PARDER          shift and go to state 144
+    NOMBRE          shift and go to state 82
+    DOUBLE          shift and go to state 83
+    INT             shift and go to state 84
+    STRING          shift and go to state 85
+    FALSE           shift and go to state 86
+    TRUE            shift and go to state 87
 
+    tipo_variable                  shift and go to state 145
+    llamado_funcion                shift and go to state 88
 
 state 112
+
+    (41) condicion_if -> IF PARIZQ condicion . PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
+
+    PARDER          shift and go to state 146
+
+
+state 113
 
     (76) condicion -> tipo_variable . operador_condicional tipo_variable condicion_extra
     (70) operador_condicional -> . DIFERENTE
@@ -2212,55 +2240,55 @@ state 112
     (74) operador_condicional -> . MENOR
     (75) operador_condicional -> . MENORIGUAL
 
-    DIFERENTE       shift and go to state 146
-    IGUAL           shift and go to state 147
-    MAYOR           shift and go to state 148
-    MAYORIGUAL      shift and go to state 149
-    MENOR           shift and go to state 150
-    MENORIGUAL      shift and go to state 151
+    DIFERENTE       shift and go to state 148
+    IGUAL           shift and go to state 149
+    MAYOR           shift and go to state 150
+    MAYORIGUAL      shift and go to state 151
+    MENOR           shift and go to state 152
+    MENORIGUAL      shift and go to state 153
 
-    operador_condicional           shift and go to state 145
+    operador_condicional           shift and go to state 147
 
-state 113
+state 114
 
     (42) condicion_else -> ELSE LLAVEIZQ NEWLINE . instrucciones indentacion LLAVEDER
     (37) instrucciones -> . indentacion instruccion concat_instruccion
     (38) instrucciones -> . vacio
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
   ! shift/reduce conflict for TABULACION resolved as shift
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
-    instrucciones                  shift and go to state 152
+    instrucciones                  shift and go to state 154
     indentacion                    shift and go to state 6
     vacio                          shift and go to state 95
 
-state 114
+state 115
 
     (44) ciclo_for -> FOR PARIZQ dec_variable . PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
 
-    PUNTOYCOMA      shift and go to state 153
+    PUNTOYCOMA      shift and go to state 155
 
 
-state 115
+state 116
 
     (54) dec_variable -> DECVARIABLE . ASIGNACION op_aritmetica
     (55) dec_variable -> DECVARIABLE . ASIGNACION tipo_variable
@@ -2268,185 +2296,185 @@ state 115
     ASIGNACION      shift and go to state 78
 
 
-state 116
-
-    (51) ciclo_while -> WHILE PARIZQ condicion . PARDER LLAVEIZQ
-
-    PARDER          shift and go to state 154
-
-
 state 117
 
-    (52) imprimir -> PRINT PARIZQ tipo_variable . PARDER
-
-    PARDER          shift and go to state 155
-
-
-state 118
-
-    (53) leer -> READ PARIZQ NOMBRE . PARDER
+    (51) ciclo_while -> WHILE PARIZQ condicion . PARDER LLAVEIZQ
 
     PARDER          shift and go to state 156
 
 
+state 118
+
+    (52) imprimir -> PRINT PARIZQ tipo_variable . PARDER
+
+    PARDER          shift and go to state 157
+
+
 state 119
 
-    (62) asigna -> NOMBRE ASIGNACION op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (53) leer -> READ PARIZQ NOMBRE . PARDER
 
-    COMENTARIO      reduce using rule 62 (asigna -> NOMBRE ASIGNACION op_aritmetica .)
-    NEWLINE         reduce using rule 62 (asigna -> NOMBRE ASIGNACION op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
+    PARDER          shift and go to state 158
 
 
 state 120
 
-    (63) asigna -> NOMBRE ASIGNACION tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
+    (62) asigna -> NOMBRE ASIGNACION op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
 
-    COMENTARIO      reduce using rule 63 (asigna -> NOMBRE ASIGNACION tipo_variable .)
-    NEWLINE         reduce using rule 63 (asigna -> NOMBRE ASIGNACION tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
+    COMENTARIO      reduce using rule 62 (asigna -> NOMBRE ASIGNACION op_aritmetica .)
+    NEWLINE         reduce using rule 62 (asigna -> NOMBRE ASIGNACION op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
 
 
 state 121
 
-    (64) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE . CORCHETEDER ASIGNACION op_aritmetica
-    (66) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE . CORCHETEDER ASIGNACION tipo_variable
+    (63) asigna -> NOMBRE ASIGNACION tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
 
-    CORCHETEDER     shift and go to state 157
+    COMENTARIO      reduce using rule 63 (asigna -> NOMBRE ASIGNACION tipo_variable .)
+    NEWLINE         reduce using rule 63 (asigna -> NOMBRE ASIGNACION tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
 
 
 state 122
 
-    (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT . CORCHETEDER ASIGNACION op_aritmetica
-    (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT . CORCHETEDER ASIGNACION tipo_variable
+    (64) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE . CORCHETEDER ASIGNACION op_aritmetica
+    (66) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE . CORCHETEDER ASIGNACION tipo_variable
 
-    CORCHETEDER     shift and go to state 158
+    CORCHETEDER     shift and go to state 159
 
 
 state 123
 
-    (15) llamado_funcion -> NOMBRE PARIZQ parametro_llamado . PARDER
+    (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT . CORCHETEDER ASIGNACION op_aritmetica
+    (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT . CORCHETEDER ASIGNACION tipo_variable
 
-    PARDER          shift and go to state 159
+    CORCHETEDER     shift and go to state 160
 
 
 state 124
 
-    (16) llamado_funcion -> NOMBRE PARIZQ vacio . PARDER
-    (91) op_aritmetica_extra -> vacio .
+    (15) llamado_funcion -> NOMBRE PARIZQ parametro_llamado . PARDER
 
-    PARDER          shift and go to state 160
-    SUMA            reduce using rule 91 (op_aritmetica_extra -> vacio .)
-    RESTA           reduce using rule 91 (op_aritmetica_extra -> vacio .)
-    MULT            reduce using rule 91 (op_aritmetica_extra -> vacio .)
-    DIV             reduce using rule 91 (op_aritmetica_extra -> vacio .)
+    PARDER          shift and go to state 161
 
 
 state 125
 
-    (17) parametro_llamado -> tipo_variable . parametro_llamado_extra
-    (89) op_aritmetica_extra -> tipo_variable .
-    (19) parametro_llamado_extra -> . COMA parametro_llamado
-    (20) parametro_llamado_extra -> . vacio
-    (98) vacio -> .
+    (16) llamado_funcion -> NOMBRE PARIZQ vacio . PARDER
+    (92) op_aritmetica_extra -> vacio .
 
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    COMA            shift and go to state 162
-    PARDER          reduce using rule 98 (vacio -> .)
+    PARDER          shift and go to state 162
+    SUMA            reduce using rule 92 (op_aritmetica_extra -> vacio .)
+    RESTA           reduce using rule 92 (op_aritmetica_extra -> vacio .)
+    MULT            reduce using rule 92 (op_aritmetica_extra -> vacio .)
+    DIV             reduce using rule 92 (op_aritmetica_extra -> vacio .)
 
-    parametro_llamado_extra        shift and go to state 161
-    vacio                          shift and go to state 163
 
 state 126
 
-    (18) parametro_llamado -> op_aritmetica . parametro_llamado_extra
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (17) parametro_llamado -> tipo_variable . parametro_llamado_extra
+    (90) op_aritmetica_extra -> tipo_variable .
     (19) parametro_llamado_extra -> . COMA parametro_llamado
     (20) parametro_llamado_extra -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    COMA            shift and go to state 162
-    PARDER          reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    COMA            shift and go to state 164
+    PARDER          reduce using rule 99 (vacio -> .)
 
-    parametro_llamado_extra        shift and go to state 164
-    vacio                          shift and go to state 163
+    parametro_llamado_extra        shift and go to state 163
+    vacio                          shift and go to state 165
 
 state 127
 
+    (18) parametro_llamado -> op_aritmetica . parametro_llamado_extra
+    (91) op_aritmetica_extra -> op_aritmetica .
+    (19) parametro_llamado_extra -> . COMA parametro_llamado
+    (20) parametro_llamado_extra -> . vacio
+    (99) vacio -> .
+
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    COMA            shift and go to state 164
+    PARDER          reduce using rule 99 (vacio -> .)
+
+    parametro_llamado_extra        shift and go to state 166
+    vacio                          shift and go to state 165
+
+state 128
+
     (54) dec_variable -> DECVARIABLE ASIGNACION op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
 
     COMENTARIO      reduce using rule 54 (dec_variable -> DECVARIABLE ASIGNACION op_aritmetica .)
     NEWLINE         reduce using rule 54 (dec_variable -> DECVARIABLE ASIGNACION op_aritmetica .)
     PUNTOYCOMA      reduce using rule 54 (dec_variable -> DECVARIABLE ASIGNACION op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
 
 
-state 128
+state 129
 
     (55) dec_variable -> DECVARIABLE ASIGNACION tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
 
     COMENTARIO      reduce using rule 55 (dec_variable -> DECVARIABLE ASIGNACION tipo_variable .)
     NEWLINE         reduce using rule 55 (dec_variable -> DECVARIABLE ASIGNACION tipo_variable .)
     PUNTOYCOMA      reduce using rule 55 (dec_variable -> DECVARIABLE ASIGNACION tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
 
 
-state 129
+state 130
 
     (56) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE . CORCHETEDER
     (58) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE . CORCHETEDER ASIGNACION op_aritmetica
     (60) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE . CORCHETEDER ASIGNACION tipo_variable
 
-    CORCHETEDER     shift and go to state 165
+    CORCHETEDER     shift and go to state 167
 
 
-state 130
+state 131
 
     (57) dec_vector -> DECVARIABLE CORCHETEIZQ INT . CORCHETEDER
     (59) dec_vector -> DECVARIABLE CORCHETEIZQ INT . CORCHETEDER ASIGNACION op_aritmetica
     (61) dec_vector -> DECVARIABLE CORCHETEIZQ INT . CORCHETEDER ASIGNACION tipo_variable
 
-    CORCHETEDER     shift and go to state 166
+    CORCHETEDER     shift and go to state 168
 
 
-state 131
+state 132
 
-    (86) op_aritmetica -> op_aritmetica_extra operador_aritmetico . tipo_variable
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico . tipo_variable
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
-    PARIZQ          shift and go to state 168
+    PARIZQ          shift and go to state 170
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -2454,133 +2482,133 @@ state 131
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    tipo_variable                  shift and go to state 167
+    tipo_variable                  shift and go to state 169
     llamado_funcion                shift and go to state 88
-
-state 132
-
-    (92) operador_aritmetico -> SUMA .
-
-    PARIZQ          reduce using rule 92 (operador_aritmetico -> SUMA .)
-    NOMBRE          reduce using rule 92 (operador_aritmetico -> SUMA .)
-    DOUBLE          reduce using rule 92 (operador_aritmetico -> SUMA .)
-    INT             reduce using rule 92 (operador_aritmetico -> SUMA .)
-    STRING          reduce using rule 92 (operador_aritmetico -> SUMA .)
-    FALSE           reduce using rule 92 (operador_aritmetico -> SUMA .)
-    TRUE            reduce using rule 92 (operador_aritmetico -> SUMA .)
-
 
 state 133
 
-    (93) operador_aritmetico -> RESTA .
+    (93) operador_aritmetico -> SUMA .
 
-    PARIZQ          reduce using rule 93 (operador_aritmetico -> RESTA .)
-    NOMBRE          reduce using rule 93 (operador_aritmetico -> RESTA .)
-    DOUBLE          reduce using rule 93 (operador_aritmetico -> RESTA .)
-    INT             reduce using rule 93 (operador_aritmetico -> RESTA .)
-    STRING          reduce using rule 93 (operador_aritmetico -> RESTA .)
-    FALSE           reduce using rule 93 (operador_aritmetico -> RESTA .)
-    TRUE            reduce using rule 93 (operador_aritmetico -> RESTA .)
+    PARIZQ          reduce using rule 93 (operador_aritmetico -> SUMA .)
+    NOMBRE          reduce using rule 93 (operador_aritmetico -> SUMA .)
+    DOUBLE          reduce using rule 93 (operador_aritmetico -> SUMA .)
+    INT             reduce using rule 93 (operador_aritmetico -> SUMA .)
+    STRING          reduce using rule 93 (operador_aritmetico -> SUMA .)
+    FALSE           reduce using rule 93 (operador_aritmetico -> SUMA .)
+    TRUE            reduce using rule 93 (operador_aritmetico -> SUMA .)
 
 
 state 134
 
-    (94) operador_aritmetico -> MULT .
+    (94) operador_aritmetico -> RESTA .
 
-    PARIZQ          reduce using rule 94 (operador_aritmetico -> MULT .)
-    NOMBRE          reduce using rule 94 (operador_aritmetico -> MULT .)
-    DOUBLE          reduce using rule 94 (operador_aritmetico -> MULT .)
-    INT             reduce using rule 94 (operador_aritmetico -> MULT .)
-    STRING          reduce using rule 94 (operador_aritmetico -> MULT .)
-    FALSE           reduce using rule 94 (operador_aritmetico -> MULT .)
-    TRUE            reduce using rule 94 (operador_aritmetico -> MULT .)
+    PARIZQ          reduce using rule 94 (operador_aritmetico -> RESTA .)
+    NOMBRE          reduce using rule 94 (operador_aritmetico -> RESTA .)
+    DOUBLE          reduce using rule 94 (operador_aritmetico -> RESTA .)
+    INT             reduce using rule 94 (operador_aritmetico -> RESTA .)
+    STRING          reduce using rule 94 (operador_aritmetico -> RESTA .)
+    FALSE           reduce using rule 94 (operador_aritmetico -> RESTA .)
+    TRUE            reduce using rule 94 (operador_aritmetico -> RESTA .)
 
 
 state 135
 
-    (95) operador_aritmetico -> DIV .
+    (95) operador_aritmetico -> MULT .
 
-    PARIZQ          reduce using rule 95 (operador_aritmetico -> DIV .)
-    NOMBRE          reduce using rule 95 (operador_aritmetico -> DIV .)
-    DOUBLE          reduce using rule 95 (operador_aritmetico -> DIV .)
-    INT             reduce using rule 95 (operador_aritmetico -> DIV .)
-    STRING          reduce using rule 95 (operador_aritmetico -> DIV .)
-    FALSE           reduce using rule 95 (operador_aritmetico -> DIV .)
-    TRUE            reduce using rule 95 (operador_aritmetico -> DIV .)
+    PARIZQ          reduce using rule 95 (operador_aritmetico -> MULT .)
+    NOMBRE          reduce using rule 95 (operador_aritmetico -> MULT .)
+    DOUBLE          reduce using rule 95 (operador_aritmetico -> MULT .)
+    INT             reduce using rule 95 (operador_aritmetico -> MULT .)
+    STRING          reduce using rule 95 (operador_aritmetico -> MULT .)
+    FALSE           reduce using rule 95 (operador_aritmetico -> MULT .)
+    TRUE            reduce using rule 95 (operador_aritmetico -> MULT .)
 
 
 state 136
 
-    (88) op_aritmetica -> PARIZQ op_aritmetica_extra . operador_aritmetico tipo_variable PARDER
-    (86) op_aritmetica -> op_aritmetica_extra . operador_aritmetico tipo_variable
-    (87) op_aritmetica -> op_aritmetica_extra . operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (92) operador_aritmetico -> . SUMA
-    (93) operador_aritmetico -> . RESTA
-    (94) operador_aritmetico -> . MULT
-    (95) operador_aritmetico -> . DIV
+    (96) operador_aritmetico -> DIV .
 
-    SUMA            shift and go to state 132
-    RESTA           shift and go to state 133
-    MULT            shift and go to state 134
-    DIV             shift and go to state 135
+    PARIZQ          reduce using rule 96 (operador_aritmetico -> DIV .)
+    NOMBRE          reduce using rule 96 (operador_aritmetico -> DIV .)
+    DOUBLE          reduce using rule 96 (operador_aritmetico -> DIV .)
+    INT             reduce using rule 96 (operador_aritmetico -> DIV .)
+    STRING          reduce using rule 96 (operador_aritmetico -> DIV .)
+    FALSE           reduce using rule 96 (operador_aritmetico -> DIV .)
+    TRUE            reduce using rule 96 (operador_aritmetico -> DIV .)
 
-    operador_aritmetico            shift and go to state 169
 
 state 137
 
-    (89) op_aritmetica_extra -> tipo_variable .
+    (89) op_aritmetica -> PARIZQ op_aritmetica_extra . operador_aritmetico tipo_variable PARDER
+    (87) op_aritmetica -> op_aritmetica_extra . operador_aritmetico tipo_variable
+    (88) op_aritmetica -> op_aritmetica_extra . operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (93) operador_aritmetico -> . SUMA
+    (94) operador_aritmetico -> . RESTA
+    (95) operador_aritmetico -> . MULT
+    (96) operador_aritmetico -> . DIV
 
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
+    SUMA            shift and go to state 133
+    RESTA           shift and go to state 134
+    MULT            shift and go to state 135
+    DIV             shift and go to state 136
 
+    operador_aritmetico            shift and go to state 171
 
 state 138
 
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (90) op_aritmetica_extra -> tipo_variable .
 
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
 
 
 state 139
 
-    (1) Niark -> definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER . NEWLINE Niark
+    (91) op_aritmetica_extra -> op_aritmetica .
 
-    NEWLINE         shift and go to state 170
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
 
 
 state 140
 
-    (12) parametro -> NOMBRE . parametro_extra
-    (13) parametro_extra -> . COMA NOMBRE parametro_extra
-    (14) parametro_extra -> . vacio
-    (98) vacio -> .
+    (1) Niark -> definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER . NEWLINE Niark
 
-    COMA            shift and go to state 172
-    PARDER          reduce using rule 98 (vacio -> .)
+    NEWLINE         shift and go to state 172
 
-    parametro_extra                shift and go to state 171
-    vacio                          shift and go to state 173
 
 state 141
 
-    (6) definicion_funcion -> dominio tipo_return NOMBRE PARIZQ parametro . PARDER
+    (12) parametro -> NOMBRE . parametro_extra
+    (13) parametro_extra -> . COMA NOMBRE parametro_extra
+    (14) parametro_extra -> . vacio
+    (99) vacio -> .
 
-    PARDER          shift and go to state 174
+    COMA            shift and go to state 174
+    PARDER          reduce using rule 99 (vacio -> .)
 
+    parametro_extra                shift and go to state 173
+    vacio                          shift and go to state 175
 
 state 142
+
+    (6) definicion_funcion -> dominio tipo_return NOMBRE PARIZQ parametro . PARDER
+
+    PARDER          shift and go to state 176
+
+
+state 143
 
     (11) parametro -> vacio .
 
     PARDER          reduce using rule 11 (parametro -> vacio .)
 
 
-state 143
+state 144
 
     (39) concat_instruccion -> indentacion instruccion concat_instruccion .
 
@@ -2604,23 +2632,42 @@ state 143
     LLAVEDER        reduce using rule 39 (concat_instruccion -> indentacion instruccion concat_instruccion .)
 
 
-state 144
+state 145
+
+    (77) condicion -> PARIZQ tipo_variable . operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    (70) operador_condicional -> . DIFERENTE
+    (71) operador_condicional -> . IGUAL
+    (72) operador_condicional -> . MAYOR
+    (73) operador_condicional -> . MAYORIGUAL
+    (74) operador_condicional -> . MENOR
+    (75) operador_condicional -> . MENORIGUAL
+
+    DIFERENTE       shift and go to state 148
+    IGUAL           shift and go to state 149
+    MAYOR           shift and go to state 150
+    MAYORIGUAL      shift and go to state 151
+    MENOR           shift and go to state 152
+    MENORIGUAL      shift and go to state 153
+
+    operador_condicional           shift and go to state 177
+
+state 146
 
     (41) condicion_if -> IF PARIZQ condicion PARDER . LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
 
-    LLAVEIZQ        shift and go to state 175
+    LLAVEIZQ        shift and go to state 178
 
 
-state 145
+state 147
 
     (76) condicion -> tipo_variable operador_condicional . tipo_variable condicion_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
@@ -2631,10 +2678,10 @@ state 145
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    tipo_variable                  shift and go to state 176
+    tipo_variable                  shift and go to state 179
     llamado_funcion                shift and go to state 88
 
-state 146
+state 148
 
     (70) operador_condicional -> DIFERENTE .
 
@@ -2646,7 +2693,7 @@ state 146
     TRUE            reduce using rule 70 (operador_condicional -> DIFERENTE .)
 
 
-state 147
+state 149
 
     (71) operador_condicional -> IGUAL .
 
@@ -2658,7 +2705,7 @@ state 147
     TRUE            reduce using rule 71 (operador_condicional -> IGUAL .)
 
 
-state 148
+state 150
 
     (72) operador_condicional -> MAYOR .
 
@@ -2670,7 +2717,7 @@ state 148
     TRUE            reduce using rule 72 (operador_condicional -> MAYOR .)
 
 
-state 149
+state 151
 
     (73) operador_condicional -> MAYORIGUAL .
 
@@ -2682,7 +2729,7 @@ state 149
     TRUE            reduce using rule 73 (operador_condicional -> MAYORIGUAL .)
 
 
-state 150
+state 152
 
     (74) operador_condicional -> MENOR .
 
@@ -2694,7 +2741,7 @@ state 150
     TRUE            reduce using rule 74 (operador_condicional -> MENOR .)
 
 
-state 151
+state 153
 
     (75) operador_condicional -> MENORIGUAL .
 
@@ -2706,33 +2753,35 @@ state 151
     TRUE            reduce using rule 75 (operador_condicional -> MENORIGUAL .)
 
 
-state 152
+state 154
 
     (42) condicion_else -> ELSE LLAVEIZQ NEWLINE instrucciones . indentacion LLAVEDER
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
 
-    indentacion                    shift and go to state 177
+    indentacion                    shift and go to state 180
     vacio                          shift and go to state 46
 
-state 153
+state 155
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA . condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     (76) condicion -> . tipo_variable operador_condicional tipo_variable condicion_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (77) condicion -> . PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
+    PARIZQ          shift and go to state 111
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -2740,18 +2789,18 @@ state 153
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    condicion                      shift and go to state 178
-    tipo_variable                  shift and go to state 112
+    condicion                      shift and go to state 181
+    tipo_variable                  shift and go to state 113
     llamado_funcion                shift and go to state 88
 
-state 154
+state 156
 
     (51) ciclo_while -> WHILE PARIZQ condicion PARDER . LLAVEIZQ
 
-    LLAVEIZQ        shift and go to state 179
+    LLAVEIZQ        shift and go to state 182
 
 
-state 155
+state 157
 
     (52) imprimir -> PRINT PARIZQ tipo_variable PARDER .
 
@@ -2759,7 +2808,7 @@ state 155
     NEWLINE         reduce using rule 52 (imprimir -> PRINT PARIZQ tipo_variable PARDER .)
 
 
-state 156
+state 158
 
     (53) leer -> READ PARIZQ NOMBRE PARDER .
 
@@ -2767,23 +2816,23 @@ state 156
     NEWLINE         reduce using rule 53 (leer -> READ PARIZQ NOMBRE PARDER .)
 
 
-state 157
+state 159
 
     (64) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER . ASIGNACION op_aritmetica
     (66) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER . ASIGNACION tipo_variable
 
-    ASIGNACION      shift and go to state 180
+    ASIGNACION      shift and go to state 183
 
 
-state 158
+state 160
 
     (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER . ASIGNACION op_aritmetica
     (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER . ASIGNACION tipo_variable
 
-    ASIGNACION      shift and go to state 181
+    ASIGNACION      shift and go to state 184
 
 
-state 159
+state 161
 
     (15) llamado_funcion -> NOMBRE PARIZQ parametro_llamado PARDER .
 
@@ -2806,7 +2855,7 @@ state 159
     OR              reduce using rule 15 (llamado_funcion -> NOMBRE PARIZQ parametro_llamado PARDER .)
 
 
-state 160
+state 162
 
     (16) llamado_funcion -> NOMBRE PARIZQ vacio PARDER .
 
@@ -2829,34 +2878,34 @@ state 160
     OR              reduce using rule 16 (llamado_funcion -> NOMBRE PARIZQ vacio PARDER .)
 
 
-state 161
+state 163
 
     (17) parametro_llamado -> tipo_variable parametro_llamado_extra .
 
     PARDER          reduce using rule 17 (parametro_llamado -> tipo_variable parametro_llamado_extra .)
 
 
-state 162
+state 164
 
     (19) parametro_llamado_extra -> COMA . parametro_llamado
     (17) parametro_llamado -> . tipo_variable parametro_llamado_extra
     (18) parametro_llamado -> . op_aritmetica parametro_llamado_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
-    (98) vacio -> .
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
+    (99) vacio -> .
 
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
@@ -2865,33 +2914,33 @@ state 162
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
     PARIZQ          shift and go to state 90
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
-    parametro_llamado              shift and go to state 182
-    tipo_variable                  shift and go to state 125
-    op_aritmetica                  shift and go to state 126
+    parametro_llamado              shift and go to state 185
+    tipo_variable                  shift and go to state 126
+    op_aritmetica                  shift and go to state 127
     llamado_funcion                shift and go to state 88
     op_aritmetica_extra            shift and go to state 89
     vacio                          shift and go to state 91
 
-state 163
+state 165
 
     (20) parametro_llamado_extra -> vacio .
 
     PARDER          reduce using rule 20 (parametro_llamado_extra -> vacio .)
 
 
-state 164
+state 166
 
     (18) parametro_llamado -> op_aritmetica parametro_llamado_extra .
 
     PARDER          reduce using rule 18 (parametro_llamado -> op_aritmetica parametro_llamado_extra .)
 
 
-state 165
+state 167
 
     (56) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER .
     (58) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER . ASIGNACION op_aritmetica
@@ -2899,10 +2948,10 @@ state 165
 
     COMENTARIO      reduce using rule 56 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER .)
     NEWLINE         reduce using rule 56 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER .)
-    ASIGNACION      shift and go to state 183
+    ASIGNACION      shift and go to state 186
 
 
-state 166
+state 168
 
     (57) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER .
     (59) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER . ASIGNACION op_aritmetica
@@ -2910,41 +2959,41 @@ state 166
 
     COMENTARIO      reduce using rule 57 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER .)
     NEWLINE         reduce using rule 57 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER .)
-    ASIGNACION      shift and go to state 184
+    ASIGNACION      shift and go to state 187
 
 
-state 167
+state 169
 
-    (86) op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .
+    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .
 
-    COMENTARIO      reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    NEWLINE         reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    SUMA            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    RESTA           reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    MULT            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    DIV             reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    COMA            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    PARDER          reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    PUNTOYCOMA      reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    COMENTARIO      reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    NEWLINE         reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    SUMA            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    RESTA           reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    MULT            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    DIV             reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    COMA            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    PARDER          reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    PUNTOYCOMA      reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
 
 
-state 168
+state 170
 
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ . op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (98) vacio -> .
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ . op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (99) vacio -> .
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
@@ -2955,33 +3004,33 @@ state 168
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
     PARIZQ          shift and go to state 90
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
-    op_aritmetica_extra            shift and go to state 185
-    tipo_variable                  shift and go to state 137
-    op_aritmetica                  shift and go to state 138
+    op_aritmetica_extra            shift and go to state 188
+    tipo_variable                  shift and go to state 138
+    op_aritmetica                  shift and go to state 139
     vacio                          shift and go to state 91
     llamado_funcion                shift and go to state 88
 
-state 169
+state 171
 
-    (88) op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico . tipo_variable PARDER
-    (86) op_aritmetica -> op_aritmetica_extra operador_aritmetico . tipo_variable
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (89) op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico . tipo_variable PARDER
+    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico . tipo_variable
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
-    PARIZQ          shift and go to state 168
+    PARIZQ          shift and go to state 170
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -2989,10 +3038,10 @@ state 169
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    tipo_variable                  shift and go to state 186
+    tipo_variable                  shift and go to state 189
     llamado_funcion                shift and go to state 88
 
-state 170
+state 172
 
     (1) Niark -> definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE . Niark
     (1) Niark -> . definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark
@@ -3001,7 +3050,7 @@ state 170
     (6) definicion_funcion -> . dominio tipo_return NOMBRE PARIZQ parametro PARDER
     (37) instrucciones -> . indentacion instruccion concat_instruccion
     (38) instrucciones -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
     (7) dominio -> . PRIVATE
     (8) dominio -> . PUBLIC
     (4) indentacion -> . TABULACION indentacion
@@ -3010,103 +3059,126 @@ state 170
   ! shift/reduce conflict for PRIVATE resolved as shift
   ! shift/reduce conflict for PUBLIC resolved as shift
   ! shift/reduce conflict for TABULACION resolved as shift
-    $end            reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    $end            reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
     PRIVATE         shift and go to state 7
     PUBLIC          shift and go to state 8
     TABULACION      shift and go to state 9
 
-  ! PRIVATE         [ reduce using rule 98 (vacio -> .) ]
-  ! PUBLIC          [ reduce using rule 98 (vacio -> .) ]
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! PRIVATE         [ reduce using rule 99 (vacio -> .) ]
+  ! PUBLIC          [ reduce using rule 99 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
     definicion_funcion             shift and go to state 2
     instrucciones                  shift and go to state 3
-    Niark                          shift and go to state 187
+    Niark                          shift and go to state 190
     vacio                          shift and go to state 4
     dominio                        shift and go to state 5
     indentacion                    shift and go to state 6
 
-state 171
+state 173
 
     (12) parametro -> NOMBRE parametro_extra .
 
     PARDER          reduce using rule 12 (parametro -> NOMBRE parametro_extra .)
 
 
-state 172
+state 174
 
     (13) parametro_extra -> COMA . NOMBRE parametro_extra
 
-    NOMBRE          shift and go to state 188
+    NOMBRE          shift and go to state 191
 
 
-state 173
+state 175
 
     (14) parametro_extra -> vacio .
 
     PARDER          reduce using rule 14 (parametro_extra -> vacio .)
 
 
-state 174
+state 176
 
     (6) definicion_funcion -> dominio tipo_return NOMBRE PARIZQ parametro PARDER .
 
     LLAVEIZQ        reduce using rule 6 (definicion_funcion -> dominio tipo_return NOMBRE PARIZQ parametro PARDER .)
 
 
-state 175
-
-    (41) condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ . NEWLINE instrucciones indentacion LLAVEDER
-
-    NEWLINE         shift and go to state 189
-
-
-state 176
-
-    (76) condicion -> tipo_variable operador_condicional tipo_variable . condicion_extra
-    (77) condicion_extra -> . operador_logico tipo_variable operador_condicional tipo_variable condicion_extra
-    (78) condicion_extra -> . vacio
-    (96) operador_logico -> . AND
-    (97) operador_logico -> . OR
-    (98) vacio -> .
-
-    AND             shift and go to state 193
-    OR              shift and go to state 194
-    PARDER          reduce using rule 98 (vacio -> .)
-    PUNTOYCOMA      reduce using rule 98 (vacio -> .)
-
-    condicion_extra                shift and go to state 190
-    operador_logico                shift and go to state 191
-    vacio                          shift and go to state 192
-
 state 177
 
-    (42) condicion_else -> ELSE LLAVEIZQ NEWLINE instrucciones indentacion . LLAVEDER
+    (77) condicion -> PARIZQ tipo_variable operador_condicional . tipo_variable condicion_extra PARDER condicion_extra
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
+    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
-    LLAVEDER        shift and go to state 195
+    NOMBRE          shift and go to state 82
+    DOUBLE          shift and go to state 83
+    INT             shift and go to state 84
+    STRING          shift and go to state 85
+    FALSE           shift and go to state 86
+    TRUE            shift and go to state 87
 
+    tipo_variable                  shift and go to state 192
+    llamado_funcion                shift and go to state 88
 
 state 178
 
-    (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion . PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
+    (41) condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ . NEWLINE instrucciones indentacion LLAVEDER
 
-    PUNTOYCOMA      shift and go to state 196
+    NEWLINE         shift and go to state 193
 
 
 state 179
+
+    (76) condicion -> tipo_variable operador_condicional tipo_variable . condicion_extra
+    (78) condicion_extra -> . operador_logico condicion
+    (79) condicion_extra -> . vacio
+    (97) operador_logico -> . AND
+    (98) operador_logico -> . OR
+    (99) vacio -> .
+
+    AND             shift and go to state 197
+    OR              shift and go to state 198
+    PARDER          reduce using rule 99 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 99 (vacio -> .)
+
+    condicion_extra                shift and go to state 194
+    operador_logico                shift and go to state 195
+    vacio                          shift and go to state 196
+
+state 180
+
+    (42) condicion_else -> ELSE LLAVEIZQ NEWLINE instrucciones indentacion . LLAVEDER
+
+    LLAVEDER        shift and go to state 199
+
+
+state 181
+
+    (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion . PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
+
+    PUNTOYCOMA      shift and go to state 200
+
+
+state 182
 
     (51) ciclo_while -> WHILE PARIZQ condicion PARDER LLAVEIZQ .
 
@@ -3114,26 +3186,26 @@ state 179
     NEWLINE         reduce using rule 51 (ciclo_while -> WHILE PARIZQ condicion PARDER LLAVEIZQ .)
 
 
-state 180
+state 183
 
     (64) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION . op_aritmetica
     (66) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION . tipo_variable
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (98) vacio -> .
+    (99) vacio -> .
 
     PARIZQ          shift and go to state 90
     NOMBRE          shift and go to state 82
@@ -3142,95 +3214,10 @@ state 180
     STRING          shift and go to state 85
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
-
-    op_aritmetica                  shift and go to state 197
-    tipo_variable                  shift and go to state 198
-    op_aritmetica_extra            shift and go to state 89
-    llamado_funcion                shift and go to state 88
-    vacio                          shift and go to state 91
-
-state 181
-
-    (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION . op_aritmetica
-    (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION . tipo_variable
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
-    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
-    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (98) vacio -> .
-
-    PARIZQ          shift and go to state 90
-    NOMBRE          shift and go to state 82
-    DOUBLE          shift and go to state 83
-    INT             shift and go to state 84
-    STRING          shift and go to state 85
-    FALSE           shift and go to state 86
-    TRUE            shift and go to state 87
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
-
-    op_aritmetica                  shift and go to state 199
-    tipo_variable                  shift and go to state 200
-    op_aritmetica_extra            shift and go to state 89
-    llamado_funcion                shift and go to state 88
-    vacio                          shift and go to state 91
-
-state 182
-
-    (19) parametro_llamado_extra -> COMA parametro_llamado .
-
-    PARDER          reduce using rule 19 (parametro_llamado_extra -> COMA parametro_llamado .)
-
-
-state 183
-
-    (58) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION . op_aritmetica
-    (60) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION . tipo_variable
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
-    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
-    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (98) vacio -> .
-
-    PARIZQ          shift and go to state 90
-    NOMBRE          shift and go to state 82
-    DOUBLE          shift and go to state 83
-    INT             shift and go to state 84
-    STRING          shift and go to state 85
-    FALSE           shift and go to state 86
-    TRUE            shift and go to state 87
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
     op_aritmetica                  shift and go to state 201
     tipo_variable                  shift and go to state 202
@@ -3240,24 +3227,24 @@ state 183
 
 state 184
 
-    (59) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION . op_aritmetica
-    (61) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION . tipo_variable
-    (86) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
-    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (88) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (89) op_aritmetica_extra -> . tipo_variable
-    (90) op_aritmetica_extra -> . op_aritmetica
-    (91) op_aritmetica_extra -> . vacio
+    (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION . op_aritmetica
+    (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION . tipo_variable
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-    (98) vacio -> .
+    (99) vacio -> .
 
     PARIZQ          shift and go to state 90
     NOMBRE          shift and go to state 82
@@ -3266,10 +3253,10 @@ state 184
     STRING          shift and go to state 85
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
-    SUMA            reduce using rule 98 (vacio -> .)
-    RESTA           reduce using rule 98 (vacio -> .)
-    MULT            reduce using rule 98 (vacio -> .)
-    DIV             reduce using rule 98 (vacio -> .)
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
     op_aritmetica                  shift and go to state 203
     tipo_variable                  shift and go to state 204
@@ -3279,86 +3266,188 @@ state 184
 
 state 185
 
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra . operador_aritmetico tipo_variable PARDER
-    (86) op_aritmetica -> op_aritmetica_extra . operador_aritmetico tipo_variable
-    (87) op_aritmetica -> op_aritmetica_extra . operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (92) operador_aritmetico -> . SUMA
-    (93) operador_aritmetico -> . RESTA
-    (94) operador_aritmetico -> . MULT
-    (95) operador_aritmetico -> . DIV
+    (19) parametro_llamado_extra -> COMA parametro_llamado .
 
-    SUMA            shift and go to state 132
-    RESTA           shift and go to state 133
-    MULT            shift and go to state 134
-    DIV             shift and go to state 135
+    PARDER          reduce using rule 19 (parametro_llamado_extra -> COMA parametro_llamado .)
 
-    operador_aritmetico            shift and go to state 205
 
 state 186
 
-    (88) op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable . PARDER
-    (86) op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .
+    (58) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION . op_aritmetica
+    (60) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION . tipo_variable
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
+    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
+    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
+    (99) vacio -> .
 
-    PARDER          shift and go to state 206
-    SUMA            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    RESTA           reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    MULT            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    DIV             reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    PARIZQ          shift and go to state 90
+    NOMBRE          shift and go to state 82
+    DOUBLE          shift and go to state 83
+    INT             shift and go to state 84
+    STRING          shift and go to state 85
+    FALSE           shift and go to state 86
+    TRUE            shift and go to state 87
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
 
+    op_aritmetica                  shift and go to state 205
+    tipo_variable                  shift and go to state 206
+    op_aritmetica_extra            shift and go to state 89
+    llamado_funcion                shift and go to state 88
+    vacio                          shift and go to state 91
 
 state 187
+
+    (59) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION . op_aritmetica
+    (61) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION . tipo_variable
+    (87) op_aritmetica -> . op_aritmetica_extra operador_aritmetico tipo_variable
+    (88) op_aritmetica -> . op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (89) op_aritmetica -> . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
+    (90) op_aritmetica_extra -> . tipo_variable
+    (91) op_aritmetica_extra -> . op_aritmetica
+    (92) op_aritmetica_extra -> . vacio
+    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
+    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
+    (99) vacio -> .
+
+    PARIZQ          shift and go to state 90
+    NOMBRE          shift and go to state 82
+    DOUBLE          shift and go to state 83
+    INT             shift and go to state 84
+    STRING          shift and go to state 85
+    FALSE           shift and go to state 86
+    TRUE            shift and go to state 87
+    SUMA            reduce using rule 99 (vacio -> .)
+    RESTA           reduce using rule 99 (vacio -> .)
+    MULT            reduce using rule 99 (vacio -> .)
+    DIV             reduce using rule 99 (vacio -> .)
+
+    op_aritmetica                  shift and go to state 207
+    tipo_variable                  shift and go to state 208
+    op_aritmetica_extra            shift and go to state 89
+    llamado_funcion                shift and go to state 88
+    vacio                          shift and go to state 91
+
+state 188
+
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra . operador_aritmetico tipo_variable PARDER
+    (87) op_aritmetica -> op_aritmetica_extra . operador_aritmetico tipo_variable
+    (88) op_aritmetica -> op_aritmetica_extra . operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (93) operador_aritmetico -> . SUMA
+    (94) operador_aritmetico -> . RESTA
+    (95) operador_aritmetico -> . MULT
+    (96) operador_aritmetico -> . DIV
+
+    SUMA            shift and go to state 133
+    RESTA           shift and go to state 134
+    MULT            shift and go to state 135
+    DIV             shift and go to state 136
+
+    operador_aritmetico            shift and go to state 209
+
+state 189
+
+    (89) op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable . PARDER
+    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .
+
+    PARDER          shift and go to state 210
+    SUMA            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    RESTA           reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    MULT            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    DIV             reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+
+
+state 190
 
     (1) Niark -> definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark .
 
     $end            reduce using rule 1 (Niark -> definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark .)
 
 
-state 188
+state 191
 
     (13) parametro_extra -> COMA NOMBRE . parametro_extra
     (13) parametro_extra -> . COMA NOMBRE parametro_extra
     (14) parametro_extra -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
-    COMA            shift and go to state 172
-    PARDER          reduce using rule 98 (vacio -> .)
+    COMA            shift and go to state 174
+    PARDER          reduce using rule 99 (vacio -> .)
 
-    parametro_extra                shift and go to state 207
-    vacio                          shift and go to state 173
+    parametro_extra                shift and go to state 211
+    vacio                          shift and go to state 175
 
-state 189
+state 192
+
+    (77) condicion -> PARIZQ tipo_variable operador_condicional tipo_variable . condicion_extra PARDER condicion_extra
+    (78) condicion_extra -> . operador_logico condicion
+    (79) condicion_extra -> . vacio
+    (97) operador_logico -> . AND
+    (98) operador_logico -> . OR
+    (99) vacio -> .
+
+    AND             shift and go to state 197
+    OR              shift and go to state 198
+    PARDER          reduce using rule 99 (vacio -> .)
+
+    condicion_extra                shift and go to state 212
+    operador_logico                shift and go to state 195
+    vacio                          shift and go to state 196
+
+state 193
 
     (41) condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE . instrucciones indentacion LLAVEDER
     (37) instrucciones -> . indentacion instruccion concat_instruccion
     (38) instrucciones -> . vacio
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
   ! shift/reduce conflict for TABULACION resolved as shift
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
-    instrucciones                  shift and go to state 208
+    instrucciones                  shift and go to state 213
     indentacion                    shift and go to state 6
     vacio                          shift and go to state 95
 
-state 190
+state 194
 
     (76) condicion -> tipo_variable operador_condicional tipo_variable condicion_extra .
 
@@ -3366,19 +3455,22 @@ state 190
     PUNTOYCOMA      reduce using rule 76 (condicion -> tipo_variable operador_condicional tipo_variable condicion_extra .)
 
 
-state 191
+state 195
 
-    (77) condicion_extra -> operador_logico . tipo_variable operador_condicional tipo_variable condicion_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (78) condicion_extra -> operador_logico . condicion
+    (76) condicion -> . tipo_variable operador_condicional tipo_variable condicion_extra
+    (77) condicion -> . PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
+    PARIZQ          shift and go to state 111
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -3386,42 +3478,45 @@ state 191
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    tipo_variable                  shift and go to state 209
+    condicion                      shift and go to state 214
+    tipo_variable                  shift and go to state 113
     llamado_funcion                shift and go to state 88
 
-state 192
+state 196
 
-    (78) condicion_extra -> vacio .
+    (79) condicion_extra -> vacio .
 
-    PARDER          reduce using rule 78 (condicion_extra -> vacio .)
-    PUNTOYCOMA      reduce using rule 78 (condicion_extra -> vacio .)
-
-
-state 193
-
-    (96) operador_logico -> AND .
-
-    NOMBRE          reduce using rule 96 (operador_logico -> AND .)
-    DOUBLE          reduce using rule 96 (operador_logico -> AND .)
-    INT             reduce using rule 96 (operador_logico -> AND .)
-    STRING          reduce using rule 96 (operador_logico -> AND .)
-    FALSE           reduce using rule 96 (operador_logico -> AND .)
-    TRUE            reduce using rule 96 (operador_logico -> AND .)
+    PARDER          reduce using rule 79 (condicion_extra -> vacio .)
+    PUNTOYCOMA      reduce using rule 79 (condicion_extra -> vacio .)
 
 
-state 194
+state 197
 
-    (97) operador_logico -> OR .
+    (97) operador_logico -> AND .
 
-    NOMBRE          reduce using rule 97 (operador_logico -> OR .)
-    DOUBLE          reduce using rule 97 (operador_logico -> OR .)
-    INT             reduce using rule 97 (operador_logico -> OR .)
-    STRING          reduce using rule 97 (operador_logico -> OR .)
-    FALSE           reduce using rule 97 (operador_logico -> OR .)
-    TRUE            reduce using rule 97 (operador_logico -> OR .)
+    PARIZQ          reduce using rule 97 (operador_logico -> AND .)
+    NOMBRE          reduce using rule 97 (operador_logico -> AND .)
+    DOUBLE          reduce using rule 97 (operador_logico -> AND .)
+    INT             reduce using rule 97 (operador_logico -> AND .)
+    STRING          reduce using rule 97 (operador_logico -> AND .)
+    FALSE           reduce using rule 97 (operador_logico -> AND .)
+    TRUE            reduce using rule 97 (operador_logico -> AND .)
 
 
-state 195
+state 198
+
+    (98) operador_logico -> OR .
+
+    PARIZQ          reduce using rule 98 (operador_logico -> OR .)
+    NOMBRE          reduce using rule 98 (operador_logico -> OR .)
+    DOUBLE          reduce using rule 98 (operador_logico -> OR .)
+    INT             reduce using rule 98 (operador_logico -> OR .)
+    STRING          reduce using rule 98 (operador_logico -> OR .)
+    FALSE           reduce using rule 98 (operador_logico -> OR .)
+    TRUE            reduce using rule 98 (operador_logico -> OR .)
+
+
+state 199
 
     (42) condicion_else -> ELSE LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER .
 
@@ -3429,7 +3524,7 @@ state 195
     NEWLINE         reduce using rule 42 (condicion_else -> ELSE LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER .)
 
 
-state 196
+state 200
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA . incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     (45) incdec -> . pre_incdec
@@ -3441,132 +3536,132 @@ state 196
 
     INCREMENTAR     shift and go to state 43
     DECREMENTAR     shift and go to state 44
-    NOMBRE          shift and go to state 211
+    NOMBRE          shift and go to state 216
 
-    incdec                         shift and go to state 210
+    incdec                         shift and go to state 215
     pre_incdec                     shift and go to state 37
     post_incdec                    shift and go to state 38
 
-state 197
+state 201
 
     (64) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
 
     COMENTARIO      reduce using rule 64 (asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .)
     NEWLINE         reduce using rule 64 (asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-
-
-state 198
-
-    (66) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
-
-    COMENTARIO      reduce using rule 66 (asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
-    NEWLINE         reduce using rule 66 (asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-
-
-state 199
-
-    (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
-
-    COMENTARIO      reduce using rule 65 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
-    NEWLINE         reduce using rule 65 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-
-
-state 200
-
-    (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
-
-    COMENTARIO      reduce using rule 67 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
-    NEWLINE         reduce using rule 67 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-
-
-state 201
-
-    (58) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
-
-    COMENTARIO      reduce using rule 58 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .)
-    NEWLINE         reduce using rule 58 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
 
 
 state 202
 
-    (60) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
+    (66) asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
 
-    COMENTARIO      reduce using rule 60 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
-    NEWLINE         reduce using rule 60 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
+    COMENTARIO      reduce using rule 66 (asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
+    NEWLINE         reduce using rule 66 (asignacion_vector -> NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
 
 
 state 203
 
-    (59) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .
-    (90) op_aritmetica_extra -> op_aritmetica .
+    (65) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
 
-    COMENTARIO      reduce using rule 59 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
-    NEWLINE         reduce using rule 59 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
-    SUMA            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    RESTA           reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    MULT            reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
-    DIV             reduce using rule 90 (op_aritmetica_extra -> op_aritmetica .)
+    COMENTARIO      reduce using rule 65 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
+    NEWLINE         reduce using rule 65 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
 
 
 state 204
 
-    (61) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .
-    (89) op_aritmetica_extra -> tipo_variable .
+    (67) asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
 
-    COMENTARIO      reduce using rule 61 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
-    NEWLINE         reduce using rule 61 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
-    SUMA            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    RESTA           reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    MULT            reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
-    DIV             reduce using rule 89 (op_aritmetica_extra -> tipo_variable .)
+    COMENTARIO      reduce using rule 67 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
+    NEWLINE         reduce using rule 67 (asignacion_vector -> NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
 
 
 state 205
 
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico . tipo_variable PARDER
-    (86) op_aritmetica -> op_aritmetica_extra operador_aritmetico . tipo_variable
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
+    (58) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
+
+    COMENTARIO      reduce using rule 58 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .)
+    NEWLINE         reduce using rule 58 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+
+
+state 206
+
+    (60) dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
+
+    COMENTARIO      reduce using rule 60 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
+    NEWLINE         reduce using rule 60 (dec_vector -> DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+
+
+state 207
+
+    (59) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .
+    (91) op_aritmetica_extra -> op_aritmetica .
+
+    COMENTARIO      reduce using rule 59 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
+    NEWLINE         reduce using rule 59 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica .)
+    SUMA            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    RESTA           reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    MULT            reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+    DIV             reduce using rule 91 (op_aritmetica_extra -> op_aritmetica .)
+
+
+state 208
+
+    (61) dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .
+    (90) op_aritmetica_extra -> tipo_variable .
+
+    COMENTARIO      reduce using rule 61 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
+    NEWLINE         reduce using rule 61 (dec_vector -> DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable .)
+    SUMA            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    RESTA           reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    MULT            reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+    DIV             reduce using rule 90 (op_aritmetica_extra -> tipo_variable .)
+
+
+state 209
+
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico . tipo_variable PARDER
+    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico . tipo_variable
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico . PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+    (80) tipo_variable -> . NOMBRE
+    (81) tipo_variable -> . DOUBLE
+    (82) tipo_variable -> . INT
+    (83) tipo_variable -> . STRING
+    (84) tipo_variable -> . FALSE
+    (85) tipo_variable -> . TRUE
+    (86) tipo_variable -> . llamado_funcion
     (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
     (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
 
-    PARIZQ          shift and go to state 168
+    PARIZQ          shift and go to state 170
     NOMBRE          shift and go to state 82
     DOUBLE          shift and go to state 83
     INT             shift and go to state 84
@@ -3574,71 +3669,67 @@ state 205
     FALSE           shift and go to state 86
     TRUE            shift and go to state 87
 
-    tipo_variable                  shift and go to state 212
+    tipo_variable                  shift and go to state 217
     llamado_funcion                shift and go to state 88
 
-state 206
+state 210
 
-    (88) op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .
+    (89) op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .
 
-    COMENTARIO      reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    NEWLINE         reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    SUMA            reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    RESTA           reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    MULT            reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    DIV             reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    COMA            reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    PARDER          reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    PUNTOYCOMA      reduce using rule 88 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    COMENTARIO      reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    NEWLINE         reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    SUMA            reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    RESTA           reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    MULT            reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    DIV             reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    COMA            reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    PARDER          reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    PUNTOYCOMA      reduce using rule 89 (op_aritmetica -> PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
 
 
-state 207
+state 211
 
     (13) parametro_extra -> COMA NOMBRE parametro_extra .
 
     PARDER          reduce using rule 13 (parametro_extra -> COMA NOMBRE parametro_extra .)
 
 
-state 208
+state 212
+
+    (77) condicion -> PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra . PARDER condicion_extra
+
+    PARDER          shift and go to state 218
+
+
+state 213
 
     (41) condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones . indentacion LLAVEDER
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
 
-    indentacion                    shift and go to state 213
+    indentacion                    shift and go to state 219
     vacio                          shift and go to state 46
 
-state 209
+state 214
 
-    (77) condicion_extra -> operador_logico tipo_variable . operador_condicional tipo_variable condicion_extra
-    (70) operador_condicional -> . DIFERENTE
-    (71) operador_condicional -> . IGUAL
-    (72) operador_condicional -> . MAYOR
-    (73) operador_condicional -> . MAYORIGUAL
-    (74) operador_condicional -> . MENOR
-    (75) operador_condicional -> . MENORIGUAL
+    (78) condicion_extra -> operador_logico condicion .
 
-    DIFERENTE       shift and go to state 146
-    IGUAL           shift and go to state 147
-    MAYOR           shift and go to state 148
-    MAYORIGUAL      shift and go to state 149
-    MENOR           shift and go to state 150
-    MENORIGUAL      shift and go to state 151
+    PARDER          reduce using rule 78 (condicion_extra -> operador_logico condicion .)
+    PUNTOYCOMA      reduce using rule 78 (condicion_extra -> operador_logico condicion .)
 
-    operador_condicional           shift and go to state 214
 
-state 210
+state 215
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec . PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
 
-    PARDER          shift and go to state 215
+    PARDER          shift and go to state 220
 
 
-state 211
+state 216
 
     (49) post_incdec -> NOMBRE . INCREMENTAR
     (50) post_incdec -> NOMBRE . DECREMENTAR
@@ -3647,71 +3738,74 @@ state 211
     DECREMENTAR     shift and go to state 77
 
 
-state 212
+state 217
 
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable . PARDER
-    (86) op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable . PARDER
+    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .
 
-    PARDER          shift and go to state 216
-    SUMA            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    RESTA           reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    MULT            reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
-    DIV             reduce using rule 86 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    PARDER          shift and go to state 221
+    SUMA            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    RESTA           reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    MULT            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
+    DIV             reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico tipo_variable .)
 
 
-state 213
+state 218
+
+    (77) condicion -> PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER . condicion_extra
+    (78) condicion_extra -> . operador_logico condicion
+    (79) condicion_extra -> . vacio
+    (97) operador_logico -> . AND
+    (98) operador_logico -> . OR
+    (99) vacio -> .
+
+    AND             shift and go to state 197
+    OR              shift and go to state 198
+    PARDER          reduce using rule 99 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 99 (vacio -> .)
+
+    condicion_extra                shift and go to state 222
+    operador_logico                shift and go to state 195
+    vacio                          shift and go to state 196
+
+state 219
 
     (41) condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones indentacion . LLAVEDER
 
-    LLAVEDER        shift and go to state 217
+    LLAVEDER        shift and go to state 223
 
 
-state 214
-
-    (77) condicion_extra -> operador_logico tipo_variable operador_condicional . tipo_variable condicion_extra
-    (79) tipo_variable -> . NOMBRE
-    (80) tipo_variable -> . DOUBLE
-    (81) tipo_variable -> . INT
-    (82) tipo_variable -> . STRING
-    (83) tipo_variable -> . FALSE
-    (84) tipo_variable -> . TRUE
-    (85) tipo_variable -> . llamado_funcion
-    (15) llamado_funcion -> . NOMBRE PARIZQ parametro_llamado PARDER
-    (16) llamado_funcion -> . NOMBRE PARIZQ vacio PARDER
-
-    NOMBRE          shift and go to state 82
-    DOUBLE          shift and go to state 83
-    INT             shift and go to state 84
-    STRING          shift and go to state 85
-    FALSE           shift and go to state 86
-    TRUE            shift and go to state 87
-
-    tipo_variable                  shift and go to state 218
-    llamado_funcion                shift and go to state 88
-
-state 215
+state 220
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER . LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
 
-    LLAVEIZQ        shift and go to state 219
+    LLAVEIZQ        shift and go to state 224
 
 
-state 216
+state 221
 
-    (87) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .
+    (88) op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .
 
-    COMENTARIO      reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    NEWLINE         reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    SUMA            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    RESTA           reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    MULT            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    DIV             reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    COMA            reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    PARDER          reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
-    PUNTOYCOMA      reduce using rule 87 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    COMENTARIO      reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    NEWLINE         reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    SUMA            reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    RESTA           reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    MULT            reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    DIV             reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    COMA            reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    PARDER          reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
+    PUNTOYCOMA      reduce using rule 88 (op_aritmetica -> op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER .)
 
 
-state 217
+state 222
+
+    (77) condicion -> PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra .
+
+    PARDER          reduce using rule 77 (condicion -> PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra .)
+    PUNTOYCOMA      reduce using rule 77 (condicion -> PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra .)
+
+
+state 223
 
     (41) condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER .
 
@@ -3719,92 +3813,66 @@ state 217
     NEWLINE         reduce using rule 41 (condicion_if -> IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER .)
 
 
-state 218
-
-    (77) condicion_extra -> operador_logico tipo_variable operador_condicional tipo_variable . condicion_extra
-    (77) condicion_extra -> . operador_logico tipo_variable operador_condicional tipo_variable condicion_extra
-    (78) condicion_extra -> . vacio
-    (96) operador_logico -> . AND
-    (97) operador_logico -> . OR
-    (98) vacio -> .
-
-    AND             shift and go to state 193
-    OR              shift and go to state 194
-    PARDER          reduce using rule 98 (vacio -> .)
-    PUNTOYCOMA      reduce using rule 98 (vacio -> .)
-
-    operador_logico                shift and go to state 191
-    condicion_extra                shift and go to state 220
-    vacio                          shift and go to state 192
-
-state 219
+state 224
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ . NEWLINE instrucciones indentacion LLAVEDER
 
-    NEWLINE         shift and go to state 221
+    NEWLINE         shift and go to state 225
 
 
-state 220
-
-    (77) condicion_extra -> operador_logico tipo_variable operador_condicional tipo_variable condicion_extra .
-
-    PARDER          reduce using rule 77 (condicion_extra -> operador_logico tipo_variable operador_condicional tipo_variable condicion_extra .)
-    PUNTOYCOMA      reduce using rule 77 (condicion_extra -> operador_logico tipo_variable operador_condicional tipo_variable condicion_extra .)
-
-
-state 221
+state 225
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE . instrucciones indentacion LLAVEDER
     (37) instrucciones -> . indentacion instruccion concat_instruccion
     (38) instrucciones -> . vacio
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
   ! shift/reduce conflict for TABULACION resolved as shift
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
-    IF              reduce using rule 98 (vacio -> .)
-    ELSE            reduce using rule 98 (vacio -> .)
-    FOR             reduce using rule 98 (vacio -> .)
-    WHILE           reduce using rule 98 (vacio -> .)
-    PRINT           reduce using rule 98 (vacio -> .)
-    READ            reduce using rule 98 (vacio -> .)
-    DECVARIABLE     reduce using rule 98 (vacio -> .)
-    NOMBRE          reduce using rule 98 (vacio -> .)
-    RETURN          reduce using rule 98 (vacio -> .)
-    COMENTARIO      reduce using rule 98 (vacio -> .)
-    INCREMENTAR     reduce using rule 98 (vacio -> .)
-    DECREMENTAR     reduce using rule 98 (vacio -> .)
-    NEWLINE         reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
+    IF              reduce using rule 99 (vacio -> .)
+    ELSE            reduce using rule 99 (vacio -> .)
+    FOR             reduce using rule 99 (vacio -> .)
+    WHILE           reduce using rule 99 (vacio -> .)
+    PRINT           reduce using rule 99 (vacio -> .)
+    READ            reduce using rule 99 (vacio -> .)
+    DECVARIABLE     reduce using rule 99 (vacio -> .)
+    NOMBRE          reduce using rule 99 (vacio -> .)
+    RETURN          reduce using rule 99 (vacio -> .)
+    COMENTARIO      reduce using rule 99 (vacio -> .)
+    INCREMENTAR     reduce using rule 99 (vacio -> .)
+    DECREMENTAR     reduce using rule 99 (vacio -> .)
+    NEWLINE         reduce using rule 99 (vacio -> .)
 
-  ! TABULACION      [ reduce using rule 98 (vacio -> .) ]
+  ! TABULACION      [ reduce using rule 99 (vacio -> .) ]
 
-    instrucciones                  shift and go to state 222
+    instrucciones                  shift and go to state 226
     indentacion                    shift and go to state 6
     vacio                          shift and go to state 95
 
-state 222
+state 226
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones . indentacion LLAVEDER
     (4) indentacion -> . TABULACION indentacion
     (5) indentacion -> . vacio
-    (98) vacio -> .
+    (99) vacio -> .
 
     TABULACION      shift and go to state 9
-    LLAVEDER        reduce using rule 98 (vacio -> .)
+    LLAVEDER        reduce using rule 99 (vacio -> .)
 
-    indentacion                    shift and go to state 223
+    indentacion                    shift and go to state 227
     vacio                          shift and go to state 46
 
-state 223
+state 227
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion . LLAVEDER
 
-    LLAVEDER        shift and go to state 224
+    LLAVEDER        shift and go to state 228
 
 
-state 224
+state 228
 
     (44) ciclo_for -> FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER .
 
@@ -3822,12 +3890,12 @@ WARNING: shift/reduce conflict for PUBLIC in state 3 resolved as shift
 WARNING: shift/reduce conflict for TABULACION in state 3 resolved as shift
 WARNING: shift/reduce conflict for TABULACION in state 15 resolved as shift
 WARNING: shift/reduce conflict for TABULACION in state 97 resolved as shift
-WARNING: shift/reduce conflict for TABULACION in state 113 resolved as shift
-WARNING: shift/reduce conflict for PRIVATE in state 170 resolved as shift
-WARNING: shift/reduce conflict for PUBLIC in state 170 resolved as shift
-WARNING: shift/reduce conflict for TABULACION in state 170 resolved as shift
-WARNING: shift/reduce conflict for TABULACION in state 189 resolved as shift
-WARNING: shift/reduce conflict for TABULACION in state 221 resolved as shift
+WARNING: shift/reduce conflict for TABULACION in state 114 resolved as shift
+WARNING: shift/reduce conflict for PRIVATE in state 172 resolved as shift
+WARNING: shift/reduce conflict for PUBLIC in state 172 resolved as shift
+WARNING: shift/reduce conflict for TABULACION in state 172 resolved as shift
+WARNING: shift/reduce conflict for TABULACION in state 193 resolved as shift
+WARNING: shift/reduce conflict for TABULACION in state 225 resolved as shift
 WARNING: reduce/reduce conflict in state 4 resolved using rule (Niark -> vacio)
 WARNING: rejected rule (instrucciones -> vacio) in state 4
 WARNING: reduce/reduce conflict in state 4 resolved using rule (indentacion -> vacio)

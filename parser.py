@@ -1,6 +1,16 @@
 import ply.yacc as yacc
 from lex import tokens
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 #GENERAL
 def p_Niark(p):
     '''
@@ -122,6 +132,7 @@ def p_INCDEC(p):
     incdec : pre_incdec
            | post_incdec
     '''
+    print("Agarra incdec")
 
 def p_PRE_INCDEC(p):
     '''
@@ -203,11 +214,13 @@ def p_OPERADOR_CONDICIONAL(p):
 def p_CONDICION(p):
     '''
     condicion : tipo_variable operador_condicional tipo_variable condicion_extra
+              | PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
     '''
+    print("Agarra condicion")
 
 def p_CONDICION_EXTRA(p):
     '''
-    condicion_extra : operador_logico tipo_variable operador_condicional tipo_variable condicion_extra
+    condicion_extra : operador_logico condicion
                     | vacio
     '''
 
@@ -247,6 +260,15 @@ def p_OPERADOR_LOGICO(p):
     operador_logico : AND
                     | OR
     '''
+
+def p_error(p):
+    if p:
+         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + p.type+ bcolors.ENDC, p.lineno)
+         # Just discard the token and tell the parser it's okay.
+         parser.errok()
+         #Esto es para no detenerse cuando encuentra un error
+    else:
+         print("Syntax error at EOF")
 
 def p_vacio(p):
     'vacio : '

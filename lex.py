@@ -103,7 +103,6 @@ t_ignore = r' '
 def t_COMENTARIO(t):
     r'//(.[^(//)]|\n)*//'
     t.type = "COMENTARIO"
-    print("COMENTARIO")
     return t
 
 def t_DECVARIABLE(t):
