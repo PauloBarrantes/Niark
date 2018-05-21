@@ -263,7 +263,7 @@ def p_OPERADOR_LOGICO(p):
 
 def p_error(p):
     if p:
-         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + p.type+ bcolors.ENDC, p.lineno)
+         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.HEADER + p.type+ bcolors.ENDC, bcolors.WARNING + "Sucedió en la línea: " + bcolors.ENDC, p.lineno)
          # Just discard the token and tell the parser it's okay.
          parser.errok()
          #Esto es para no detenerse cuando encuentra un error
