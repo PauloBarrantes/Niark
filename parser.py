@@ -14,7 +14,7 @@ class bcolors:
 #GENERAL
 def p_Niark(p):
     '''
-    Niark : definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark
+    Niark : definicion_funcion LLAVEIZQ instrucciones LLAVEDER Niark
           | instrucciones Niark
           | vacio
     '''
@@ -124,7 +124,7 @@ def p_CONDICION_ELSE(p):
 
 def p_CICLO_FOR(p):
     '''
-    ciclo_for : FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
+    ciclo_for : FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ instrucciones LLAVEDER
     '''
 
 def p_INCDEC(p):
@@ -213,8 +213,8 @@ def p_OPERADOR_CONDICIONAL(p):
 
 def p_CONDICION(p):
     '''
-    condicion : tipo_variable operador_condicional tipo_variable condicion_extra
-              | PARIZQ tipo_variable operador_condicional tipo_variable condicion_extra PARDER condicion_extra
+    condicion : comparables operador_condicional comparables condicion_extra
+              | PARIZQ comparables operador_condicional comparables condicion_extra PARDER condicion_extra
     '''
     print("Agarra condicion")
 
@@ -222,6 +222,12 @@ def p_CONDICION_EXTRA(p):
     '''
     condicion_extra : operador_logico condicion
                     | vacio
+    '''
+
+def p_COMPARABLES(p):
+    '''
+    comparables : tipo_variable
+                | op_aritmetica
     '''
 
 def p_TIPO_VARIABLE(p):
