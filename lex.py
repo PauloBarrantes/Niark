@@ -94,8 +94,8 @@ t_PARIZQ = r'\('
 t_PARDER = r'\)'
 t_CORCHETEIZQ = r'\['
 t_CORCHETEDER = r'\]'
+t_TABULACION =  r'[ ]{4}|\t'
 t_ignore = r' '
-
 def t_DECVARIABLE(t):
     r'\$[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = "DECVARIABLE"
@@ -110,11 +110,12 @@ def t_STRING(t):
     r'("(\\"|[^"])*")|(\'(\\\'|[^\'])*\')'
     t.type = "STRING"
     return t
-def t_TABULACION(t):
-    r'\t'
-    t.value = "Tabulacion"
-    t.type = "TABULACION"
-    return t
+
+# def t_TABULACION(t):
+#     r'\t'
+#     t.value = "Tabulacion"
+#     t.type = "TABULACION"
+#     return t
 def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
@@ -133,8 +134,6 @@ def t_error(t):
 
 
 lexer = lex.lex()
-'''
-
 name = input("Escriba el nombre del archivo con el código fuente ")
 file = open(name, 'r')
 line = file.read()
@@ -146,4 +145,4 @@ while True:
     if not tok:
         break
     print(tok)
-'''
+
