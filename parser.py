@@ -4,7 +4,7 @@ from lex import tokens
 #GENERAL
 def p_Niark(p):
     '''
-    Niark : definicion_funcion instrucciones Niark NEWLINE
+    Niark : definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark NEWLINE
           | vacio
     '''
 
@@ -16,7 +16,7 @@ def p_INDENTACION(p):
 
 #FUNCION
 def p_DEFINICION_FUNCION(p):
-    'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER LLAVEIZQ'
+    'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER'
     print("Agarra def func")
 
 def p_DOMINIO_FUNC(p):
@@ -59,54 +59,60 @@ def p_PARAMETRO_LLAMADO(p):
 
 def p_PARAMETRO_LLAMADO_EXTRA(p):
     '''
-    parametro_llamado_extra : COMA NOMBRE parametro_llamado_extra
+    parametro_llamado_extra : COMA parametro_llamado
                             | vacio
     '''
 
 def p_INSTRUCCION(p):
     '''
-    instruccion : condicion_if NEWLINE
-                | condicion_else NEWLINE
-                | ciclo_for NEWLINE
-                | ciclo_while NEWLINE
-                | imprimir NEWLINE
-                | leer NEWLINE
-                | incdec NEWLINE
-                | dec_variable NEWLINE
-                | dec_vector NEWLINE
-                | asigna NEWLINE
-                | asignacion_vector NEWLINE
-                | llamado_funcion NEWLINE
-                | retorno NEWLINE
-                | LLAVEDER NEWLINE
+    instruccion : condicion_if comentario NEWLINE
+                | condicion_else comentario NEWLINE
+                | ciclo_for comentario NEWLINE
+                | ciclo_while comentario NEWLINE
+                | imprimir comentario NEWLINE
+                | leer comentario NEWLINE
+                | incdec comentario NEWLINE
+                | dec_variable comentario NEWLINE
+                | dec_vector comentario NEWLINE
+                | asigna comentario NEWLINE
+                | asignacion_vector comentario NEWLINE
+                | llamado_funcion comentario NEWLINE
+                | retorno comentario NEWLINE
+                | comentario NEWLINE
+    '''
+
+def p_COMENTARIO(p):
+    '''
+    comentario : COMENTARIO
+               | vacio
     '''
 
 def p_INSTRUCCIONES(p):
     '''
-    instrucciones : instruccion concat_instruccion
+    instrucciones : indentacion instruccion concat_instruccion
                   | vacio
     '''
 
 def p_CONCAT_INSTRUCCION(p):
     '''
-    concat_instruccion : instruccion concat_instruccion
+    concat_instruccion : indentacion instruccion concat_instruccion
                        | vacio
     '''
 
 def p_CONDICION_IF(p):
     '''
-    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ
+    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones LLAVEDER
     '''
 
 def p_CONDICION_ELSE(p):
     '''
-    condicion_else : ELSE LLAVEIZQ
+    condicion_else : ELSE LLAVEIZQ NEWLINE instrucciones NEWLINE LLAVEDER
                    | ELSE condicion_if
     '''
 
 def p_CICLO_FOR(p):
     '''
-    ciclo_for : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ
+    ciclo_for : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE
     '''
 
 def p_INCDEC(p):
@@ -150,7 +156,9 @@ def p_DEC_VARIABLE(p):
 
 def p_DEC_VECTOR(p):
     '''
-    dec_vector : DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
+    dec_vector : DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER
+               | DECVARIABLE CORCHETEIZQ INT CORCHETEDER
+               | DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
                | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
                | DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable
                | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable
@@ -212,12 +220,14 @@ def p_TIPO_VARIABLE(p):
     '''
 
 def p_OP_ARITMETICA(p):
-    'op_aritmetica : tipo_variable operador_aritmetico tipo_variable op_aritmetica_extra'
+    '''op_aritmetica : op_aritmetica_extra operador_aritmetico tipo_variable
+                     | op_aritmetica_extra operador_aritmetico PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER
+                     | PARIZQ op_aritmetica_extra operador_aritmetico tipo_variable PARDER'''
 
 def p_OP_ARITMETICA_EXTRA(p):
     '''
-    op_aritmetica_extra : operador_aritmetico tipo_variable op_aritmetica_extra
-                        | operador_aritmetico PARIZQ tipo_variable op_aritmetica_extra PARDER
+    op_aritmetica_extra : tipo_variable
+                        | op_aritmetica
                         | vacio
     '''
 
@@ -237,14 +247,6 @@ def p_OPERADOR_LOGICO(p):
 
 def p_vacio(p):
     'vacio : '
-
-def p_error(p):
-    print("ERROR")
-    while True:
-        tok = parser.token()
-        print(tok)
-        if not tok : break        # Get the next token
-    parser.errok()
 
 
 # Build the parser
