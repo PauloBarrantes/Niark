@@ -16,9 +16,8 @@ def p_INDENTACION(p):
 
 #FUNCION
 def p_DEFINICION_FUNCION(p):
-    '''
-    definicion_funcion : dominio return NOMBRE PARIZQ parametro PARDER
-    '''
+    'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER'
+    print("Agarra def func")
 
 def p_DOMINIO_FUNC(p):
     '''
@@ -28,8 +27,8 @@ def p_DOMINIO_FUNC(p):
 
 def p_RETURN_FUNC(p):
     '''
-    return : VOID
-           | FUNCTION
+    tipo_return : VOID
+                | FUNCTION
     '''
 
 def p_PARAMETRO(p):
@@ -64,45 +63,55 @@ def p_PARAMETRO_LLAMADO_EXTRA(p):
                             | vacio
     '''
 
+def p_INSTRUCCION(p):
+    '''
+    instruccion : condicion_if NEWLINE
+                | condicion_else NEWLINE
+                | ciclo_for NEWLINE
+                | ciclo_while NEWLINE
+                | imprimir NEWLINE
+                | leer NEWLINE
+                | incdec NEWLINE
+                | dec_variable NEWLINE
+                | dec_vector NEWLINE
+                | asigna NEWLINE
+                | asignacion_vector NEWLINE
+                | llamado_funcion NEWLINE
+                | retorno NEWLINE
+    '''
+
 def p_INSTRUCCIONES(p):
     '''
-    instrucciones : if NEWLINE
-                  | else NEWLINE
-                  | for NEWLINE
-                  | while NEWLINE
-                  | print NEWLINE
-                  | read NEWLINE
-                  | incdec NEWLINE
-                  | dec_variable NEWLINE
-                  | dec_vector NEWLINE
-                  | asignacion NEWLINE
-                  | asignacion_vector NEWLINE
-                  | llamado_funcion NEWLINE
-                  | retorno NEWLINE
-                  | COMENTARIO NEWLINE
+    instrucciones : indentacion instruccion concat_instruccion
                   | vacio
     '''
 
-def p_IF(p):
+def p_CONCAT_INSTRUCCION(p):
     '''
-    if : indentacion IF PARIZQ condicion PARDER
-    '''
-
-def p_ELSE(p):
-    '''
-    else : ELSE
-         | ELSE if
+    concat_instruccion : instruccion concat_instruccion
+                       | vacio
     '''
 
-def p_FOR(p):
+def p_CONDICION_IF(p):
     '''
-    for : indentacion FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER
+    condicion_if : IF PARIZQ condicion PARDER
+    '''
+
+def p_CONDICION_ELSE(p):
+    '''
+    condicion_else : ELSE
+                   | ELSE condicion_if
+    '''
+
+def p_CICLO_FOR(p):
+    '''
+    ciclo_for : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER
     '''
 
 def p_INCDEC(p):
     '''
-    incdec : indentacion pre_incdec
-           | indentacion post_incdec
+    incdec : pre_incdec
+           | post_incdec
     '''
 
 def p_PRE_INCDEC(p):
@@ -119,31 +128,46 @@ def p_POST_INCDEC(p):
     '''
 
 
-def p_WHILE(p):
-    'while : indentacion WHILE PARIZQ condicion PARDER'
+def p_CICLO_WHILE(p):
+    'ciclo_while : WHILE PARIZQ condicion PARDER'
 
-def p_PRINT(p):
-    'print : indentacion PRINT PARIZQ tipo_variable PARDER'
+def p_IMPRIMIR(p):
+    'imprimir : PRINT PARIZQ tipo_variable PARDER'
+    print("Agarra print")
 
-def p_READ(p):
-    'read : indentacion READ PARIZQ STRING PARDER'
+def p_LEER(p):
+    'leer : READ PARIZQ NOMBRE PARDER'
+    print("Agarra read")
 
-def p_DECVARIABLE(p):
-    'dec_variable : indentacion DECVARIABLE ASIGNACION op_aritmetica'
 
-def p_DECVECTOR(p):
+def p_DEC_VARIABLE(p):
     '''
-    dec_vector : indentacion DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
-               | indentacion DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
+    dec_variable : DECVARIABLE ASIGNACION op_aritmetica
+                 | DECVARIABLE ASIGNACION tipo_variable
+    '''
+    print("Agarra declaracion")
+
+def p_DEC_VECTOR(p):
+    '''
+    dec_vector : DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
+               | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
+               | DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable
+               | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable
     '''
 
-def p_ASIGNACION(p):
-    'asignacion : indentacion NOMBRE ASIGNACION op_aritmetica'
+def p_ASIGNA(p):
+    '''
+    asigna : NOMBRE ASIGNACION op_aritmetica
+           | NOMBRE ASIGNACION tipo_variable
+    '''
+    print("Agarra asignacion")
 
 def p_ASIGNACIONVECTOR(p):
     '''
-    asignacion_vector : indentacion NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
-                      | indentacion NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
+    asignacion_vector : NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
+                      | NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
+                      | NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable
+                      | NOMBRE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable
     '''
 
 def p_RETORNAR(p):
@@ -157,11 +181,11 @@ def p_RETORNAR(p):
 def p_OPERADOR_CONDICIONAL(p):
     '''
     operador_condicional : DIFERENTE
-                       | IGUAL
-                       | MAYOR
-                       | MAYORIGUAL
-                       | MENOR
-                       | MENORIGUAL
+                         | IGUAL
+                         | MAYOR
+                         | MAYORIGUAL
+                         | MENOR
+                         | MENORIGUAL
     '''
 
 def p_CONDICION(p):
@@ -187,18 +211,13 @@ def p_TIPO_VARIABLE(p):
     '''
 
 def p_OP_ARITMETICA(p):
-    '''
-    op_aritmetica : tipo_variable operador_aritmetico tipo_variable op_aritmetica_extra
-                  | vacio
-
-    '''
+    'op_aritmetica : tipo_variable operador_aritmetico tipo_variable op_aritmetica_extra'
 
 def p_OP_ARITMETICA_EXTRA(p):
     '''
     op_aritmetica_extra : operador_aritmetico tipo_variable op_aritmetica_extra
                         | operador_aritmetico PARIZQ tipo_variable op_aritmetica_extra PARDER
                         | vacio
-
     '''
 
 def p_OPERADOR_ARITMETICO(p):
@@ -219,11 +238,14 @@ def p_vacio(p):
     'vacio : '
 
 def p_error(p):
+    print("ERROR")
     while True:
         tok = parser.token()
         print(tok)
         if not tok or  tok.value == 'NEWLINE': break        # Get the next token
     parser.errok()
+
+
 # Build the parser
 parser = yacc.yacc()
 
