@@ -16,7 +16,7 @@ def p_INDENTACION(p):
 
 #FUNCION
 def p_DEFINICION_FUNCION(p):
-    'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER'
+    'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER LLAVEIZQ'
     print("Agarra def func")
 
 def p_DOMINIO_FUNC(p):
@@ -47,7 +47,7 @@ def p_PARAMETRO_EXTRA(p):
 #INSTRUCCIONES
 def p_LLAMADO_FUNCION(p):
     '''
-    llamado_funcion : indentacion NOMBRE PARIZQ parametro_llamado PARDER
+    llamado_funcion : NOMBRE PARIZQ parametro_llamado PARDER
     '''
 
 def p_PARAMETRO_LLAMADO(p):
@@ -78,11 +78,12 @@ def p_INSTRUCCION(p):
                 | asignacion_vector NEWLINE
                 | llamado_funcion NEWLINE
                 | retorno NEWLINE
+                | LLAVEDER NEWLINE
     '''
 
 def p_INSTRUCCIONES(p):
     '''
-    instrucciones : indentacion instruccion concat_instruccion
+    instrucciones : instruccion concat_instruccion
                   | vacio
     '''
 
@@ -94,18 +95,18 @@ def p_CONCAT_INSTRUCCION(p):
 
 def p_CONDICION_IF(p):
     '''
-    condicion_if : IF PARIZQ condicion PARDER
+    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ
     '''
 
 def p_CONDICION_ELSE(p):
     '''
-    condicion_else : ELSE
+    condicion_else : ELSE LLAVEIZQ
                    | ELSE condicion_if
     '''
 
 def p_CICLO_FOR(p):
     '''
-    ciclo_for : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER
+    ciclo_for : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ
     '''
 
 def p_INCDEC(p):
@@ -129,7 +130,7 @@ def p_POST_INCDEC(p):
 
 
 def p_CICLO_WHILE(p):
-    'ciclo_while : WHILE PARIZQ condicion PARDER'
+    'ciclo_while : WHILE PARIZQ condicion PARDER LLAVEIZQ'
 
 def p_IMPRIMIR(p):
     'imprimir : PRINT PARIZQ tipo_variable PARDER'
@@ -242,7 +243,7 @@ def p_error(p):
     while True:
         tok = parser.token()
         print(tok)
-        if not tok or  tok.value == 'NEWLINE': break        # Get the next token
+        if not tok : break        # Get the next token
     parser.errok()
 
 

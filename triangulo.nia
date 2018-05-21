@@ -1,4 +1,4 @@
-public void Triangulo()
+public void Triangulo(){
   $c = " " // Vamos a guardar una string//
 	$n = 0 // Vamos a guardar un numero entero//
 
@@ -7,6 +7,9 @@ public void Triangulo()
 	print("Digite el numero que desea utilizar")
 	read(n)
 
-	for($i = 0; i <= n-1; i++)
-		for($j = 0; j < i; ++j)
+	for($i = 0; i <= n-1; i++){
+		for($j = 0; j < i; ++j){
 			print(c)
+    }
+  }
+}
