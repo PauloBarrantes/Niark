@@ -4,7 +4,8 @@ from lex import tokens
 #GENERAL
 def p_Niark(p):
     '''
-    Niark : definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark NEWLINE
+    Niark : definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE Niark
+          | instrucciones Niark
           | vacio
     '''
 
@@ -48,12 +49,13 @@ def p_PARAMETRO_EXTRA(p):
 def p_LLAMADO_FUNCION(p):
     '''
     llamado_funcion : NOMBRE PARIZQ parametro_llamado PARDER
+                    | NOMBRE PARIZQ vacio PARDER
     '''
 
 def p_PARAMETRO_LLAMADO(p):
     '''
-    parametro_llamado : vacio
-                      | tipo_variable parametro_llamado_extra
+    parametro_llamado : tipo_variable parametro_llamado_extra
+                      | op_aritmetica parametro_llamado_extra
 
     '''
 
@@ -101,18 +103,18 @@ def p_CONCAT_INSTRUCCION(p):
 
 def p_CONDICION_IF(p):
     '''
-    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones LLAVEDER
+    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     '''
 
 def p_CONDICION_ELSE(p):
     '''
-    condicion_else : ELSE LLAVEIZQ NEWLINE instrucciones NEWLINE LLAVEDER
+    condicion_else : ELSE LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
                    | ELSE condicion_if
     '''
 
 def p_CICLO_FOR(p):
     '''
-    ciclo_for : FOR PARIZQ DECVARIABLE ASIGNACION INT PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones LLAVEDER NEWLINE
+    ciclo_for : FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     '''
 
 def p_INCDEC(p):
@@ -163,6 +165,7 @@ def p_DEC_VECTOR(p):
                | DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable
                | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable
     '''
+    print("Agarra declaracion vector")
 
 def p_ASIGNA(p):
     '''
