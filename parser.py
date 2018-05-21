@@ -14,9 +14,15 @@ class bcolors:
 #GENERAL
 def p_Niark(p):
     '''
-    Niark : definicion_funcion LLAVEIZQ instrucciones LLAVEDER Niark
+    Niark : definicion_funcion LLAVEIZQ NEWLINE instrucciones LLAVEDER Niark
           | instrucciones Niark
           | vacio
+    '''
+
+def p_CAMBIOS_DE_LINEA(p):
+    '''
+    cambios_linea : NEWLINE cambios_linea
+                  | vacio
     '''
 
 def p_INDENTACION(p):
@@ -28,7 +34,6 @@ def p_INDENTACION(p):
 #FUNCION
 def p_DEFINICION_FUNCION(p):
     'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER'
-    print("Agarra def func")
 
 def p_DOMINIO_FUNC(p):
     '''
@@ -77,21 +82,21 @@ def p_PARAMETRO_LLAMADO_EXTRA(p):
 
 def p_INSTRUCCION(p):
     '''
-    instruccion : condicion_if comentario NEWLINE
-                | condicion_else comentario NEWLINE
-                | ciclo_for comentario NEWLINE
-                | ciclo_while comentario NEWLINE
-                | imprimir comentario NEWLINE
-                | leer comentario NEWLINE
-                | incdec comentario NEWLINE
-                | dec_variable comentario NEWLINE
-                | dec_vector comentario NEWLINE
-                | usar_vector comentario NEWLINE
-                | asigna comentario NEWLINE
-                | asignacion_vector comentario NEWLINE
-                | llamado_funcion comentario NEWLINE
-                | retorno comentario NEWLINE
-                | comentario NEWLINE
+    instruccion : condicion_if
+                | condicion_else
+                | ciclo_for
+                | ciclo_while
+                | imprimir
+                | leer
+                | incdec
+                | dec_variable
+                | dec_vector
+                | usar_vector
+                | asigna
+                | asignacion_vector
+                | llamado_funcion
+                | retorno
+                | comentario
     '''
 
 def p_COMENTARIO(p):
@@ -102,19 +107,14 @@ def p_COMENTARIO(p):
 
 def p_INSTRUCCIONES(p):
     '''
-    instrucciones : indentacion instruccion concat_instruccion
+    instrucciones : indentacion instruccion NEWLINE instrucciones
                   | vacio
     '''
 
-def p_CONCAT_INSTRUCCION(p):
-    '''
-    concat_instruccion : indentacion instruccion concat_instruccion
-                       | vacio
-    '''
 
 def p_CONDICION_IF(p):
     '''
-    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
+    condicion_if : IF PARIZQ condicion PARDER LLAVEIZQ NEWLINE instrucciones LLAVEDER
     '''
 
 def p_CONDICION_ELSE(p):
@@ -125,7 +125,7 @@ def p_CONDICION_ELSE(p):
 
 def p_CICLO_FOR(p):
     '''
-    ciclo_for : FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ instrucciones LLAVEDER
+    ciclo_for : FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     '''
 
 def p_INCDEC(p):
@@ -133,7 +133,6 @@ def p_INCDEC(p):
     incdec : pre_incdec
            | post_incdec
     '''
-    print("Agarra incdec")
 
 def p_PRE_INCDEC(p):
     '''
@@ -150,15 +149,13 @@ def p_POST_INCDEC(p):
 
 
 def p_CICLO_WHILE(p):
-    'ciclo_while : WHILE PARIZQ condicion PARDER LLAVEIZQ'
+    'ciclo_while : WHILE PARIZQ condicion PARDER LLAVEIZQ instrucciones indentacion LLAVEDER'
 
 def p_IMPRIMIR(p):
     'imprimir : PRINT PARIZQ tipo_variable PARDER'
-    print("Agarra print")
 
 def p_LEER(p):
     'leer : READ PARIZQ NOMBRE PARDER'
-    print("Agarra read")
 
 
 def p_DEC_VARIABLE(p):
@@ -166,7 +163,6 @@ def p_DEC_VARIABLE(p):
     dec_variable : DECVARIABLE ASIGNACION op_aritmetica
                  | DECVARIABLE ASIGNACION tipo_variable
     '''
-    print("Agarra declaracion")
 
 def p_DEC_VECTOR(p):
     '''
@@ -174,7 +170,6 @@ def p_DEC_VECTOR(p):
                | DECVARIABLE CORCHETEIZQ INT CORCHETEDER
                | DECVARIABLE CORCHETEIZQ op_aritmetica CORCHETEDER
     '''
-    print("Agarra declaracion vector")
 
 def p_USAR_VECTOR(p):
     '''
@@ -194,7 +189,6 @@ def p_ASIGNA(p):
     asigna : NOMBRE ASIGNACION op_aritmetica
            | NOMBRE ASIGNACION tipo_variable
     '''
-    print("Agarra asignacion")
 
 def p_ASIGNACIONVECTOR(p):
     '''
@@ -209,7 +203,6 @@ def p_RETORNAR(p):
     retorno : RETURN tipo_variable
             | RETURN op_aritmetica
     '''
-
 
 #OPERACIONES Y OPERANDOS
 def p_OPERADOR_CONDICIONAL(p):
@@ -227,7 +220,6 @@ def p_CONDICION(p):
     condicion : comparables operador_condicional comparables condicion_extra
               | PARIZQ comparables operador_condicional comparables condicion_extra PARDER condicion_extra
     '''
-    print("Agarra condicion")
 
 def p_CONDICION_EXTRA(p):
     '''

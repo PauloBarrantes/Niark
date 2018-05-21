@@ -1,15 +1,15 @@
 public void Triangulo(){
-  $c = " " 
-	$n = 0 
+   $c = " " 
+   $n = 0 
 
-	print("Digite el caracter que desea utilizar")
-	read(c)
-	print("Digite el numero que desea utilizar")
-	read(n)
+   print("Digite el caracter que desea utilizar")
+   read(c)
+   print("Digite el numero que desea utilizar")
+   read(n)
 
-	for($i = 0; i <= n-1; i++){
-		for($j = 0; j < i; ++j){
-			print(c)
-    }
-  }
+   for($i = 0; i <= n-1; i++){
+      for($j = 0; j < i; ++j){
+         print(c)
+      }
+   }
 }
