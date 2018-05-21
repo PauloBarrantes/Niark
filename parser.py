@@ -86,6 +86,7 @@ def p_INSTRUCCION(p):
                 | incdec comentario NEWLINE
                 | dec_variable comentario NEWLINE
                 | dec_vector comentario NEWLINE
+                | usar_vector comentario NEWLINE
                 | asigna comentario NEWLINE
                 | asignacion_vector comentario NEWLINE
                 | llamado_funcion comentario NEWLINE
@@ -171,12 +172,22 @@ def p_DEC_VECTOR(p):
     '''
     dec_vector : DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER
                | DECVARIABLE CORCHETEIZQ INT CORCHETEDER
-               | DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION op_aritmetica
-               | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION op_aritmetica
-               | DECVARIABLE CORCHETEIZQ NOMBRE CORCHETEDER ASIGNACION tipo_variable
-               | DECVARIABLE CORCHETEIZQ INT CORCHETEDER ASIGNACION tipo_variable
+               | DECVARIABLE CORCHETEIZQ op_aritmetica CORCHETEDER
     '''
     print("Agarra declaracion vector")
+
+def p_USAR_VECTOR(p):
+    '''
+    usar_vector : vector ASIGNACION op_aritmetica
+               | vector ASIGNACION tipo_variable
+    '''
+
+def p_VECTOR(p):
+    '''
+    vector : NOMBRE CORCHETEIZQ NOMBRE CORCHETEDER
+           | NOMBRE CORCHETEIZQ INT CORCHETEDER
+           | NOMBRE CORCHETEIZQ op_aritmetica CORCHETEDER
+    '''
 
 def p_ASIGNA(p):
     '''
@@ -239,6 +250,7 @@ def p_TIPO_VARIABLE(p):
                    | FALSE
                    | TRUE
                    | llamado_funcion
+                   | vector
     '''
 
 def p_OP_ARITMETICA(p):
@@ -269,12 +281,9 @@ def p_OPERADOR_LOGICO(p):
 
 def p_error(p):
     if p:
-         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.HEADER + p.type+ bcolors.ENDC, bcolors.WARNING + "Sucedió en la línea: " + bcolors.ENDC, p.lineno)
+        print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.HEADER + p.type+ bcolors.ENDC, bcolors.BOLD + "", p.value,"" + bcolors.ENDC, bcolors.WARNING + "Sucedió en la línea:" + bcolors.ENDC, bcolors.UNDERLINE + "" ,p.lineno,"" + bcolors.ENDC)
          # Just discard the token and tell the parser it's okay.
-         parser.errok()
-         #Esto es para no detenerse cuando encuentra un error
-    else:
-         print("Syntax error at EOF")
+        parser.errok()
 
 def p_vacio(p):
     'vacio : '
