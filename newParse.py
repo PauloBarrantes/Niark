@@ -14,10 +14,10 @@ class bcolors:
 #All the ways the program can start
 
 def p_Start1(p):
-    'Niark : methodDefinition newlines Niark'
+    'Niark : methodDefinition NEWLINE Niark'
 
 def p_Start2(p):
-    'Niark : instruction newlines Niark'
+    'Niark : instruction NEWLINE Niark'
 
 def p_Start3(p):
     'Niark : methodDefinition'
@@ -29,19 +29,19 @@ def p_Start4(p):
 
 #Method definition
 def p_methodDefinition1(p):
-    'methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY newlines instructions RIGHTKEY'
+    'methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
 
 def p_methodDefinition2(p):
-    'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY newlines instructions RIGHTKEY'
+    'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
 
 
 	
 #Instructions definition
 def p_instructions1(p):
-    'instructions : instruction newlines instructions'
+    'instructions : instruction NEWLINE instructions'
 
 def p_instructions2(p):
-    'instructions : instruction'
+    'instructions : empty'
 	
 
 	
@@ -156,25 +156,25 @@ def p_complex3(p):
 
 #Definition of the if conditional
 def p_ifCondition1(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY'
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY instructions RIGHTKEY'
 
 def p_ifCondition2(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions RIGHTKEY ELSE LEFTKEY ignore instructions ignore RIGHTKEY'
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
 
 def p_ifCondition3(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY ignore ELSE ignore ifCondition'
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY NEWLINE ELSE NEWLINE ifCondition'
 
 
 
 #Definition of the for conditional
 def p_forCondition(p):
-    'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY'
+    'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
 
-    
+
 
 #Definition of the while conditional
 def p_whileCondition(p):
-    'whileCondition : WHILE LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY'
+    'whileCondition : WHILE LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
 
 
 
@@ -419,23 +419,6 @@ def p_arithmeticOp3(p):
 
 def p_arithmeticOp4(p):
     'arithmeticOp : DIVISION'
-
-
-
-#Newlines definition
-def p_newlines(p):
-    'newlines : NEWLINE ignore'
-
-def p_ignore1(p):
-    'ignore : NEWLINE ignore'
-
-def p_ignore2(p):
-    'ignore : TABULATION ignore'
-
-def p_ignore3(p):
-    'ignore : empty'
-
-
 
 def p_error(p):
     if p:
