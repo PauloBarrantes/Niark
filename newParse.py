@@ -156,13 +156,13 @@ def p_complex3(p):
 
 #Definition of the if conditional
 def p_ifCondition1(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY instructions RIGHTKEY'
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
 
 def p_ifCondition2(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
 
 def p_ifCondition3(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY NEWLINE ELSE NEWLINE ifCondition'
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE ifCondition'
 
 
 
