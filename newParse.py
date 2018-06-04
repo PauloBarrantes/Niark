@@ -17,7 +17,7 @@ def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
 
 def p_Start2(p):
-    'Niark : instructions Niark'
+    'Niark : instruction NEWLINE Niark'
 
 def p_Start3(p):
     'Niark : methodDefinition'
