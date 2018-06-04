@@ -15,10 +15,6 @@ reserved = {
     'return' : 'RETURN',
     'print' : 'PRINT',
     'read' : 'READ',
-    'import' : 'IMPORT',
-    'switch' :'SWITCH',
-    'case' : 'CASE',
-    'break' : 'BREAK',
 }
 # Lista de Tokens
 tokens = [
@@ -64,14 +60,14 @@ def t_TABULATION(t):
     t.type = "TABULATION"
     return t
 
-def t_INT(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
-
 def t_DOUBLE(t):
     r'\d+\.(\d)+'
     t.value = float(t.value)
+    return t
+
+def t_INT(t):
+    r'\d+'
+    t.value = int(t.value)
     return t
 
 def t_NAME(t):
