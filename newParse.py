@@ -124,12 +124,12 @@ def p_read2(p):
 	
 #Definition of the print instruction
 def p_print(p):
-    'print : PRINT LEFTPAR variables RIGHTPAR'
+    'print : PRINT LEFTPAR sendingVariables RIGHTPAR'
 
 	
 #Definition of the systemcall instruction
 def p_functioncall1(p):
-    'functionCall : NAME LEFTPAR variables RIGHTPAR'
+    'functionCall : NAME LEFTPAR sendingVariables RIGHTPAR'
 	
 def p_functioncall2(p):
     'functionCall : NAME LEFTPAR empty RIGHTPAR'
@@ -138,10 +138,7 @@ def p_functioncall2(p):
 
 #Definition of the return function
 def p_return1(p):
-    'return : RETURN variable'
-
-def p_return2(p):
-    'return : RETURN variableType'
+    'return : RETURN sendingVariable'
 
 
 
@@ -159,25 +156,25 @@ def p_complex3(p):
 
 #Definition of the if conditional
 def p_ifCondition1(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions RIGHTKEY'
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY'
 
 def p_ifCondition2(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions RIGHTKEY ELSE LEFTKEY ignore instructions RIGHTKEY'
-'''
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions RIGHTKEY ELSE LEFTKEY ignore instructions ignore RIGHTKEY'
+
 def p_ifCondition3(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions RIGHTKEY ignore ELSE ignore ifCondition'
-   '''
-    
+    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY ignore ELSE ignore ifCondition'
+
+
 
 #Definition of the for conditional
 def p_forCondition(p):
-    'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY ignore instructions RIGHTKEY'
+    'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY'
 
     
 
 #Definition of the while conditional
 def p_whileCondition(p):
-    'whileCondition : WHILE LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions RIGHTKEY'
+    'whileCondition : WHILE LEFTPAR conditionals RIGHTPAR LEFTKEY ignore instructions ignore RIGHTKEY'
 
 
 
@@ -189,25 +186,16 @@ def p_conditionals2(p):
     'conditionals : condition conditionalOp conditionals'
 
 def p_conditionals3(p):
-    'conditionals : LEFTPAR condition RIGHTPAR conditionalOp conditionals'
+    'conditionals : LEFTPAR conditionals RIGHTPAR conditionalOp conditionals'
 
 def p_conditionals4(p):
-    'conditionals : LEFTPAR condition RIGHTPAR'
+    'conditionals : LEFTPAR conditionals RIGHTPAR'
 
 
 
 #Condition definition
 def p_condition1(p):
-    'condition : variable conditionOp variable'
-
-def p_condition2(p):
-    'condition : variable conditionOp variableType'
-
-def p_condition3(p):
-    'condition : variableType conditionOp variable'
-
-def p_condition4(p):
-    'condition : variableType conditionOp variableType'
+    'condition : sendingVariable conditionOp sendingVariable'
 
 
 
@@ -297,11 +285,27 @@ def p_parameters2(p):
 
 
 #Varialbes definition
-def p_variables1(p):
-    'variables : variable COMMA variables'
+def p_sendingVariables1(p):
+    'sendingVariables : sendingVariable COMMA sendingVariables'
 
-def p_variables2(p):
-    'variables : variable'
+def p_sendingVariables2(p):
+    'sendingVariables : sendingVariable'
+
+
+
+#Sending variables definition
+def p_sendingVariable1(p):
+    'sendingVariable : variableType'
+
+def p_sendingVariable2(p):
+    'sendingVariable : arithmetic'
+
+def p_sendingVariable3(p):
+    'sendingVariable : variable'
+
+def p_sendingVariable4(p):
+    'sendingVariable : functionCall'
+
 
 
 
@@ -372,19 +376,34 @@ def p_booleanType2(p):
 
 #Arithmetic definition
 def p_arithmetic1(p):
-    'arithmetic : numberType arithmeticOp moreArithmetic'
+    'arithmetic : moreArithmetic arithmeticOp arithmeticDataType'
 
 def p_arithmetic2(p):
     'arithmetic : LEFTPAR arithmetic RIGHTPAR'
 
 def p_arithmetic3(p):
-    'arithmetic : LEFTPAR arithmetic RIGHTPAR arithmeticOp moreArithmetic'
+    'arithmetic : moreArithmetic arithmeticOp LEFTPAR arithmetic RIGHTPAR'
+
+def p_arithmetic4(p):
+    'arithmetic : arithmeticOp arithmeticDataType'
 
 def p_moreArithmetic1(p):
-    'moreArithmetic : numberType'
+    'moreArithmetic : arithmeticDataType'
 
 def p_moreArithmetic2(p):
     'moreArithmetic : arithmetic'
+
+
+
+#Definition of arithmetic data types
+def p_arithmeticDataType1(p):
+    'arithmeticDataType : numberType'
+
+def p_arithmeticDataType2(p):
+    'arithmeticDataType : variable'
+
+def p_arithmeticDataType3(p):
+    'arithmeticDataType : functionCall'
 
 
 
