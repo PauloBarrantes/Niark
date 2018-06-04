@@ -15,8 +15,6 @@ public void Fibonacci(n){
    else{
       return -1
    }
-      //El usuario coloco un numero negativo
-   	  //
 }
 
 Fibonacci(5) 

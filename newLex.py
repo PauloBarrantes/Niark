@@ -18,7 +18,6 @@ reserved = {
 }
 # Lista de Tokens
 tokens = [
-    'TABULATION',
     'COMMA',
     'INT',
     'DOUBLE',
@@ -42,7 +41,6 @@ tokens = [
     'RIGHTPAR',
     'LEFTBRACKET',
     'RIGHTBRACKET',
-    'COMMENT',
     'NEWLINE',
     'AND',
     'OR',
@@ -52,13 +50,6 @@ tokens = [
 
 ] + list(reserved.values())
 ## Regular Expresion
-
-
-def t_TABULATION(t):
-    r'\t'
-    t.value = "Tabulation"
-    t.type = "TABULATION"
-    return t
 
 def t_DOUBLE(t):
     r'\d+\.(\d)+'
@@ -83,11 +74,6 @@ def t_STRING(t):
 def t_VARDECLARATION(t):
     r'\$[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = "VARDECLARATION"
-    return t
-
-def t_COMMENT(t):
-    r'//(.[^(//)]|\n)*//'
-    t.type = "COMMENT"
     return t
 
 def t_NEWLINE(t):
