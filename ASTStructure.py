@@ -21,7 +21,7 @@ class Function:
     functionDomain = False
     returnType = False
     name = ''
-    def __init__(self, returnType, functionDomain, name):
+    def __init__(self, functionDomain, returnType, name):
         self.functionDomain = functionDomain
         self.returnType = returnType
         self.name = name
@@ -44,8 +44,8 @@ class Variable:
         self.value = value
 
 class VariableDeclaration:
-    def __init__(self, id, variable):
-        self.id = id
+    id = 'DECLARATION'
+    def __init__(self, variable):
         self.variable = variable
 
 class For:

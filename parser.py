@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from lex import tokens
-
+from ASTStructure import *
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -51,24 +51,21 @@ def p_INDENTACION1(p):
 #FUNCION
 def p_DEFINICION_FUNCION(p):
     'definicion_funcion : dominio tipo_return NOMBRE PARIZQ parametro PARDER'
+    p[0] = Function(p[1], p[2], p[3])
 
 def p_DOMINIO_FUNC(p):
     '''
     dominio : PRIVATE
             |  PUBLIC
-    ''' 
+    '''
+    p[0] = p[1]
 
 def p_RETURN_FUNC(p):
     '''
     tipo_return : VOID
+                | FUNCTION
     '''
-    print(p[1])
-
-def p_RETURN_FUNC1(p):
-    '''
-    tipo_return : FUNCTION
-    '''
-    print(p[1])
+    p[0] = p[1]
 
 def p_PARAMETRO(p):
     '''
@@ -80,6 +77,7 @@ def p_PARAMETRO1(p):
     parametro : NOMBRE parametro_extra
 
     '''
+    p[0] = p[1]
 
 def p_PARAMETRO_EXTRA(p):
     '''
@@ -96,32 +94,36 @@ def p_LLAMADO_FUNCION(p):
     '''
     llamado_funcion : NOMBRE PARIZQ parametro_llamado PARDER
     '''
+    p[0] = FunctionCall(p[1], p[3])
 
 def p_LLAMADO_FUNCION01(p):
     '''
     llamado_funcion : NOMBRE PARIZQ vacio PARDER
     '''
+    p[0] = FunctionCall(p[1], p[3])
 
 def p_PARAMETRO_LLAMADO(p):
     '''
     parametro_llamado : tipo_variable parametro_llamado_extra
     '''
+    p[0] = [p[1], p[2]]
 
 def p_PARAMETRO_LLAMADO1(p):
     '''
     parametro_llamado : op_aritmetica parametro_llamado_extra
-
     '''
 
 def p_PARAMETRO_LLAMADO_EXTRA(p):
     '''
     parametro_llamado_extra : COMA parametro_llamado
     '''
+    p[0] = p[2]
 
 def p_PARAMETRO_LLAMADO_EXTRA1(p):
     '''
     parametro_llamado_extra : vacio
     '''
+    p[0] = p[1]
 
 def p_INSTRUCCION(p):
     '''
@@ -170,18 +172,17 @@ def p_CICLO_FOR(p):
     '''
     ciclo_for : FOR PARIZQ dec_variable PUNTOYCOMA condicion PUNTOYCOMA incdec PARDER LLAVEIZQ NEWLINE instrucciones indentacion LLAVEDER
     '''
-
 def p_INCDEC(p):
     '''
     incdec : pre_incdec
            | post_incdec
     '''
+    p[0] = p[1]
 
 def p_PRE_INCDEC(p):
     '''
     pre_incdec : INCREMENTAR NOMBRE
                | DECREMENTAR NOMBRE
-
     '''
 
 def p_POST_INCDEC(p):
@@ -257,6 +258,7 @@ def p_OPERADOR_CONDICIONAL(p):
                          | MENOR
                          | MENORIGUAL
     '''
+    p[0] = p[1]
 
 def p_CONDICION(p):
     '''
@@ -307,12 +309,14 @@ def p_OPERADOR_ARITMETICO(p):
                         | MULT
                         | DIV
     '''
+    p[0] = p[1]
 
 def p_OPERADOR_LOGICO(p):
     '''
     operador_logico : AND
                     | OR
     '''
+    p[0] = p[1]
 
 def p_error(p):
     if p:
