@@ -58,8 +58,8 @@ class For:
 
 class If:
     id = 'IF'
-    def __init__(self):
-        self.conditions = []
+    def __init__(self, conditions):
+        self.conditions = conditions
         self.logicalOperators = []
         self.localVariables = {}
         self.instructionList = []
@@ -92,4 +92,12 @@ class Instructions:
     def __init__(self, name, parameters, id):
         self.name = name
         self.parameters = parameters
-        self.id - id
+        self.id = id
+
+class Array:
+    def __init__(self, name, type, value, size):
+        self.name = name
+        self.type = type
+        self.value = value
+        self.size = size
+
