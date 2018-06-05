@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from newLex import tokens
-from ASTStructure import *
+from ASTStructureFla import *
 
 globalFile = File()
 
@@ -16,63 +16,57 @@ class bcolors:
 
 #All the ways the program can start
 
+def p_beginFile(p):
+    'File : Niark'
+    p[0] = globalFile
+    print("RAIZ")
+
 def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
-    print(p[1].name)
-    globalFile.functions.append(p[1])
-    p[0] = globalFile
+    globalFile.addFunction(p[1])
+    print("Niark.")
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
-    globalFile.instructionList.append(p[1])
-    print(p[1].name)
-    p[0] = globalFile
-    print("Hace Niark.")
+    globalFile.addInstruction(p[1])
+    print("Niark.")
 
 def p_Start3(p):
     'Niark : methodDefinition'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = globalFile
-    print("Hace Niark.")
+    globalFile.addFunction(p[1])
+    print("Niark.")
+
 
 def p_Start4(p):
     'Niark : instruction'
-    globalFile.instructionList.append(p[1])
-    globalFile.printObject()
-    p[0] = globalFile
-    print("Hace Niark.")
+    globalFile.addInstruction(p[1])
+    print("Niark.")
+
 
 
 #Method definition
 def p_methodDefinition1(p):
     'methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], p[5])
-    funcion.instructionList = p[9]
-    p[0] = funcion
-    print(1)
-    print(p[0].name)
-    print("Tam" , len(funcion.instructionList))
-    funcion.printObject()
+    newFunc = Function(p[1], p[2], p[3], p[5], p[9])
+    p[0] = newFunc
+    print("Func")
+
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], p[5])
-    funcion.instructionList = p[9]
-    print(2)
-    p[0] = funcion
-
+    p[0] = Function(p[1], p[2], p[3], 0, p[8])
+    print("Func")
 
 #Instructions definition
 def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
-    array = [p[1]]
-    array.append(p[3])
-    p[0] = array
+    instructions = [p[1]]
+    if(p[3] is not None):
+        instructions.extend(p[3])
+        p[0] = instructions
 
 def p_instructions2(p):
     'instructions : empty'
     p[0] = p[1]
-
 
 
 #The forms an instruction can become
@@ -124,7 +118,7 @@ def p_asignation1(p):
 
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    P[0] = ArrayAssignation(p[1], p[2], p[6])
+    p[0] = ArrayAssignation(p[1], p[2], p[6])
 
 #Definition of the different type of declaration
 def p_delaration1(p):
@@ -136,7 +130,6 @@ def p_delaration2(p):
     variable = VariableDeclaration(Variable(p[1]))
     variable.variable.addValue(p[3])
     p[0] = variable
-    print(p[0].variable.name)
 
 def p_delaration4(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
@@ -147,7 +140,6 @@ def p_delaration6(p):
     array = Array(p[1], p[3])
     array.addValue(p[6])
     p[0] = array
-
 
 
 
@@ -169,7 +161,7 @@ def p_dataType3(p):
 #Definition of the read instruction
 def p_read1(p):
     'read : READ LEFTPAR NAME RIGHTPAR'
-    p[0] = Instructions(p[3], "READ")
+    p[0] = Instructions(p[3], p[1])
 
 # def p_read2(p):
 #     'read : READ LEFTPAR VARDECLARATION RIGHTPAR'
@@ -179,7 +171,7 @@ def p_read1(p):
 #Definition of the print instruction
 def p_print(p):
     'print : PRINT LEFTPAR sendingVariables RIGHTPAR'
-    p[0] = Instructions(p[3], "PRINT")
+    p[0] = Instructions(p[3], p[1])
 
 
 #Definition of the systemcall instruction
@@ -195,7 +187,7 @@ def p_functioncall2(p):
 #Definition of the return function
 def p_return1(p):
     'return : RETURN sendingVariable'
-    p[0] = Instructions(p[2], "RETURN")
+    p[0] = Instructions(p[2], p[1])
 
 
 
@@ -217,63 +209,64 @@ def p_complex3(p):
 #Definition of the if conditional
 def p_ifCondition1(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    unIf = If(p[3])
-    unIf.instructionList.append(p[7])
+    p[0] = If(p[3],p[7])
 
 def p_ifCondition2(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
-    unIf = If(p[3])
-    unIf.instructionList.append(p[7])
-    unElse = Else()
-    unElse.instructionList.append(p[12])
+    unIf = If(p[3], p[7])
+    unElse = Else(p[12])
+    p[0] = [unIf,unElse]
 
 def p_ifCondition3(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE ifCondition'
-    unIf = If(p[3])
-    unIf.instructionList.append(p[7])
-
+    unIf = If(p[3], p[7])
 
 
 #Definition of the for conditional
 def p_forCondition(p):
     'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-
+    p[0] = For(p[3],p[5],p[7],p[11])
 
 
 #Definition of the while conditional
 def p_whileCondition(p):
     'whileCondition : WHILE LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-
+    p[0] = While(p[3],p[7])
 
 
 #Conditionals definition
 def p_conditionals1(p):
     'conditionals : condition'
+    p[0] = p[1]
 
 def p_conditionals2(p):
     'conditionals : condition conditionalOp conditionals'
+    p[0] = Condition(p[1],p[2],p[3])
 
 def p_conditionals3(p):
     'conditionals : LEFTPAR conditionals RIGHTPAR conditionalOp conditionals'
+    p[0] = Condition(p[2],p[4],p[5])
+
 
 def p_conditionals4(p):
     'conditionals : LEFTPAR conditionals RIGHTPAR'
-
+    p[0] = p[2]
 
 
 #Condition definition
 def p_condition1(p):
     'condition : sendingVariable conditionOp sendingVariable'
-
+    p[0] = Condition(p[1], p[2], p[3])
 
 
 #Increase decrease definition
 def p_incdec1(p):
     'incdec : preIncdec'
+    p[0] = p[1]
 
 def p_incdec2(p):
     'incdec : postIncdec'
-
+    p[0] = p[1]
 
 
 #Pre Increase decrease definition
@@ -550,5 +543,3 @@ line = file.read()
 while True:
     parser.parse(line)
     break
-
-globalFile.printObject()

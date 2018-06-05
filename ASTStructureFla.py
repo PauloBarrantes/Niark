@@ -7,6 +7,9 @@ class File:
     def addFunction(self, function):
         self.functions.append(function)
 
+    def addInstruction(self, instruction):
+        self.functions.append(instruction)
+
     def addVariable(self, variable):
         self.variables = {variable.name, variable}
 
@@ -17,20 +20,26 @@ class File:
         self.variables[name] = value
 
     def printObject(self):
+        print("Soy un archivo")
+        for i in range (0, len(self.functions)):
+            if(self.functions[i] is not None):
+                self.functions[i].printObject()
         for x in range (0, len(self.instructionList)):
-            self.instructionList[x].printObject()
+            if(self.instructionList[x] is not None):
+                self.instructionList[x].printObject()
 
 class Function:
     functionDomain = False
     returnType = False
     name = ''
-    def __init__(self, functionDomain, returnType, name, parameters):
+    def __init__(self, functionDomain, returnType, name, parameters, instructions):
         self.functionDomain = functionDomain
         self.returnType = returnType
         self.name = name
         self.parameters = parameters
-        self.instructionList = []
+        self.instructionList = instructions
         self.variables = dict()
+        print("Crea funcion")
 
     def addVariable(self, variable):
         self.variables = {variable.name, variable}
@@ -43,8 +52,11 @@ class Function:
 
     def printObject(self):
         print("Soy una funcion")
-        for x in range (0, len(self.instructionList)):
-            self.instructionList[x].printObject()
+        if(self.instructionList is not None):
+            for x in range (0, len(self.instructionList)):
+                if(self.instructionList[x] is not None):
+                    self.instructionList[x].printObject()
+
 class Variable:
     type = "unknown"
     def __init__(self, name):
@@ -65,43 +77,63 @@ class VariableDeclaration:
         self.name = "declaracion"
         self.variable = variable
 
+    def addValue(self, value):
+        self.variable.value = value
+
     def printObject(self):
         print(id)
 
 class For:
     id = 'FOR'
-    def __init__(self):
-        self.conditions = []
+    def __init__(self, counterVariable, conditions, incdec, instructions):
+        self.conditions = conditions
         self.arithmethicOperations = []
         self.localVariables = {}
-        self.instructionList = []
+        self.instructionList = [incdec]
+        self.instructionList.extend(instructions)
 
 
     def printObject(self):
         print(id)
         for x in range (0, len(self.instructionList)):
             print(self.instructionList[x].printObject())
-class If:
-    id = 'IF'
-    def __init__(self, conditions):
+
+class While:
+    id = 'WHILE'
+    def __init__(self, conditions, instructions):
         self.conditions = conditions
         self.logicalOperators = []
         self.localVariables = {}
-        self.instructionList = []
+        self.instructionList = instructions
+
     def printObject(self):
         print(id)
         for x in range (0, len(self.instructionList)):
             self.instructionList[x].printObject()
+
+class If:
+    id = 'IF'
+    def __init__(self, conditions, instructions):
+        self.conditions = conditions
+        self.logicalOperators = []
+        self.localVariables = {}
+        self.instructionList = instructions
+    def printObject(self):
+        print(id)
+        for x in range (0, len(self.instructionList)):
+            self.instructionList[x].printObject()
+
 class Else:
     id = 'ELSE'
-    def __init__(self):
+    def __init__(self,instructions):
         self.localVariables = {}
-        self.instructionList = []
+        self.instructionList = instructions
 
     def printObject(self):
         print(id)
         for x in range (0, len(self.instructionList)):
             print(self.instructionList[x])
+
 class ElseIf:
     id = 'ELSEIF'
 
@@ -115,7 +147,7 @@ class ElseIf:
             print(self.instructionList[x].printObject())
 
 class Condition:
-    def __init__(self, term1, term2, operator):
+    def __init__(self, term1, operator, term2):
         self.term1 = term1
         self.term2 = term2
         self.operator = operator
@@ -139,12 +171,14 @@ class VariableAssignation:
         self.value = value
     def printObject(self):
         print(id)
+
 class Instructions:
     def __init__(self, parameters, id):
         self.parameters = parameters
         self.id = id
     def printObject(self):
         print (id)
+
 class Array:
     def __init__(self, name, size):
         self.name = name
