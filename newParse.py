@@ -2,7 +2,7 @@ import ply.yacc as yacc
 from newLex import tokens
 from ASTStructure import *
 
-file = File()
+globalFile = File()
 
 class bcolors:
     HEADER = '\033[95m'
@@ -18,16 +18,25 @@ class bcolors:
 
 def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
+    print(p[1].name)
+    globalFile.functions.append(p[1])
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
+    globalFile.functions.append(p[1])
+    print(p[1].name)
+    p[0] = p[1]
 
 def p_Start3(p):
     'Niark : methodDefinition'
+    globalFile.functions.append(p[1])
+    print(p[1].name)
     p[0] = p[1]
 
 def p_Start4(p):
     'Niark : instruction'
+    globalFile.functions.append(p[1])
+    print(p[1].name)
     p[0] = p[1]
 
 	
@@ -38,11 +47,15 @@ def p_methodDefinition1(p):
     funcion = Function(p[1], p[2], p[3], p[5])
     funcion.instructionList = p[9]
     p[0] = funcion
-
+    print(1)
+    print(p[0].name)
+    print("Tam" , len(funcion.instructionList))
+    funcion.print()
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
     funcion = Function(p[1], p[2], p[3], p[5])
     funcion.instructionList = p[9]
+    print(2)
     p[0] = funcion
 
 	
@@ -52,6 +65,7 @@ def p_instructions1(p):
     array = [p[1]]
     array.append(p[3])
     p[0] = array
+
 def p_instructions2(p):
     'instructions : empty'
     p[0] = p[1]
@@ -107,7 +121,7 @@ def p_asignation1(p):
 
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-
+    P[0] = ArrayAssignation(p[1], p[2], p[6])
 
 #Definition of the different type of declaration	
 def p_delaration1(p):
@@ -119,6 +133,7 @@ def p_delaration2(p):
     variable = VariableDeclaration(Variable(p[1]))
     variable.variable.addValue(p[3])
     p[0] = variable
+    print(p[0].variable.name)
 
 def p_delaration4(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
@@ -151,19 +166,23 @@ def p_dataType3(p):
 #Definition of the read instruction
 def p_read1(p):
     'read : READ LEFTPAR NAME RIGHTPAR'
+    p[0] = Instructions(p[3], "READ")
 	
-def p_read2(p):
-    'read : READ LEFTPAR VARDECLARATION RIGHTPAR'
+# def p_read2(p):
+#     'read : READ LEFTPAR VARDECLARATION RIGHTPAR'
+#     p[0] = Instructions(p[3], "READ")
 
 	
 #Definition of the print instruction
 def p_print(p):
     'print : PRINT LEFTPAR sendingVariables RIGHTPAR'
+    p[0] = Instructions(p[3], "PRINT")
 
 	
 #Definition of the systemcall instruction
 def p_functioncall1(p):
     'functionCall : NAME LEFTPAR sendingVariables RIGHTPAR'
+    p[0] = FunctionCall(p[1], p[3])
 	
 def p_functioncall2(p):
     'functionCall : NAME LEFTPAR empty RIGHTPAR'
@@ -173,6 +192,7 @@ def p_functioncall2(p):
 #Definition of the return function
 def p_return1(p):
     'return : RETURN sendingVariable'
+    p[0] = Instructions(p[2], "RETURN")
 
 
 
@@ -194,12 +214,20 @@ def p_complex3(p):
 #Definition of the if conditional
 def p_ifCondition1(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
+    unIf = If(p[3])
+    unIf.instructionList.append(p[7])
 
 def p_ifCondition2(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
+    unIf = If(p[3])
+    unIf.instructionList.append(p[7])
+    unElse = Else()
+    unElse.instructionList.append(p[12])
 
 def p_ifCondition3(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE ifCondition'
+    unIf = If(p[3])
+    unIf.instructionList.append(p[7])
 
 
 
@@ -519,3 +547,5 @@ line = file.read()
 while True:
     parser.parse(line)
     break
+
+globalFile.print()
