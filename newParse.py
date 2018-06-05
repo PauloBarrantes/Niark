@@ -18,102 +18,79 @@ class bcolors:
 
 def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
-    print(p[1].name)
-    globalFile.functions.append(p[1])
-    print(11)
+    print('Niark : methodDefinition NEWLINE Niark')
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
-    #globalFile.functions.append(p[1])
-    #print(p[1].name)
-    #p[0] = p[1]
-    #print(22)
+    print( 'Niark : instruction NEWLINE Niark')
 
 def p_Start3(p):
     'Niark : methodDefinition'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = p[1]
-    print(33)
+    print('Niark : methodDefinition')
 
 def p_Start4(p):
-    'Niark : instruction'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = p[1]
-    print(4)
+    'Niark : instruction NEWLINE'
+    print('Niark : instruction NEWLINE')
 
 	
 
 #Method definition
 def p_methodDefinition1(p):
     'methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], p[5])
-    funcion.instructionList = p[9]
-    p[0] = funcion
-    print(1)
-    print(p[0].name)
-    print("Tam" , len(funcion.instructionList))
-    funcion.print()
+    print('methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY')
 
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], 0)
-    funcion.instructionList = p[8]
-    print(2)
-    p[0] = funcion
+    print('methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY')
+
 
 	
 #Instructions definition
 def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
-    array = [p[1]]
-    if(p[3] is not None):
-        array.append(p[3])
-    p[0] = array
+    print('instructions : instruction NEWLINE instructions')
 
 def p_instructions2(p):
     'instructions : empty'
-    p[0] = p[1]
-	
+    print('instructions : empty')
+
 
 	
 #The forms an instruction can become
 def p_Instruction1(p):
     'instruction : simple'
-    print("Simple instrution")
-    p[0] = p[1]
+    print('instruction : simple')
 
 def p_Instruction2(p):
     'instruction : complex'
-    p[0] = p[1]
-	
+    print('instruction : complex')
+
 
 	
 #The different types of simple instructions
 def p_simple1(p):
     'simple : asignation'
-    p[0] = p[1]
+    print('simple : asignation')
 
 def p_simple2(p):
     'simple : declaration'
-    p[0] = p[1]
+    print('simple : declaration')
 
 def p_simple3(p):
     'simple : read'
-    p[0] = p[1]
+    print('simple : read')
 
 def p_simple4(p):
     'simple : print'
-    p[0] = p[1]
+    print('simple : print')
 
 def p_simple5(p):
     'simple : functionCall'
-    p[0] = p[1]
+    print('simple : functionCall')
 
 def p_simple6(p):
     'simple : return'
-    p[0] = p[1]
+    print('simple : return')
 
 	
 	
@@ -124,186 +101,178 @@ def p_simple6(p):
 #Definition of the different type of asignation
 def p_asignation1(p):
     'asignation : NAME ASIGNATION dataTypeAsignation'
-    p[0] = VariableAssignation(p[1], p[3])
+    print('asignation : NAME ASIGNATION dataTypeAsignation')
+
 
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    p[0] = ArrayAssignation(p[1], p[2], p[6])
+    print('asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation')
+
 
 #Definition of the different type of declaration	
-def p_delaration1(p):
+def p_declaration1(p):
     'declaration : VARDECLARATION'
-    p[0] = VariableDeclaration(Variable(p[1]))
+    print('declaration : VARDECLARATION')
 
-def p_delaration2(p):
+def p_declaration2(p):
     'declaration : VARDECLARATION ASIGNATION dataTypeAsignation'
-    variable = VariableDeclaration(Variable(p[1]))
-    variable.variable.addValue(p[3])
-    p[0] = variable
-    print(p[0].variable.name)
+    print()
 
-def p_delaration4(p):
+def p_declaration3(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
-    p[0] = Array(p[1], p[3])
-	
-def p_delaration6(p):
-    'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    array = Array(p[1], p[3])
-    array.addValue(p[6])
-    p[0] = array
+    print()
 
+def p_declaration4(p):
+    'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
+    print()
 
 
 
 #Data type asignation
 def p_dataType1(p):
     'dataTypeAsignation : variable'
-    p[0] = p[1]
+    print("Data type asignation: variable")
 
 def p_dataType2(p):
     'dataTypeAsignation : variableType'
-    p[0] = p[1]
+    print('dataTypeAsignation : variableType')
 
 def p_dataType3(p):
     'dataTypeAsignation : arithmetic'
-    p[0] = p[1]
+    print('dataTypeAsignation : arithmetic')
 
 
 
 #Definition of the read instruction
-def p_read1(p):
+def p_read(p):
     'read : READ LEFTPAR NAME RIGHTPAR'
-    p[0] = Instructions(p[3], "READ")
-	
-# def p_read2(p):
-#     'read : READ LEFTPAR VARDECLARATION RIGHTPAR'
-#     p[0] = Instructions(p[3], "READ")
+    print()
+
 
 	
 #Definition of the print instruction
 def p_print(p):
     'print : PRINT LEFTPAR sendingVariables RIGHTPAR'
-    p[0] = Instructions(p[3], "PRINT")
+    print()
 
 	
 #Definition of the systemcall instruction
 def p_functioncall1(p):
     'functionCall : NAME LEFTPAR sendingVariables RIGHTPAR'
-    p[0] = FunctionCall(p[1], p[3])
-	
+    print()
+
 def p_functioncall2(p):
     'functionCall : NAME LEFTPAR empty RIGHTPAR'
-    p[0] = FunctionCall(p[1], p[3])
+    print()
+
 
 
 #Definition of the return function
 def p_return1(p):
     'return : RETURN sendingVariable'
-    print("return sending variable")
-    p[0] = Instructions(p[2], "RETURN")
+    print()
 
 
 
 #The different types of complex instructions
 def p_complex1(p):
     'complex : ifCondition'
+    print()
 
 def p_complex2(p):
     'complex : forCondition'
-    p[0] = p[1]
+    print()
 
 def p_complex3(p):
     'complex : whileCondition'
-    p[0] = p[1]
+    print()
 
 
 
 #Definition of the if conditional
 def p_ifCondition1(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    unIf = If(p[3])
-    if(p[7] is not None):
-        unIf.instructionList.extend(p[7])
-    print("hola",p[7])
-    p[0] = unIf
+    print()
 
 def p_ifCondition2(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
-    unIf = If(p[3])
-    if(p[7] is not None):
-        unIf.instructionList.extend(p[7])
-    unElse = Else()
-    if(p[12] is not None):
-        unElse.instructionList.extend(p[12])
-    p[0] = [unIf, unElse]
+    print()
 
 def p_ifCondition3(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE ifCondition'
-    unIf = If(p[3])
-    if(p[7] is not None):
-        unIf.instructionList.extend(p[7])
-    p[0] = unIf
+    print()
 
 
 
 #Definition of the for conditional
 def p_forCondition(p):
     'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
+    print()
 
 
 
 #Definition of the while conditional
 def p_whileCondition(p):
     'whileCondition : WHILE LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
+    print()
 
 
 
 #Conditionals definition
 def p_conditionals1(p):
     'conditionals : condition'
-    p[0] = p[1]
+    print()
 
 def p_conditionals2(p):
     'conditionals : condition conditionalOp conditionals'
+    print()
 
 def p_conditionals3(p):
     'conditionals : LEFTPAR conditionals RIGHTPAR conditionalOp conditionals'
+    print()
 
 def p_conditionals4(p):
     'conditionals : LEFTPAR conditionals RIGHTPAR'
+    print()
 
 
 
 #Condition definition
 def p_condition1(p):
     'condition : sendingVariable conditionOp sendingVariable'
-    p[0] = Condition(p[1],p[2],p[3])
+    print()
 
 
 #Increase decrease definition
 def p_incdec1(p):
     'incdec : preIncdec'
+    print()
 
 def p_incdec2(p):
     'incdec : postIncdec'
+    print()
 
 
 
 #Pre Increase decrease definition
 def p_preIncdec1(p):
     'preIncdec : INCREASE variable'
+    print()
 
 def p_preIncdec2(p):
     'preIncdec : DECREASE variable'
+    print()
 
 
 
 #Post Increase decrease definition
 def p_postIncdec1(p):
     'postIncdec : variable INCREASE'
+    print()
 
 def p_postIncdec2(p):
     'postIncdec : variable DECREASE'
+    print()
 
 
 
@@ -311,99 +280,100 @@ def p_postIncdec2(p):
 #Conditionals operators definition
 def p_conditionalOp1(p):
     'conditionalOp : AND'
-    p[0] = p[1]
+    print()
 
 def p_conditionalOp2(p):
     'conditionalOp : OR'
-    p[0] = p[1]
+    print()
 
 
 
 #Condition operators definition
 def p_conditionOp1(p):
     'conditionOp : EQUALS'
-    p[0] = p[1]
+    print()
 
 def p_conditionOp2(p):
     'conditionOp : DIFFERENT'
-    p[0] = p[1]
+    print()
 
 def p_conditionOp3(p):
     'conditionOp : LESSER'
-    p[0] = p[1]
+    print()
 
 def p_conditionOp4(p):
     'conditionOp : GREATER'
-    p[0] = p[1]
+    print()
 
 def p_conditionOp5(p):
     'conditionOp : LESSEREQUAL'
-    p[0] = p[1]
+    print()
 
 def p_conditionOp6(p):
     'conditionOp : GREATEREQUAL'
-    p[0] = p[1]
+    print()
 
 
 
 #Domain definition
 def p_domain1(p):
     'domain : PUBLIC'
-    p[0] = p[1]
+    print()
 
 def p_domain2(p):
     'domain : PRIVATE'
-    p[0] = p[1]
+    print()
 
 
 
 #Method type definition
 def p_methodType1(p):
     'methodType : VOID'
-    p[0] = p[1]
+    print()
 
 def p_methodType2(p):
     'methodType : FUNCTION'
-    p[0] = p[1]
-
+    print()
 
 
 #Parameters definition
 def p_parameters1(p):
     'parameters : NAME COMMA parameters'
+    print()
 
 def p_parameters2(p):
     'parameters : NAME'
-    p[0] = p[1]
+    print()
 
 
 
 #Varialbes definition
 def p_sendingVariables1(p):
     'sendingVariables : sendingVariable COMMA sendingVariables'
+    print()
 
 def p_sendingVariables2(p):
     'sendingVariables : sendingVariable'
-    p[0] = p[1]
+    print()
 
 
 
 #Sending variables definition
 def p_sendingVariable1(p):
     'sendingVariable : variableType'
-    p[0] = p[1]
+    print()
 
 def p_sendingVariable2(p):
     'sendingVariable : arithmetic'
-    p[0] = p[1]
+    print()
 
 def p_sendingVariable3(p):
     'sendingVariable : variable'
-    p[0] = p[1]
+    print()
 
 def p_sendingVariable4(p):
     'sendingVariable : functionCall'
-    p[0] = p[1]
+    print()
 
 
 
@@ -411,11 +381,11 @@ def p_sendingVariable4(p):
 #Varialbe definition
 def p_variable1(p):
     'variable : NAME'
-    p[0] = p[1]
+    print('variable : NAME')
 
 def p_variable2(p):
     'variable : vectorVariable'
-    p[0] = p[1]
+    print('variable : vectorVariable')
 
 
 
@@ -423,123 +393,132 @@ def p_variable2(p):
 #Vector	definition
 def p_vectorVariable1(p):
     'vectorVariable : NAME LEFTBRACKET arithmetic RIGHTBRACKET'
+    print('vectorVariable : NAME LEFTBRACKET arithmetic RIGHTBRACKET')
 
 def p_vectorVariable2(p):
     'vectorVariable : NAME LEFTBRACKET INT RIGHTBRACKET'
+    print('vectorVariable : NAME LEFTBRACKET INT RIGHTBRACKET')
 
 def p_vectorVariable3(p):
     'vectorVariable : NAME LEFTBRACKET variable RIGHTBRACKET'
+    print('vectorVariable : NAME LEFTBRACKET variable RIGHTBRACKET')
 
 
 
 #Data localization types in Vectors
 def p_dataLocalizatorType1(p):
     'dataLocalizatorType : INT'
-    p[0] = p[1]
+    print('dataLocalizatorType : INT')
 
 def p_dataLocalizatorType2(p):
     'dataLocalizatorType : variable'
-    p[0] = p[1]
+    print('dataLocalizatorType : variable')
 
 def p_dataLocalizatorType3(p):
     'dataLocalizatorType : arithmetic'
-    p[0] = p[1]
+    print('dataLocalizatorType : arithmetic')
 
 
 #Varialbe types definition
 def p_variableType1(p):
     'variableType : numberType'
-    p[0] = p[1]
+    print('variableType : numberType')
 
 def p_variableType2(p):
     'variableType : stringType'
-    p[0] = p[1]
+    print('variableType : stringType')
 
 def p_variableType3(p):
     'variableType : booleanType'
-    p[0] = p[1]
+    print('variableType : booleanType')
 
 
 
 #Number type definition
 def p_numberType1(p):
     'numberType : INT'
-    p[0] = p[1]
+    print('numberType : INT')
 
 def p_numberType2(p):
     'numberType : DOUBLE'
-    p[0] = p[1]
+    print('numberType : DOUBLE')
+
 
 #String type definition
 def p_stringType(p):
     'stringType : STRING'
-    p[0] = p[1]
+    print('stringType : STRING')
+
 
 #Boolean type definition
 def p_booleanType1(p):
     'booleanType : FALSE'
-    p[0] = p[1]
+    print('booleanType : FALSE')
 
 def p_booleanType2(p):
     'booleanType : TRUE'
-    p[0] = p[1]
+    print('booleanType : TRUE')
 
 
 
 #Arithmetic definition
 def p_arithmetic1(p):
     'arithmetic : moreArithmetic arithmeticOp arithmeticDataType'
+    print('arithmetic : moreArithmetic arithmeticOp arithmeticDataType')
 
 def p_arithmetic2(p):
     'arithmetic : LEFTPAR arithmetic RIGHTPAR'
+    print('arithmetic : LEFTPAR arithmetic RIGHTPAR')
 
 def p_arithmetic3(p):
     'arithmetic : moreArithmetic arithmeticOp LEFTPAR arithmetic RIGHTPAR'
+    print('arithmetic : moreArithmetic arithmeticOp LEFTPAR arithmetic RIGHTPAR')
 
 def p_arithmetic4(p):
     'arithmetic : arithmeticOp arithmeticDataType'
+    print('arithmetic : arithmeticOp arithmeticDataType')
 
 def p_moreArithmetic1(p):
     'moreArithmetic : arithmeticDataType'
-    p[0] = p[1]
+    print('moreArithmetic : arithmeticDataType')
 
 def p_moreArithmetic2(p):
     'moreArithmetic : arithmetic'
-    p[0] = p[1]
+    print('moreArithmetic : arithmetic')
 
 
 
 #Definition of arithmetic data types
 def p_arithmeticDataType1(p):
     'arithmeticDataType : numberType'
-    p[0] = p[1]
+    print('arithmeticDataType : numberType')
 
 def p_arithmeticDataType2(p):
     'arithmeticDataType : variable'
-    p[0] = p[1]
+    print('arithmeticDataType : variable')
 
 def p_arithmeticDataType3(p):
     'arithmeticDataType : functionCall'
-    p[0] = p[1]
+    print('arithmeticDataType : functionCall')
 
 
 
 #Definition of arithmetic operators
 def p_arithmeticOp1(p):
     'arithmeticOp : SUM'
-    p[0] = p[1]
+    print('arithmeticOp : SUM')
 
 def p_arithmeticOp2(p):
     'arithmeticOp : SUBSTRACTION'
-    p[0] = p[1]
+    print('arithmeticOp : SUBSTRACTION')
 
 def p_arithmeticOp3(p):
     'arithmeticOp : MULTIPLICATION'
-    p[0] = p[1]
+    print('arithmeticOp : MULTIPLICATION')
 
 def p_arithmeticOp4(p):
     'arithmeticOp : DIVISION'
-    p[0] = p[1]
+    print('arithmeticOp : DIVISION')
 
 def p_error(p):
     if p:
