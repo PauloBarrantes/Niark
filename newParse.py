@@ -24,10 +24,10 @@ def p_Start1(p):
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = p[1]
-    print(22)
+    #globalFile.functions.append(p[1])
+    #print(p[1].name)
+    #p[0] = p[1]
+    #print(22)
 
 def p_Start3(p):
     'Niark : methodDefinition'
@@ -81,6 +81,7 @@ def p_instructions2(p):
 #The forms an instruction can become
 def p_Instruction1(p):
     'instruction : simple'
+    print("Simple instrution")
     p[0] = p[1]
 
 def p_Instruction2(p):
@@ -198,6 +199,7 @@ def p_functioncall2(p):
 #Definition of the return function
 def p_return1(p):
     'return : RETURN sendingVariable'
+    print("return sending variable")
     p[0] = Instructions(p[2], "RETURN")
 
 
@@ -205,7 +207,6 @@ def p_return1(p):
 #The different types of complex instructions
 def p_complex1(p):
     'complex : ifCondition'
-    p[0] = p[1]
 
 def p_complex2(p):
     'complex : forCondition'
