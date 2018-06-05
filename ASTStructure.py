@@ -16,15 +16,15 @@ class File:
     def modifyValue(self, name, value):
         self.variables[name] = value
 
-
 class Function:
     functionDomain = False
     returnType = False
     name = ''
-    def __init__(self, functionDomain, returnType, name):
+    def __init__(self, functionDomain, returnType, name, parameters):
         self.functionDomain = functionDomain
         self.returnType = returnType
         self.name = name
+        self.parameters = parameters
         self.instructionList = []
         self.variables = dict()
 
@@ -38,9 +38,13 @@ class Function:
         self.variables[name] = value
 
 class Variable:
-    def __init__(self, type, value, name):
+    def __init__(self, name):
         self.name = name
+
+    def addType(self, type):
         self.type = type
+
+    def addValue(self, value):
         self.value = value
 
 class VariableDeclaration:
@@ -95,9 +99,19 @@ class Instructions:
         self.id = id
 
 class Array:
-    def __init__(self, name, type, value, size):
+    def __init__(self, name, size):
         self.name = name
-        self.type = type
-        self.value = value
         self.size = size
 
+    def addType(self, type):
+        self.type = type
+
+    def addValue(self, value):
+        self.value = value
+
+class ArrayAssignation:
+    def __init__(self, name, index, value):
+        self.name = name
+        self.index = index
+        self.value = value
+        

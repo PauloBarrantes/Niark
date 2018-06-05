@@ -1,5 +1,8 @@
 import ply.yacc as yacc
 from newLex import tokens
+from ASTStructure import *
+
+file = File()
 
 class bcolors:
     HEADER = '\033[95m'
@@ -21,57 +24,75 @@ def p_Start2(p):
 
 def p_Start3(p):
     'Niark : methodDefinition'
+    p[0] = p[1]
 
 def p_Start4(p):
     'Niark : instruction'
+    p[0] = p[1]
 
 	
 
 #Method definition
 def p_methodDefinition1(p):
     'methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
+    funcion = Function(p[1], p[2], p[3], p[5])
+    funcion.instructionList = p[9]
+    p[0] = funcion
 
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-
+    funcion = Function(p[1], p[2], p[3], p[5])
+    funcion.instructionList = p[9]
+    p[0] = funcion
 
 	
 #Instructions definition
 def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
-
+    array = [p[1]]
+    array.append(p[3])
+    p[0] = array
 def p_instructions2(p):
     'instructions : empty'
+    p[0] = p[1]
 	
 
 	
 #The forms an instruction can become
 def p_Instruction1(p):
     'instruction : simple'
+    p[0] = p[1]
 
 def p_Instruction2(p):
     'instruction : complex'
+    p[0] = p[1]
 	
 
 	
 #The different types of simple instructions
 def p_simple1(p):
     'simple : asignation'
+    p[0] = p[1]
 
 def p_simple2(p):
     'simple : declaration'
+    p[0] = p[1]
 
 def p_simple3(p):
     'simple : read'
+    p[0] = p[1]
 
 def p_simple4(p):
     'simple : print'
+    p[0] = p[1]
 
 def p_simple5(p):
     'simple : functionCall'
+    p[0] = p[1]
 
 def p_simple6(p):
     'simple : return'
+    p[0] = p[1]
 
 	
 	
@@ -82,6 +103,7 @@ def p_simple6(p):
 #Definition of the different type of asignation
 def p_asignation1(p):
     'asignation : NAME ASIGNATION dataTypeAsignation'
+    p[0] = VariableAssignation(p[1], p[3])
 
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
@@ -90,27 +112,39 @@ def p_asignation2(p):
 #Definition of the different type of declaration	
 def p_delaration1(p):
     'declaration : VARDECLARATION'
+    p[0] = VariableDeclaration(Variable(p[1]))
 
 def p_delaration2(p):
     'declaration : VARDECLARATION ASIGNATION dataTypeAsignation'
+    variable = VariableDeclaration(Variable(p[1]))
+    variable.variable.addValue(p[3])
+    p[0] = variable
 
 def p_delaration4(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
+    p[0] = Array(p[1], p[3])
 	
 def p_delaration6(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
+    array = Array(p[1], p[3])
+    array.addValue(p[6])
+    p[0] = array
+
 
 
 
 #Data type asignation
 def p_dataType1(p):
     'dataTypeAsignation : variable'
+    p[0] = p[1]
 
 def p_dataType2(p):
     'dataTypeAsignation : variableType'
+    p[0] = p[1]
 
 def p_dataType3(p):
     'dataTypeAsignation : arithmetic'
+    p[0] = p[1]
 
 
 
@@ -133,7 +167,7 @@ def p_functioncall1(p):
 	
 def p_functioncall2(p):
     'functionCall : NAME LEFTPAR empty RIGHTPAR'
-
+    p[0] = FunctionCall(p[1], p[3])
 
 
 #Definition of the return function
@@ -145,12 +179,15 @@ def p_return1(p):
 #The different types of complex instructions
 def p_complex1(p):
     'complex : ifCondition'
+    p[0] = p[1]
 
 def p_complex2(p):
     'complex : forCondition'
+    p[0] = p[1]
 
 def p_complex3(p):
     'complex : whileCondition'
+    p[0] = p[1]
 
 
 
@@ -230,48 +267,60 @@ def p_postIncdec2(p):
 #Conditionals operators definition
 def p_conditionalOp1(p):
     'conditionalOp : AND'
+    p[0] = p[1]
 
 def p_conditionalOp2(p):
     'conditionalOp : OR'
+    p[0] = p[1]
 
 
 
 #Condition operators definition
 def p_conditionOp1(p):
     'conditionOp : EQUALS'
+    p[0] = p[1]
 
 def p_conditionOp2(p):
     'conditionOp : DIFFERENT'
+    p[0] = p[1]
 
 def p_conditionOp3(p):
     'conditionOp : LESSER'
+    p[0] = p[1]
 
 def p_conditionOp4(p):
     'conditionOp : GREATER'
+    p[0] = p[1]
 
 def p_conditionOp5(p):
     'conditionOp : LESSEREQUAL'
+    p[0] = p[1]
 
 def p_conditionOp6(p):
     'conditionOp : GREATEREQUAL'
+    p[0] = p[1]
 
 
 
 #Domain definition
 def p_domain1(p):
     'domain : PUBLIC'
+    p[0] = p[1]
 
 def p_domain2(p):
     'domain : PRIVATE'
+    p[0] = p[1]
 
 
 
 #Method type definition
 def p_methodType1(p):
     'methodType : VOID'
+    p[0] = p[1]
 
 def p_methodType2(p):
     'methodType : FUNCTION'
+    p[0] = p[1]
 
 
 
@@ -281,6 +330,7 @@ def p_parameters1(p):
 
 def p_parameters2(p):
     'parameters : NAME'
+    p[0] = p[1]
 
 
 
@@ -290,21 +340,26 @@ def p_sendingVariables1(p):
 
 def p_sendingVariables2(p):
     'sendingVariables : sendingVariable'
+    p[0] = p[1]
 
 
 
 #Sending variables definition
 def p_sendingVariable1(p):
     'sendingVariable : variableType'
+    p[0] = p[1]
 
 def p_sendingVariable2(p):
     'sendingVariable : arithmetic'
+    p[0] = p[1]
 
 def p_sendingVariable3(p):
     'sendingVariable : variable'
+    p[0] = p[1]
 
 def p_sendingVariable4(p):
     'sendingVariable : functionCall'
+    p[0] = p[1]
 
 
 
@@ -312,9 +367,11 @@ def p_sendingVariable4(p):
 #Varialbe definition
 def p_variable1(p):
     'variable : NAME'
+    p[0] = p[1]
 
 def p_variable2(p):
     'variable : vectorVariable'
+    p[0] = p[1]
 
 
 
@@ -334,43 +391,54 @@ def p_vectorVariable3(p):
 #Data localization types in Vectors
 def p_dataLocalizatorType1(p):
     'dataLocalizatorType : INT'
+    p[0] = p[1]
 
 def p_dataLocalizatorType2(p):
     'dataLocalizatorType : variable'
+    p[0] = p[1]
 
 def p_dataLocalizatorType3(p):
     'dataLocalizatorType : arithmetic'
+    p[0] = p[1]
 
 
 #Varialbe types definition
 def p_variableType1(p):
     'variableType : numberType'
+    p[0] = p[1]
 
 def p_variableType2(p):
     'variableType : stringType'
+    p[0] = p[1]
 
 def p_variableType3(p):
     'variableType : booleanType'
+    p[0] = p[1]
 
 
 
 #Number type definition
 def p_numberType1(p):
     'numberType : INT'
+    p[0] = p[1]
 
 def p_numberType2(p):
     'numberType : DOUBLE'
+    p[0] = p[1]
 
 #String type definition
 def p_stringType(p):
     'stringType : STRING'
+    p[0] = p[1]
 
 #Boolean type definition
 def p_booleanType1(p):
     'booleanType : FALSE'
+    p[0] = p[1]
 
 def p_booleanType2(p):
     'booleanType : TRUE'
+    p[0] = p[1]
 
 
 
@@ -389,36 +457,45 @@ def p_arithmetic4(p):
 
 def p_moreArithmetic1(p):
     'moreArithmetic : arithmeticDataType'
+    p[0] = p[1]
 
 def p_moreArithmetic2(p):
     'moreArithmetic : arithmetic'
+    p[0] = p[1]
 
 
 
 #Definition of arithmetic data types
 def p_arithmeticDataType1(p):
     'arithmeticDataType : numberType'
+    p[0] = p[1]
 
 def p_arithmeticDataType2(p):
     'arithmeticDataType : variable'
+    p[0] = p[1]
 
 def p_arithmeticDataType3(p):
     'arithmeticDataType : functionCall'
+    p[0] = p[1]
 
 
 
 #Definition of arithmetic operators
 def p_arithmeticOp1(p):
     'arithmeticOp : SUM'
+    p[0] = p[1]
 
 def p_arithmeticOp2(p):
     'arithmeticOp : SUBSTRACTION'
+    p[0] = p[1]
 
 def p_arithmeticOp3(p):
     'arithmeticOp : MULTIPLICATION'
+    p[0] = p[1]
 
 def p_arithmeticOp4(p):
     'arithmeticOp : DIVISION'
+    p[0] = p[1]
 
 def p_error(p):
     if p:
