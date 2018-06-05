@@ -115,7 +115,7 @@ class ElseIf:
             print(self.instructionList[x].print())
 
 class Condition:
-    def __init__(self, term1, term2, operator):
+    def __init__(self, term1, operator, term2):
         self.term1 = term1
         self.term2 = term2
         self.operator = operator

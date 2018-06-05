@@ -20,24 +20,28 @@ def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
     print(p[1].name)
     globalFile.functions.append(p[1])
+    print(11)
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
     globalFile.functions.append(p[1])
     print(p[1].name)
     p[0] = p[1]
+    print(22)
 
 def p_Start3(p):
     'Niark : methodDefinition'
     globalFile.functions.append(p[1])
     print(p[1].name)
     p[0] = p[1]
+    print(33)
 
 def p_Start4(p):
     'Niark : instruction'
     globalFile.functions.append(p[1])
     print(p[1].name)
     p[0] = p[1]
+    print(4)
 
 	
 
@@ -51,10 +55,11 @@ def p_methodDefinition1(p):
     print(p[0].name)
     print("Tam" , len(funcion.instructionList))
     funcion.print()
+
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], p[5])
-    funcion.instructionList = p[9]
+    funcion = Function(p[1], p[2], p[3], 0)
+    funcion.instructionList = p[8]
     print(2)
     p[0] = funcion
 
@@ -63,7 +68,8 @@ def p_methodDefinition2(p):
 def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
     array = [p[1]]
-    array.append(p[3])
+    if(p[3] is not None):
+        array.append(p[3])
     p[0] = array
 
 def p_instructions2(p):
@@ -121,7 +127,7 @@ def p_asignation1(p):
 
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    P[0] = ArrayAssignation(p[1], p[2], p[6])
+    p[0] = ArrayAssignation(p[1], p[2], p[6])
 
 #Definition of the different type of declaration	
 def p_delaration1(p):
@@ -215,19 +221,27 @@ def p_complex3(p):
 def p_ifCondition1(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
     unIf = If(p[3])
-    unIf.instructionList.append(p[7])
+    if(p[7] is not None):
+        unIf.instructionList.extend(p[7])
+    print("hola",p[7])
+    p[0] = unIf
 
 def p_ifCondition2(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
     unIf = If(p[3])
-    unIf.instructionList.append(p[7])
+    if(p[7] is not None):
+        unIf.instructionList.extend(p[7])
     unElse = Else()
-    unElse.instructionList.append(p[12])
+    if(p[12] is not None):
+        unElse.instructionList.extend(p[12])
+    p[0] = [unIf, unElse]
 
 def p_ifCondition3(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE ifCondition'
     unIf = If(p[3])
-    unIf.instructionList.append(p[7])
+    if(p[7] is not None):
+        unIf.instructionList.extend(p[7])
+    p[0] = unIf
 
 
 
@@ -246,6 +260,7 @@ def p_whileCondition(p):
 #Conditionals definition
 def p_conditionals1(p):
     'conditionals : condition'
+    p[0] = p[1]
 
 def p_conditionals2(p):
     'conditionals : condition conditionalOp conditionals'
@@ -261,7 +276,7 @@ def p_conditionals4(p):
 #Condition definition
 def p_condition1(p):
     'condition : sendingVariable conditionOp sendingVariable'
-
+    p[0] = Condition(p[1],p[2],p[3])
 
 
 #Increase decrease definition
