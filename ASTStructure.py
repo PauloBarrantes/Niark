@@ -118,7 +118,8 @@ class If:
 
         if(self.instructions != None):
             for x in range (len(self.instructions)):
-                self.instructions[x].printObject()
+                if (self.instructions[x] != None):
+                    self.instructions[x].printObject()
         else:
             print('No instructions in the IF section')
 
@@ -137,13 +138,15 @@ class IfAndElse:
 
         if (self.instructionsIf != None):
             for x in range(len(self.instructionsIf)):
-                self.instructionsIf[x].printObject()
+                if (self.instructionsIf[x] != None):
+                    self.instructionsIf[x].printObject()
         else:
             print('No instructions in the IF section')
 
         if (self.instructionsElse != None):
             for x in range(len(self.instructionsElse)):
-                self.instructionsElse[x].printObject()
+                if (self.instructionsElse[x] != None):
+                    self.instructionsElse[x].printObject()
         else:
             print('No instructions in the ELSE section')
 
