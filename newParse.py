@@ -18,30 +18,19 @@ class bcolors:
 
 def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
-    print(p[1].name)
-    globalFile.functions.append(p[1])
-    print(11)
+    globalFile.addInstruction(p[1])
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = p[1]
-    print(22)
+    globalFile.addInstruction(p[1])
 
 def p_Start3(p):
     'Niark : methodDefinition'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = p[1]
-    print(33)
+    globalFile.addInstruction(p[1])
 
 def p_Start4(p):
     'Niark : instruction'
-    globalFile.functions.append(p[1])
-    print(p[1].name)
-    p[0] = p[1]
-    print(4)
+    globalFile.addInstruction(p[1])
 
 	
 
@@ -124,7 +113,7 @@ def p_asignation1(p):
 
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    p[0] = ArrayAssignation(p[1], p[2], p[6])
+    p[0] = ArrayAssignation(p[1], p[3], p[6])
 
 #Definition of the different type of declaration	
 def p_delaration1(p):
@@ -420,13 +409,8 @@ def p_variable2(p):
 
 #Vector	definition
 def p_vectorVariable1(p):
-    'vectorVariable : NAME LEFTBRACKET arithmetic RIGHTBRACKET'
+    'vectorVariable : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
 
-def p_vectorVariable2(p):
-    'vectorVariable : NAME LEFTBRACKET INT RIGHTBRACKET'
-
-def p_vectorVariable3(p):
-    'vectorVariable : NAME LEFTBRACKET variable RIGHTBRACKET'
 
 
 
