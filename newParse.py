@@ -86,18 +86,26 @@ def p_simple2(p):
 def p_simple3(p):
     'simple : read'
     print('simple : read')
+    p[0] = p[1]
+    p[0].print()
 
 def p_simple4(p):
     'simple : print'
     print('simple : print')
+    p[0] = p[1]
+    p[0].print()
 
 def p_simple5(p):
     'simple : functionCall'
     print('simple : functionCall')
+    p[0] = p[1]
+    p[0].print()
 
 def p_simple6(p):
     'simple : return'
     print('simple : return')
+    p[0] = p[1]
+    p[0].print()
 
 	
 	
@@ -163,6 +171,7 @@ def p_dataType3(p):
 def p_read(p):
     'read : READ LEFTPAR NAME RIGHTPAR'
     print('read : READ LEFTPAR NAME RIGHTPAR')
+
 
 
 	
@@ -403,23 +412,15 @@ def p_variable1(p):
 def p_variable2(p):
     'variable : vectorVariable'
     print('variable : vectorVariable')
-
+    p[0] = p[1]
 
 
 
 #Vector	definition
 def p_vectorVariable1(p):
     'vectorVariable : NAME LEFTBRACKET arithmetic RIGHTBRACKET'
-    print('vectorVariable : NAME LEFTBRACKET arithmetic RIGHTBRACKET')
-
-def p_vectorVariable2(p):
-    'vectorVariable : NAME LEFTBRACKET INT RIGHTBRACKET'
-    print('vectorVariable : NAME LEFTBRACKET INT RIGHTBRACKET')
-
-def p_vectorVariable3(p):
-    'vectorVariable : NAME LEFTBRACKET variable RIGHTBRACKET'
-    print('vectorVariable : NAME LEFTBRACKET variable RIGHTBRACKET')
-############3
+    print('vectorVariable : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET')
+############
 
 
 #Data localization types in Vectors

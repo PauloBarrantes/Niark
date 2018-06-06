@@ -43,18 +43,22 @@ class Function:
 
 
 class Variable:
-    type = "unknown"
+    id = "VARIABLE"
     def __init__(self, name):
         self.name = name
 
-    def addType(self, type):
-        self.type = type
+    def print(self):
+        print(self.id)
 
-    def addValue(self, value):
-        self.value = value
+class VectorVariable:
+    id = "VECTOR VARIABLE"
+
+    def __init__(self, name,pos):
+        self.name = name
+        self.pos = pos
 
     def print(self):
-        print(self.name, self.type, self.value)
+        print(self.id)
 
 
 
