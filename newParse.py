@@ -98,6 +98,10 @@ def p_simple6(p):
     'simple : return'
     p[0] = p[1]
 
+def p_simple7(p):
+    'simple : incdec'
+    p[0] = p[1]
+
 	
 	
 #Simple instructions definition
@@ -204,6 +208,7 @@ def p_ifCondition2(p):
 #Definition of the for conditional
 def p_forCondition(p):
     'forCondition : FOR LEFTPAR declaration SEMICOLON conditionals SEMICOLON incdec RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
+    p[0] = For(p[3],p[5],p[7],p[11])
 
 
 
@@ -233,33 +238,38 @@ def p_conditionals4(p):
 def p_condition1(p):
     'condition : sendingVariable conditionOp sendingVariable'
     p[0] = Condition(p[1],p[2],p[3])
-    p[0],print()
 
 
 #Increase decrease definition
 def p_incdec1(p):
     'incdec : preIncdec'
+    p[0] = p[1]
 
 def p_incdec2(p):
     'incdec : postIncdec'
+    p[0] = p[1]
 
 
 
 #Pre Increase decrease definition
 def p_preIncdec1(p):
     'preIncdec : INCREASE variable'
+    p[0] = IncDec(p[1], p[2])
 
 def p_preIncdec2(p):
     'preIncdec : DECREASE variable'
+    p[0] = IncDec(p[1], p[2])
 
 
 
 #Post Increase decrease definition
 def p_postIncdec1(p):
     'postIncdec : variable INCREASE'
+    p[0] = IncDec(p[2], p[1])
 
 def p_postIncdec2(p):
     'postIncdec : variable DECREASE'
+    p[0] = IncDec(p[2],p[1])
 
 
 

@@ -72,6 +72,17 @@ class FunctionCall:
     def printObject(self):
         print(self.id)
 
+
+
+class IncDec:
+    id = 'INCDEC'
+    def __init__(self, operator, variable):
+        self.operator = operator
+        self.variable = variable
+
+    def printObject(self):
+        print(self.id,self.operator,self.variable)
+
 #############################################################
 # End simple instruction section
 #############################################################
@@ -79,7 +90,7 @@ class FunctionCall:
 
 
 #############################################################
-# Begin parameters, conditions and arithmetics
+# Begin parameters, conditions, arithmetics and incdec
 #############################################################
 
 class Condition:
@@ -150,6 +161,26 @@ class IfAndElse:
         else:
             print('No instructions in the ELSE section')
 
+class For:
+    id = 'FOR'
+    def __init__(self,declaration,conditions,incdec,instructionList):
+        self.conditions = conditions
+        self.incdec = incdec
+
+        self.instructions = []
+        self.instructions.insert(0,declaration)
+        self.instructions.extend(instructionList.instructions)
+
+    def printObject(self):
+        print(self.id)
+        self.conditions.printObject()
+        self.incdec.printObject()
+
+        if (self.instructions != None):
+            for x in range(len(self.instructions)):
+                if (self.instructions[x] != None):
+                    self.instructions[x].printObject()
+
 #############################################################
 # End complex instruction section
 #############################################################
@@ -160,46 +191,18 @@ class Function:
     functionDomain = False
     returnType = False
     name = ''
-    def __init__(self, functionDomain, returnType, name, parameters):
+    def __init__(self, functionDomain, returnType, name, parameter,instructionList):
         self.functionDomain = functionDomain
         self.returnType = returnType
         self.name = name
-        self.parameters = parameters
-        self.instructionList = []
-        self.variables = dict()
-
-    def addVariable(self, variable):
-        self.variables = {variable.name, variable}
-
-    def eliminateVariable(self, name):
-        del self.variables[name]
-
-    def modifyValue(self, name, value):
-        self.variables[name] = value
+        self.parameter = parameter
+        self.instructions = instructionList.instructions
 
     def printObject(self):
         print("Soy una funcion")
         for x in range (0, len(self.instructionList)):
             print("ejecuta")
             self.instructionList[x].id
-
-
-
-
-
-class For:
-    id = 'FOR'
-    def __init__(self):
-        self.conditions = []
-        self.arithmethicOperations = []
-        self.localVariables = {}
-        self.instructionList = []
-
-    def printObject(self):
-        print(id)
-        for x in range (len(self.instructionList)):
-            self.instructionList[x].printObject()
-
 
 
 
@@ -232,7 +235,7 @@ class InstructionList:
         self.instructions.insert(0,instruction)
 
         if (instructionList is not None):
-            self.instructions.insert(0, instructionList.instructions)
+            self.instructions.extend(instructionList.instructions)
 
     def printObject(self):
         if (self.instructions != None):
