@@ -1,14 +1,9 @@
-for($i = 0; z < a; ++i){
+public function f(n){
     a = 0
-    if(x < 4){
-        $a = 0
-        ++n
+    if(a < 8){
+        ++i
     }else{
-        for($e = 0; x < m; ++t){
-            t = 90
-        }
-        ++g
+        as = 0
+        d = 1 - e
     }
 }
-
-f()

@@ -37,16 +37,12 @@ def p_Start4(p):
 #Method definition
 def p_methodDefinition1(p):
     'methodDefinition : domain methodType NAME LEFTPAR parameters RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], p[5])
-    funcion.instructionList = p[9]
-    p[0] = funcion
-    #funcion.printObject()
+    p[0] = Method(p[1], p[2], p[3], p[5],p[9])
 
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    funcion = Function(p[1], p[2], p[3], 0)
-    funcion.instructionList = p[8]
-    p[0] = funcion
+    p[0] = Method(p[1],p[2],p[3],None,p[8])
+
 
 	
 #Instructions definition
@@ -450,6 +446,7 @@ def p_booleanType2(p):
 #Arithmetic definition
 def p_arithmetic1(p):
     'arithmetic : moreArithmetic arithmeticOp arithmeticDataType'
+    p[0] = Arithmetic(p[1],p[2],p[3])
 
 def p_arithmetic2(p):
     'arithmetic : LEFTPAR arithmetic RIGHTPAR'

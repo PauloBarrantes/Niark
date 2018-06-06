@@ -90,11 +90,21 @@ class IncDec:
 
 
 #############################################################
-# Begin parameters, conditions, arithmetics and incdec
+# Begin conditions, arithmetics and incdec
 #############################################################
 
 class Condition:
     id = 'CONDITION'
+    def __init__(self, term1, operator, term2):
+        self.term1 = term1
+        self.term2 = term2
+        self.operator = operator
+
+    def printObject(self):
+        print(self.id,self.term1, self.term2, self.operator)
+
+class Arithmetic:
+    id = 'ARITHMETIC'
     def __init__(self, term1, operator, term2):
         self.term1 = term1
         self.term2 = term2
@@ -187,10 +197,8 @@ class For:
 
 
 
-class Function:
-    functionDomain = False
-    returnType = False
-    name = ''
+class Method:
+    id = 'METHOD'
     def __init__(self, functionDomain, returnType, name, parameter,instructionList):
         self.functionDomain = functionDomain
         self.returnType = returnType
@@ -199,10 +207,10 @@ class Function:
         self.instructions = instructionList.instructions
 
     def printObject(self):
-        print("Soy una funcion")
-        for x in range (0, len(self.instructionList)):
-            print("ejecuta")
-            self.instructionList[x].id
+        print(self.id,self.functionDomain,self.returnType,self.name,self.parameter)
+        if (self.instructions != None):
+            for x in range(len(self.instructions)):
+                self.instructions[x].printObject()
 
 
 
