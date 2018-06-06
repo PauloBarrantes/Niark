@@ -194,30 +194,12 @@ def p_complex3(p):
 #Definition of the if conditional
 def p_ifCondition1(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
-    unIf = If(p[3])
-    if(p[7] is not None):
-        unIf.instructionList.extend(p[7])
-    print("hola",p[7][0].id)
-    p[0] = unIf
+    p[0] = If(p[3],p[7])
+
 
 def p_ifCondition2(p):
     'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE LEFTKEY NEWLINE instructions RIGHTKEY'
-    unIf = If(p[3])
-    if(p[7] is not None):
-        unIf.instructionList.extend(p[7])
-    unElse = Else()
-    print("2")
-    if(p[12] is not None):
-        unElse.instructionList.extend(p[12])
-    p[0] = [unIf, unElse]
-
-def p_ifCondition3(p):
-    'ifCondition : IF LEFTPAR conditionals RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY ELSE ifCondition'
-    unIf = If(p[3])
-    if(p[7] is not None):
-        unIf.instructionList.extend(p[7])
-    p[0] = unIf
-    print("3")
+    p[0] = IfAndElse(p[3],p[7],p[12])
 
 
 
@@ -253,6 +235,7 @@ def p_conditionals4(p):
 def p_condition1(p):
     'condition : sendingVariable conditionOp sendingVariable'
     p[0] = Condition(p[1],p[2],p[3])
+    p[0],print()
 
 
 #Increase decrease definition

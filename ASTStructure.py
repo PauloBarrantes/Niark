@@ -77,6 +77,79 @@ class FunctionCall:
 #############################################################
 
 
+
+#############################################################
+# Begin parameters, conditions and arithmetics
+#############################################################
+
+class Condition:
+    id = 'CONDITION'
+    def __init__(self, term1, operator, term2):
+        self.term1 = term1
+        self.term2 = term2
+        self.operator = operator
+
+    def printObject(self):
+        print(self.id,self.term1, self.term2, self.operator)
+
+#############################################################
+# End parameters, conditions and arithmetics
+#############################################################
+
+
+
+#############################################################
+# Begin complex instruction section
+#############################################################
+
+class If:
+    id = 'IF'
+    def __init__(self, conditions,instructionList):
+        self.conditions = conditions
+        self.instructionList = instructionList
+
+    def printObject(self):
+        print(self.id,self.conditions,self.instructionList)
+        if(self.conditions != None):
+            self.conditions.printObject()
+
+        if(self.instructionList != None):
+            for x in range (len(self.instructionList)):
+                self.instructionList[x].printObject()
+        else:
+            print('No instructions in the IF section')
+
+
+class IfAndElse:
+    id = 'IFANDELSE'
+    def __init__(self,conditions,instructionListIf,instructionListElse):
+        self.conditions = conditions
+        self.instructionListIf = instructionListIf
+        self.instructionListElse = instructionListElse
+
+    def printObject(self):
+        print(self.id,self.conditions,self.instructionListIf,self.instructionListElse)
+        if (self.conditions != None):
+            self.conditions.printObject()
+
+        if (self.instructionListIf != None):
+            for x in range(len(self.instructionListIf)):
+                self.instructionListIf[x].printObject()
+        else:
+            print('No instructions in the IF section')
+
+        if (self.instructionListElse != None):
+            for x in range(len(self.instructionListElse)):
+                self.instructionListElse[x].printObject()
+        else:
+            print('No instructions in the ELSE section')
+
+#############################################################
+# End complex instruction section
+#############################################################
+
+
+
 class Function:
     functionDomain = False
     returnType = False
@@ -121,52 +194,12 @@ class For:
         for x in range (0, len(self.instructionList)):
             self.instructionList[x].printObject()
 
-class If:
-    id = 'IF'
-    def __init__(self, conditions):
-        self.conditions = conditions
-        self.logicalOperators = []
-        self.localVariables = {}
-        self.instructionList = []
-
-    def printObject(self):
-        print("esta imprimiendo if")
-        print(id)
-        for x in range (0, len(self.instructionList)):
-            self.instructionList[x].printObject()
-
-class Else:
-    id = 'ELSE'
-    def __init__(self):
-        self.localVariables = {}
-        self.instructionList = []
-
-    def printObject(self):
-        print(id)
-        for x in range (0, len(self.instructionList)):
-            self.instructionList[x].printObject()
-
-class ElseIf:
-    id = 'ELSEIF'
-    def __init__(self, conditions):
-        self.localVariables = {}
-        self.instructionList = []
-
-    def printObject(self):
-        print(id)
-        for x in range (0, len(self.instructionList)):
-            self.instructionList[x].printObject()
-
-class Condition:
-    def __init__(self, term1, operator, term2):
-        self.term1 = term1
-        self.term2 = term2
-        self.operator = operator
-
-    def printObject(self):
-        print(self.term1, self.term2, self.operator)
 
 
+
+#############################################################
+# Begin variables section
+#############################################################
 
 class Variable:
     id = 'VARIABLE'
@@ -186,3 +219,6 @@ class Array:
     def printObject(self):
         print(self.id, self.name, self.size)
 
+#############################################################
+# End variables section
+#############################################################
