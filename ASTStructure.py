@@ -9,7 +9,9 @@ class File:
         for x in range (0, len(self.instructionList)):
             self.instructionList[x].printObject()
 
-
+#############################################################
+# Begin simple instruction section
+#############################################################
 
 class VariableAssignation:
     id = 'VARIABLE ASSIGNATION'
@@ -48,6 +50,31 @@ class ArrayDeclaration:
     def printObject(self):
         print(self.id,self.array.printObject())
 
+
+
+class Instruction:
+    def __init__(self, id, value):
+        self.id = id
+        self.value = value
+
+    def printObject(self):
+        print(self.id,self.value)
+
+
+
+
+class FunctionCall:
+    id = 'FUNCTION CALL'
+    def __init__(self, name, parameters):
+        self.name = name
+        self.parameters = parameters
+
+    def printObject(self):
+        print(self.id)
+
+#############################################################
+# End simple instruction section
+#############################################################
 
 
 class Function:
@@ -138,24 +165,6 @@ class Condition:
 
     def printObject(self):
         print(self.term1, self.term2, self.operator)
-
-class FunctionCall:
-    id = 'CALL'
-    def __init__(self, name, parameters):
-        self.name = name
-        self.parameters = parameters
-
-    def printObject(self):
-        print(id)
-
-
-
-class Instructions:
-    def __init__(self, parameters, id):
-        self.parameters = parameters
-        self.id = id
-    def printObject(self):
-        print (id)
 
 
 

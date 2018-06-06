@@ -120,15 +120,15 @@ def p_asignation2(p):
 #Definition of the different type of declaration	
 def p_delaration1(p):
     'declaration : VARDECLARATION'
-    p[0] = VariableDeclaration(Variable(p[1],0))
+    p[0] = VariableDeclaration(Variable(p[1][1:],0))
 
 def p_delaration2(p):
     'declaration : VARDECLARATION ASIGNATION dataTypeAsignation'
-    p[0] = VariableDeclaration(Variable(p[1],p[3]))
+    p[0] = VariableDeclaration(Variable(p[1][1:],p[3]))
 
-def p_delaration4(p):
+def p_delaration3(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
-    p[0] = VariableDeclaration(Array(p[1], p[3]))
+    p[0] = VariableDeclaration(Array(p[1][1:], p[3]))
 
 
 
@@ -150,17 +150,13 @@ def p_dataType3(p):
 #Definition of the read instruction
 def p_read1(p):
     'read : READ LEFTPAR NAME RIGHTPAR'
-    p[0] = Instructions(p[3], "READ")
-	
-# def p_read2(p):
-#     'read : READ LEFTPAR VARDECLARATION RIGHTPAR'
-#     p[0] = Instructions(p[3], "READ")
+    p[0] = Instruction('READ',p[3])
 
 	
 #Definition of the print instruction
 def p_print(p):
     'print : PRINT LEFTPAR sendingVariables RIGHTPAR'
-    p[0] = Instructions(p[3], "PRINT")
+    p[0] = Instruction('PRINT',p[3])
 
 	
 #Definition of the systemcall instruction
@@ -170,13 +166,13 @@ def p_functioncall1(p):
 	
 def p_functioncall2(p):
     'functionCall : NAME LEFTPAR empty RIGHTPAR'
-    p[0] = FunctionCall(p[1], p[3])
+    p[0] = FunctionCall(p[1], None)
 
 
 #Definition of the return function
 def p_return1(p):
     'return : RETURN sendingVariable'
-    p[0] = Instructions(p[2], "RETURN")
+    p[0] = Instruction('RETURN',p[2])
 
 
 
