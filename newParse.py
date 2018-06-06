@@ -51,10 +51,7 @@ def p_methodDefinition1(p):
     funcion = Function(p[1], p[2], p[3], p[5])
     funcion.instructionList = p[9]
     p[0] = funcion
-    print(1)
-    print(p[0].name)
-    print("Tam" , len(funcion.instructionList))
-    funcion.print()
+    #funcion.printObject()
 
 def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
@@ -223,7 +220,7 @@ def p_ifCondition1(p):
     unIf = If(p[3])
     if(p[7] is not None):
         unIf.instructionList.extend(p[7])
-    print("hola",p[7])
+    print("hola",p[7][0].id)
     p[0] = unIf
 
 def p_ifCondition2(p):
@@ -232,6 +229,7 @@ def p_ifCondition2(p):
     if(p[7] is not None):
         unIf.instructionList.extend(p[7])
     unElse = Else()
+    print("2")
     if(p[12] is not None):
         unElse.instructionList.extend(p[12])
     p[0] = [unIf, unElse]
@@ -242,6 +240,7 @@ def p_ifCondition3(p):
     if(p[7] is not None):
         unIf.instructionList.extend(p[7])
     p[0] = unIf
+    print("3")
 
 
 
@@ -563,4 +562,4 @@ while True:
     parser.parse(line)
     break
 
-globalFile.print()
+globalFile.printObject()

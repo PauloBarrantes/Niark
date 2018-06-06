@@ -16,9 +16,9 @@ class File:
     def modifyValue(self, name, value):
         self.variables[name] = value
 
-    def print(self):
+    def printObject(self):
         for x in range (0, len(self.instructionList)):
-            self.instructionList[x].print()
+            self.instructionList[x].printObject()
 
 class Function:
     functionDomain = False
@@ -41,10 +41,12 @@ class Function:
     def modifyValue(self, name, value):
         self.variables[name] = value
 
-    def print(self):
+    def printObject(self):
         print("Soy una funcion")
         for x in range (0, len(self.instructionList)):
-            self.instructionList[x]
+            print("ejecuta")
+            self.instructionList[x].id
+
 class Variable:
     type = "unknown"
     def __init__(self, name):
@@ -56,7 +58,7 @@ class Variable:
     def addValue(self, value):
         self.value = value
 
-    def print(self):
+    def printObject(self):
         print(self.name, self.type, self.value)
 
 class VariableDeclaration:
@@ -65,7 +67,7 @@ class VariableDeclaration:
         self.name = "declaracion"
         self.variable = variable
 
-    def print(self):
+    def printObject(self):
         print(id)
 
 class For:
@@ -76,11 +78,11 @@ class For:
         self.localVariables = {}
         self.instructionList = []
 
-
-    def print(self):
+    def printObject(self):
         print(id)
         for x in range (0, len(self.instructionList)):
-            print(self.instructionList[x].print())
+            self.instructionList[x].printObject()
+
 class If:
     id = 'IF'
     def __init__(self, conditions):
@@ -88,31 +90,34 @@ class If:
         self.logicalOperators = []
         self.localVariables = {}
         self.instructionList = []
-    def print(self):
+
+    def printObject(self):
+        print("esta imprimiendo if")
         print(id)
         for x in range (0, len(self.instructionList)):
-            print(self.instructionList[x].print())
+            self.instructionList[x].printObject()
+
 class Else:
     id = 'ELSE'
     def __init__(self):
         self.localVariables = {}
         self.instructionList = []
 
-    def print(self):
+    def printObject(self):
         print(id)
         for x in range (0, len(self.instructionList)):
-            print(self.instructionList[x])
+            self.instructionList[x].printObject()
+
 class ElseIf:
     id = 'ELSEIF'
-
     def __init__(self, conditions):
         self.localVariables = {}
         self.instructionList = []
 
-    def print(self):
+    def printObject(self):
         print(id)
         for x in range (0, len(self.instructionList)):
-            print(self.instructionList[x].print())
+            self.instructionList[x].printObject()
 
 class Condition:
     def __init__(self, term1, operator, term2):
@@ -120,7 +125,7 @@ class Condition:
         self.term2 = term2
         self.operator = operator
 
-    def print(self):
+    def printObject(self):
         print(self.term1, self.term2, self.operator)
 
 class FunctionCall:
@@ -129,7 +134,7 @@ class FunctionCall:
         self.name = name
         self.parameters = parameters
 
-    def print(self):
+    def printObject(self):
         print(id)
 
 class VariableAssignation:
@@ -137,14 +142,17 @@ class VariableAssignation:
     def __init__(self, name, value):
         self.name = name
         self.value = value
-    def print(self):
+
+    def printObject(self):
         print(id)
+
 class Instructions:
     def __init__(self, parameters, id):
         self.parameters = parameters
         self.id = id
-    def print(self):
+    def printObject(self):
         print (id)
+
 class Array:
     def __init__(self, name, size):
         self.name = name
@@ -156,7 +164,7 @@ class Array:
     def addValue(self, value):
         self.value = value
 
-    def print(self):
+    def printObject(self):
         print(self.name, self.size)
 
 class ArrayAssignation:
@@ -165,5 +173,5 @@ class ArrayAssignation:
         self.index = index
         self.value = value
 
-    def print (self) :
+    def printObject(self) :
         print(self.name, self.index, self.value)
