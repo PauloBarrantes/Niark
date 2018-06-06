@@ -1,24 +1,54 @@
 class File:
     def __init__(self):
-        self.functions = []
-        self.variables = dict()
         self.instructionList = []
 
-    def addFunction(self, function):
-        self.functions.append(function)
-
-    def addVariable(self, variable):
-        self.variables = {variable.name, variable}
-
-    def eliminateVariable(self, name):
-        del self.variables[name]
-
-    def modifyValue(self, name, value):
-        self.variables[name] = value
+    def addInstruction(self, instruction):
+        self.instructionList.append(instruction)
 
     def printObject(self):
         for x in range (0, len(self.instructionList)):
             self.instructionList[x].printObject()
+
+
+
+class VariableAssignation:
+    id = 'VARIABLE ASSIGNATION'
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+
+    def printObject(self):
+        print(self.id,self.name,self.value)
+
+class ArrayAssignation:
+    id = 'ARRAY ASSIGNATION'
+    def __init__(self, name, index, value):
+        self.name = name
+        self.index = index
+        self.value = value
+
+    def printObject(self) :
+        print(self.id,self.name, self.index, self.value)
+
+
+
+class VariableDeclaration:
+    id = 'VARIABLE DECLARATION'
+    def __init__(self, variable):
+        self.variable = variable
+
+    def printObject(self):
+        print(self.id,self.variable.printObject())
+
+class ArrayDeclaration:
+    id = 'ARRAY DECLARATION'
+    def __init__(self, array):
+        self.array = array
+
+    def printObject(self):
+        print(self.id,self.array.printObject())
+
+
 
 class Function:
     functionDomain = False
@@ -47,28 +77,9 @@ class Function:
             print("ejecuta")
             self.instructionList[x].id
 
-class Variable:
-    type = "unknown"
-    def __init__(self, name):
-        self.name = name
 
-    def addType(self, type):
-        self.type = type
 
-    def addValue(self, value):
-        self.value = value
 
-    def printObject(self):
-        print(self.name, self.type, self.value)
-
-class VariableDeclaration:
-    id = 'DECLARATION'
-    def __init__(self, variable):
-        self.name = "declaracion"
-        self.variable = variable
-
-    def printObject(self):
-        print(id)
 
 class For:
     id = 'FOR'
@@ -137,14 +148,7 @@ class FunctionCall:
     def printObject(self):
         print(id)
 
-class VariableAssignation:
-    id = 'ASSIGNATION'
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
 
-    def printObject(self):
-        print(id)
 
 class Instructions:
     def __init__(self, parameters, id):
@@ -153,25 +157,23 @@ class Instructions:
     def printObject(self):
         print (id)
 
+
+
+class Variable:
+    id = 'VARIABLE'
+    def __init__(self, name,value):
+        self.name = name
+        self.value = value
+
+    def printObject(self):
+        print(self.id, self.name, self.value)
+
 class Array:
+    id = 'ARRAY'
     def __init__(self, name, size):
         self.name = name
         self.size = size
 
-    def addType(self, type):
-        self.type = type
-
-    def addValue(self, value):
-        self.value = value
-
     def printObject(self):
-        print(self.name, self.size)
+        print(self.id, self.name, self.size)
 
-class ArrayAssignation:
-    def __init__(self, name, index, value):
-        self.name = name
-        self.index = index
-        self.value = value
-
-    def printObject(self) :
-        print(self.name, self.index, self.value)
