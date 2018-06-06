@@ -1,13 +1,13 @@
-class File:
+class Niark:
     def __init__(self):
-        self.instructionList = []
+        self.statements = []
 
-    def addInstruction(self, instruction):
-        self.instructionList.insert(0,instruction)
+    def addStatement(self, statement):
+        self.statements.insert(0,statement)
 
     def printObject(self):
-        for x in range (0, len(self.instructionList)):
-            self.instructionList[x].printObject()
+        for x in range (0, len(self.statements)):
+            self.statements[x].printObject()
 
 #############################################################
 # Begin simple instruction section
@@ -106,16 +106,19 @@ class If:
     id = 'IF'
     def __init__(self, conditions,instructionList):
         self.conditions = conditions
-        self.instructionList = instructionList
+        self.instructions = instructionList.instructions
+
+    def addInstruction(self, instruction):
+        self.instructions.insert(0,instruction)
 
     def printObject(self):
-        print(self.id,self.conditions,self.instructionList)
+        print(self.id,self.conditions,self.instructions)
         if(self.conditions != None):
             self.conditions.printObject()
 
-        if(self.instructionList != None):
-            for x in range (len(self.instructionList)):
-                self.instructionList[x].printObject()
+        if(self.instructions != None):
+            for x in range (len(self.instructions)):
+                self.instructions[x].printObject()
         else:
             print('No instructions in the IF section')
 
@@ -124,23 +127,23 @@ class IfAndElse:
     id = 'IFANDELSE'
     def __init__(self,conditions,instructionListIf,instructionListElse):
         self.conditions = conditions
-        self.instructionListIf = instructionListIf
-        self.instructionListElse = instructionListElse
+        self.instructionsIf = instructionListIf.instructions
+        self.instructionsElse = instructionListElse.instructions
 
     def printObject(self):
-        print(self.id,self.conditions,self.instructionListIf,self.instructionListElse)
+        print(self.id,self.conditions,self.instructionsIf,self.instructionsElse)
         if (self.conditions != None):
             self.conditions.printObject()
 
-        if (self.instructionListIf != None):
-            for x in range(len(self.instructionListIf)):
-                self.instructionListIf[x].printObject()
+        if (self.instructionsIf != None):
+            for x in range(len(self.instructionsIf)):
+                self.instructionsIf[x].printObject()
         else:
             print('No instructions in the IF section')
 
-        if (self.instructionListElse != None):
-            for x in range(len(self.instructionListElse)):
-                self.instructionListElse[x].printObject()
+        if (self.instructionsElse != None):
+            for x in range(len(self.instructionsElse)):
+                self.instructionsElse[x].printObject()
         else:
             print('No instructions in the ELSE section')
 
@@ -191,7 +194,7 @@ class For:
 
     def printObject(self):
         print(id)
-        for x in range (0, len(self.instructionList)):
+        for x in range (len(self.instructionList)):
             self.instructionList[x].printObject()
 
 
@@ -219,6 +222,22 @@ class Array:
     def printObject(self):
         print(self.id, self.name, self.size)
 
+class InstructionList:
+    id = 'INSTRUCTION LIST'
+    def __init__(self,instruction,instructionList):
+        self.instructions = []
+        self.instructions.insert(0,instruction)
+
+        if (instructionList is not None):
+            self.instructions.insert(0, instructionList.instructions)
+
+    def printObject(self):
+        if (self.instructions != None):
+            for x in range(len(self.instructions)):
+                self.instructions[x].printObject()
+
+
 #############################################################
 # End variables section
 #############################################################
+

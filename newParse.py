@@ -2,7 +2,7 @@ import ply.yacc as yacc
 from newLex import tokens
 from ASTStructure import *
 
-globalFile = File()
+niark = Niark()
 
 class bcolors:
     HEADER = '\033[95m'
@@ -18,19 +18,19 @@ class bcolors:
 
 def p_Start1(p):
     'Niark : methodDefinition NEWLINE Niark'
-    globalFile.addInstruction(p[1])
+    niark.addStatement(p[1])
 
 def p_Start2(p):
     'Niark : instruction NEWLINE Niark'
-    globalFile.addInstruction(p[1])
+    niark.addStatement(p[1])
 
 def p_Start3(p):
     'Niark : methodDefinition'
-    globalFile.addInstruction(p[1])
+    niark.addStatement(p[1])
 
 def p_Start4(p):
     'Niark : instruction'
-    globalFile.addInstruction(p[1])
+    niark.addStatement(p[1])
 
 	
 
@@ -46,21 +46,19 @@ def p_methodDefinition2(p):
     'methodDefinition : domain methodType NAME LEFTPAR RIGHTPAR LEFTKEY NEWLINE instructions RIGHTKEY'
     funcion = Function(p[1], p[2], p[3], 0)
     funcion.instructionList = p[8]
-    print(2)
     p[0] = funcion
 
 	
 #Instructions definition
 def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
-    array = [p[1]]
-    if(p[3] is not None):
-        array.insert(0, p[3])
-    p[0] = array
+    p[0] = InstructionList(p[1],p[3])
+
+
 
 def p_instructions2(p):
     'instructions : empty'
-    p[0] = p[1]
+    p[0] = None
 	
 
 	
@@ -517,4 +515,4 @@ while True:
     parser.parse(line)
     break
 
-globalFile.printObject()
+niark.printObject()
