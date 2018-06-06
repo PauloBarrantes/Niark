@@ -115,28 +115,20 @@ def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
     p[0] = ArrayAssignation(p[1], p[3], p[6])
 
+
+
 #Definition of the different type of declaration	
 def p_delaration1(p):
     'declaration : VARDECLARATION'
-    p[0] = VariableDeclaration(Variable(p[1]))
+    p[0] = VariableDeclaration(Variable(p[1],0))
 
 def p_delaration2(p):
     'declaration : VARDECLARATION ASIGNATION dataTypeAsignation'
-    variable = VariableDeclaration(Variable(p[1]))
-    variable.variable.addValue(p[3])
-    p[0] = variable
-    print(p[0].variable.name)
+    p[0] = VariableDeclaration(Variable(p[1],p[3]))
 
 def p_delaration4(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
-    p[0] = Array(p[1], p[3])
-	
-def p_delaration6(p):
-    'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    array = Array(p[1], p[3])
-    array.addValue(p[6])
-    p[0] = array
-
+    p[0] = VariableDeclaration(Array(p[1], p[3]))
 
 
 
