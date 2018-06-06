@@ -114,6 +114,8 @@ def p_asignation1(p):
 def p_asignation2(p):
     'asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
     print('asignation : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation')
+    p[0] = VectorAssignation(p[1],p[3],p[6])
+    p[0].print()
 
 
 #Definition of the different type of declaration	

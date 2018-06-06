@@ -149,9 +149,18 @@ class FunctionCall:
 
 
 class VariableAssignation:
-    id = 'ASSIGNATION'
+    id = 'VARIABLE ASSIGNATION'
     def __init__(self, name, value):
         self.name = name
+        self.value = value
+    def print(self):
+        print(self.id)
+
+class VectorAssignation:
+    id = 'VECTOR ASSIGNATION'
+    def __init__(self, name, cellNumber, value):
+        self.name = name
+        self.cellNumber = cellNumber
         self.value = value
     def print(self):
         print(self.id)
