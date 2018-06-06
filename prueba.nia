@@ -8,3 +8,7 @@ read(g)
 f()
 return f()
 return 5
+n > 1
+if(n > 1){
+    n = 0
+}

@@ -3,7 +3,7 @@ class File:
         self.instructionList = []
 
     def addInstruction(self, instruction):
-        self.instructionList.append(instruction)
+        self.instructionList.insert(0,instruction)
 
     def printObject(self):
         for x in range (0, len(self.instructionList)):
@@ -58,7 +58,7 @@ class Instruction:
         self.value = value
 
     def printObject(self):
-        print(self.id,self.value)
+        print(self.id, self.value)
 
 
 

@@ -55,7 +55,7 @@ def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
     array = [p[1]]
     if(p[3] is not None):
-        array.append(p[3])
+        array.insert(0, p[3])
     p[0] = array
 
 def p_instructions2(p):
