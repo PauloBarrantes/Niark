@@ -80,6 +80,8 @@ def p_simple1(p):
 def p_simple2(p):
     'simple : declaration'
     print('simple : declaration')
+    p[0] = p[1]
+    p[0].print()
 
 def p_simple3(p):
     'simple : read'
@@ -122,18 +124,20 @@ def p_asignation2(p):
 def p_declaration1(p):
     'declaration : VARDECLARATION'
     print('declaration : VARDECLARATION')
+    p[0] = EmptyVariableDeclaration(p[1])
+    p[0].print
 
 def p_declaration2(p):
     'declaration : VARDECLARATION ASIGNATION dataTypeAsignation'
-    print()
+    print('declaration : VARDECLARATION ASIGNATION dataTypeAsignation')
+    p[0] = VariableDeclaration(p[1],p[3])
+    p[0].print()
 
 def p_declaration3(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
-    print()
-
-def p_declaration4(p):
-    'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET ASIGNATION dataTypeAsignation'
-    print()
+    print('declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET')
+    p[0] = VectorDeclaration(p[1], p[3])
+    p[0].print()
 
 
 

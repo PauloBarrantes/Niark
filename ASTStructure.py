@@ -58,14 +58,31 @@ class Variable:
 
 
 
-class VariableDeclaration:
-    id = 'DECLARATION'
-    def __init__(self, variable):
-        self.name = "declaracion"
-        self.variable = variable
+class EmptyVariableDeclaration:
+    id = 'EMPTY DECLARATION'
+    def __init__(self, name):
+        self.name = name[1:]
 
     def print(self):
-        print(id)
+        print(self.id)
+
+class VariableDeclaration:
+    id = 'VARIABLE DECLARATION'
+    def __init__(self, name,value):
+        self.name = name[1:]
+        self.value = value
+
+    def print(self):
+        print(self.id)
+
+class VectorDeclaration:
+    id = 'VECTOR DECLARATION'
+    def __init__(self, name,size):
+        self.name = name[1:]
+        self.size = size
+
+    def print(self):
+        print(self.id)
 
 
 
