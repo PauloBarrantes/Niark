@@ -132,7 +132,7 @@ class If:
         self.instructions.insert(0,instruction)
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.conditions,self.instructions)
+        print(tabs,self.id)
         if(self.conditions != None):
             self.conditions.printObject(tabs+"    ")
 
@@ -145,16 +145,17 @@ class If:
 
 
 class IfAndElse:
-    id = 'IFANDELSE'
+    id1 = 'IF '
+    id2 = 'ELSE'
     def __init__(self,conditions,instructionListIf,instructionListElse):
         self.conditions = conditions
         self.instructionsIf = instructionListIf.instructions
         self.instructionsElse = instructionListElse.instructions
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.conditions,self.instructionsIf,self.instructionsElse)
+        print(tabs, self.id1)
         if (self.conditions != None):
-            self.conditions.printObject(tabs+"    ")
+            self.conditions.printObject(tabs)
 
         if (self.instructionsIf != None):
             for x in range(len(self.instructionsIf)):
@@ -162,6 +163,7 @@ class IfAndElse:
                     self.instructionsIf[x].printObject(tabs+"    ")
         else:
             print('No instructions in the IF section')
+        print(tabs, self.id2)
 
         if (self.instructionsElse != None):
             for x in range(len(self.instructionsElse)):
