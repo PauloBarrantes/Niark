@@ -7,4 +7,5 @@ def semantic():
     parse()
     niark = getNiarkCode()
     niark.printObject("")
+
 semantic()
