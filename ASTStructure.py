@@ -100,7 +100,7 @@ class Condition:
         self.operator = operator
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.term1, self.term2, self.operator)
+        print(tabs,self.id,self.term1, self.operator, self.term2)
 
 class Arithmetic:
     id = 'ARITHMETIC'
@@ -110,7 +110,7 @@ class Arithmetic:
         self.operator = operator
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.term1, self.term2, self.operator)
+        print(tabs,self.id,self.term1, self.operator, self.term2)
 
 #############################################################
 # End parameters, conditions and arithmetics
