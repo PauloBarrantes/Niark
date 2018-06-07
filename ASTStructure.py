@@ -29,7 +29,12 @@ class ArrayAssignation:
         self.value = value
 
     def printObject(self, tabs) :
-        print(tabs,self.id,self.name, self.index, self.value)
+        if type(self.index)is Arithmetic:
+            print(tabs, self.id, self.name)
+            self.index.printObject(tabs)
+            print(tabs, self.value)
+        else:
+            print(tabs,self.id,self.name, self.index, self.value)
 
 
 
@@ -100,7 +105,18 @@ class Condition:
         self.operator = operator
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.term1, self.term2, self.operator)
+        if type(self.term1) is Arithmetic:
+            print(tabs,self.id,)
+            self.term1.printObject(tabs)
+            print(tabs, self.term2, self.operator)
+
+        else:
+            if type(self.term2) is Arithmetic:
+                print(tabs,self.id, self.term1,)
+                self.term2.printObject(tabs)
+                print(tabs, self.operator)
+            else:
+                print(tabs,self.id,self.term1, self.term2, self.operator)
 
 class Arithmetic:
     id = 'ARITHMETIC'
