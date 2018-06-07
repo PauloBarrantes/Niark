@@ -5,10 +5,9 @@ class Niark:
     def addStatement(self, statement):
         self.statements.insert(0,statement)
 
-    def printObject(self):
+    def printObject(self, tabs):
         for x in range (0, len(self.statements)):
-            self.statements[x].printObject()
-
+            self.statements[x].printObject(tabs)
 #############################################################
 # Begin simple instruction section
 #############################################################
@@ -19,8 +18,8 @@ class VariableAssignation:
         self.name = name
         self.value = value
 
-    def printObject(self):
-        print(self.id,self.name,self.value)
+    def printObject(self, tabs):
+        print(tabs,self.id,self.name,self.value)
 
 class ArrayAssignation:
     id = 'ARRAY ASSIGNATION'
@@ -29,8 +28,8 @@ class ArrayAssignation:
         self.index = index
         self.value = value
 
-    def printObject(self) :
-        print(self.id,self.name, self.index, self.value)
+    def printObject(self, tabs) :
+        print(tabs,self.id,self.name, self.index, self.value)
 
 
 
@@ -39,16 +38,16 @@ class VariableDeclaration:
     def __init__(self, variable):
         self.variable = variable
 
-    def printObject(self):
-        print(self.id,self.variable.printObject())
+    def printObject(self,tabs):
+        print(tabs,self.id,self.variable.printObject(tabs))
 
 class ArrayDeclaration:
     id = 'ARRAY DECLARATION'
     def __init__(self, array):
         self.array = array
 
-    def printObject(self):
-        print(self.id,self.array.printObject())
+    def printObject(self, tabs):
+        print(tabs,self.id,self.array.printObject(tabs))
 
 
 
@@ -57,8 +56,8 @@ class Instruction:
         self.id = id
         self.value = value
 
-    def printObject(self):
-        print(self.id, self.value)
+    def printObject(self, tabs):
+        print(tabs,self.id, self.value)
 
 
 
@@ -69,8 +68,8 @@ class FunctionCall:
         self.name = name
         self.parameters = parameters
 
-    def printObject(self):
-        print(self.id)
+    def printObject(self,tabs):
+        print(tabs,self.id)
 
 
 
@@ -80,8 +79,8 @@ class IncDec:
         self.operator = operator
         self.variable = variable
 
-    def printObject(self):
-        print(self.id,self.operator,self.variable)
+    def printObject(self,tabs):
+        print(tabs,self.id,self.operator,self.variable)
 
 #############################################################
 # End simple instruction section
@@ -100,8 +99,8 @@ class Condition:
         self.term2 = term2
         self.operator = operator
 
-    def printObject(self):
-        print(self.id,self.term1, self.term2, self.operator)
+    def printObject(self,tabs):
+        print(tabs,self.id,self.term1, self.term2, self.operator)
 
 class Arithmetic:
     id = 'ARITHMETIC'
@@ -110,8 +109,8 @@ class Arithmetic:
         self.term2 = term2
         self.operator = operator
 
-    def printObject(self):
-        print(self.id,self.term1, self.term2, self.operator)
+    def printObject(self,tabs):
+        print(tabs,self.id,self.term1, self.term2, self.operator)
 
 #############################################################
 # End parameters, conditions and arithmetics
@@ -132,15 +131,15 @@ class If:
     def addInstruction(self, instruction):
         self.instructions.insert(0,instruction)
 
-    def printObject(self):
-        print(self.id,self.conditions,self.instructions)
+    def printObject(self,tabs):
+        print(tabs,self.id,self.conditions,self.instructions)
         if(self.conditions != None):
-            self.conditions.printObject()
+            self.conditions.printObject(tabs+"    ")
 
         if(self.instructions != None):
             for x in range (len(self.instructions)):
                 if (self.instructions[x] != None):
-                    self.instructions[x].printObject()
+                    self.instructions[x].printObject(tabs+"    ")
         else:
             print('No instructions in the IF section')
 
@@ -152,22 +151,22 @@ class IfAndElse:
         self.instructionsIf = instructionListIf.instructions
         self.instructionsElse = instructionListElse.instructions
 
-    def printObject(self):
-        print(self.id,self.conditions,self.instructionsIf,self.instructionsElse)
+    def printObject(self,tabs):
+        print(tabs,self.id,self.conditions,self.instructionsIf,self.instructionsElse)
         if (self.conditions != None):
-            self.conditions.printObject()
+            self.conditions.printObject(tabs+"    ")
 
         if (self.instructionsIf != None):
             for x in range(len(self.instructionsIf)):
                 if (self.instructionsIf[x] != None):
-                    self.instructionsIf[x].printObject()
+                    self.instructionsIf[x].printObject(tabs+"    ")
         else:
             print('No instructions in the IF section')
 
         if (self.instructionsElse != None):
             for x in range(len(self.instructionsElse)):
                 if (self.instructionsElse[x] != None):
-                    self.instructionsElse[x].printObject()
+                    self.instructionsElse[x].printObject(tabs+"    ")
         else:
             print('No instructions in the ELSE section')
 
@@ -181,15 +180,15 @@ class For:
         self.instructions.insert(0,declaration)
         self.instructions.extend(instructionList.instructions)
 
-    def printObject(self):
-        print(self.id)
-        self.conditions.printObject()
-        self.incdec.printObject()
+    def printObject(self,tabs):
+        print(tabs,self.id)
+        self.conditions.printObject(tabs)
+        self.incdec.printObject(tabs)
 
         if (self.instructions != None):
             for x in range(len(self.instructions)):
                 if (self.instructions[x] != None):
-                    self.instructions[x].printObject()
+                    self.instructions[x].printObject(tabs+"    ")
 
 #############################################################
 # End complex instruction section
@@ -206,11 +205,11 @@ class Method:
         self.parameter = parameter
         self.instructions = instructionList.instructions
 
-    def printObject(self):
+    def printObject(self,tabs):
         print(self.id,self.functionDomain,self.returnType,self.name,self.parameter)
         if (self.instructions != None):
             for x in range(len(self.instructions)):
-                self.instructions[x].printObject()
+                self.instructions[x].printObject(tabs+"    ")
 
 
 
@@ -224,8 +223,8 @@ class Variable:
         self.name = name
         self.value = value
 
-    def printObject(self):
-        print(self.id, self.name, self.value)
+    def printObject(self,tabs):
+        print(tabs,self.id, self.name, self.value)
 
 class Array:
     id = 'ARRAY'
@@ -233,8 +232,8 @@ class Array:
         self.name = name
         self.size = size
 
-    def printObject(self):
-        print(self.id, self.name, self.size)
+    def printObject(self,tabs):
+        print(tabs,self.id, self.name, self.size)
 
 class InstructionList:
     id = 'INSTRUCTION LIST'
@@ -245,13 +244,12 @@ class InstructionList:
         if (instructionList is not None):
             self.instructions.extend(instructionList.instructions)
 
-    def printObject(self):
+    def printObject(self,tabs):
         if (self.instructions != None):
             for x in range(len(self.instructions)):
-                self.instructions[x].printObject()
+                self.instructions[x].printObject(tabs)
 
 
 #############################################################
 # End variables section
 #############################################################
-

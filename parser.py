@@ -32,7 +32,7 @@ def p_Start4(p):
     'Niark : instruction'
     niark.addStatement(p[1])
 
-	
+
 
 #Method definition
 def p_methodDefinition1(p):
@@ -44,7 +44,7 @@ def p_methodDefinition2(p):
     p[0] = Method(p[1],p[2],p[3],None,p[8])
 
 
-	
+
 #Instructions definition
 def p_instructions1(p):
     'instructions : instruction NEWLINE instructions'
@@ -55,9 +55,9 @@ def p_instructions1(p):
 def p_instructions2(p):
     'instructions : empty'
     p[0] = None
-	
 
-	
+
+
 #The forms an instruction can become
 def p_Instruction1(p):
     'instruction : simple'
@@ -66,9 +66,9 @@ def p_Instruction1(p):
 def p_Instruction2(p):
     'instruction : complex'
     p[0] = p[1]
-	
 
-	
+
+
 #The different types of simple instructions
 def p_simple1(p):
     'simple : asignation'
@@ -98,8 +98,8 @@ def p_simple7(p):
     'simple : incdec'
     p[0] = p[1]
 
-	
-	
+
+
 #Simple instructions definition
 
 
@@ -115,7 +115,7 @@ def p_asignation2(p):
 
 
 
-#Definition of the different type of declaration	
+#Definition of the different type of declaration
 def p_delaration1(p):
     'declaration : VARDECLARATION'
     p[0] = VariableDeclaration(Variable(p[1][1:],0))
@@ -150,18 +150,18 @@ def p_read1(p):
     'read : READ LEFTPAR NAME RIGHTPAR'
     p[0] = Instruction('READ',p[3])
 
-	
+
 #Definition of the print instruction
 def p_print(p):
     'print : PRINT LEFTPAR sendingVariables RIGHTPAR'
     p[0] = Instruction('PRINT',p[3])
 
-	
+
 #Definition of the systemcall instruction
 def p_functioncall1(p):
     'functionCall : NAME LEFTPAR sendingVariables RIGHTPAR'
     p[0] = FunctionCall(p[1], p[3])
-	
+
 def p_functioncall2(p):
     'functionCall : NAME LEFTPAR empty RIGHTPAR'
     p[0] = FunctionCall(p[1], None)
@@ -511,15 +511,14 @@ def p_empty(p):
     'empty : '
 
 # Build the parser
-parser = yacc.yacc()
+def parse():
+    parser = yacc.yacc()
+    name = input("Escriba el nombre del archivo con el código fuente ")
+    file = open(name, 'r')
+    line = file.read()
+    while True:
+        parser.parse(line)
+        break
 
-name = input("Escriba el nombre del archivo con el código fuente ")
-file = open(name, 'r')
-line = file.read()
-
-
-while True:
-    parser.parse(line)
-    break
-
-niark.printObject()
+def getNiarkCode():
+    return niark
