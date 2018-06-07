@@ -62,7 +62,11 @@ class Instruction:
         self.value = value
 
     def printObject(self, tabs):
-        print(tabs,self.id, self.value)
+        if type(self.value) is Arithmetic:
+            print (tabs, self.id)
+            self.value.printObject(tabs)
+        else:
+            print(tabs,self.id, self.value)
 
 
 
@@ -74,7 +78,11 @@ class FunctionCall:
         self.parameters = parameters
 
     def printObject(self,tabs):
-        print(tabs,self.id)
+        if type(self.parameters) is Arithmetic:
+            print(tabs,self.id, self.name)
+            self.parameters.printObject(tabs)
+        else:
+            print(tabs,self.id, self.name, self.parameters)
 
 
 
@@ -105,22 +113,20 @@ class Condition:
         self.operator = operator
 
     def printObject(self,tabs):
-<<<<<<< HEAD
         if type(self.term1) is Arithmetic:
             print(tabs,self.id,)
             self.term1.printObject(tabs)
-            print(tabs, self.term2, self.operator)
+            print(tabs,self.operator ,self.term2)
 
         else:
             if type(self.term2) is Arithmetic:
-                print(tabs,self.id, self.term1,)
+                print(tabs,self.id, self.term1, self.operator)
                 self.term2.printObject(tabs)
-                print(tabs, self.operator)
             else:
-                print(tabs,self.id,self.term1, self.term2, self.operator)
-=======
-        print(tabs,self.id,self.term1, self.operator, self.term2)
->>>>>>> 1d38b982689490b3f5e2aabb5f9d27c5d46c6bca
+                if type(self.term2) is FunctionCall:
+                    self.term2.printObject(tabs)
+                else:
+                    print(tabs,self.id,self.term1, self.operator, self.term2)
 
 class Arithmetic:
     id = 'ARITHMETIC'
@@ -130,7 +136,13 @@ class Arithmetic:
         self.operator = operator
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.term1, self.operator, self.term2)
+        if type(self.term1) is FunctionCall and type(self.term2) is FunctionCall:
+            print (tabs, self.id )
+            self.term1.printObject(tabs)
+            print (tabs,self.operator)
+            self.term2.printObject(tabs)
+        else:
+            print(tabs,self.id,self.term1, self.operator, self.term2)
 
 #############################################################
 # End parameters, conditions and arithmetics
