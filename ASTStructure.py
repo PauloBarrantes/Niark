@@ -105,6 +105,7 @@ class Condition:
         self.operator = operator
 
     def printObject(self,tabs):
+<<<<<<< HEAD
         if type(self.term1) is Arithmetic:
             print(tabs,self.id,)
             self.term1.printObject(tabs)
@@ -117,6 +118,9 @@ class Condition:
                 print(tabs, self.operator)
             else:
                 print(tabs,self.id,self.term1, self.term2, self.operator)
+=======
+        print(tabs,self.id,self.term1, self.operator, self.term2)
+>>>>>>> 1d38b982689490b3f5e2aabb5f9d27c5d46c6bca
 
 class Arithmetic:
     id = 'ARITHMETIC'
@@ -126,7 +130,7 @@ class Arithmetic:
         self.operator = operator
 
     def printObject(self,tabs):
-        print(tabs,self.id,self.term1, self.term2, self.operator)
+        print(tabs,self.id,self.term1, self.operator, self.term2)
 
 #############################################################
 # End parameters, conditions and arithmetics
