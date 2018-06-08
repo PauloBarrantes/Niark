@@ -1,3 +1,4 @@
+$d = 2
 public void Fibonacci(n){
     $booleano = True
     $string = "Hola Mundo"

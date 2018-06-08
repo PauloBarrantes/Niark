@@ -1,28 +1,18 @@
-class method():
 
-    def __init__(self, arg):
 
-        self.arg = arg
-class variable():
-
-    def __init__(self, name, value, type):
-        self.name = name
-        self.value = value
-        self.value = type
 class TableOfSymbols():
-    """docstring for tableOfSymbols."""
     globalScope = []
     def __init__(self):
-
-
-    def insert(self,key):
         pass
 
-    def lookup(selfkey):
+    def insert(self, object):
+        pass
+
+    def lookup(self, object):
         pass
 
 
-    def enterScope(self, arg):
+    def enterScope(self, object):
         pass
-    def exitScope(self,arg):
+    def exitScope(self, object):
         pass
