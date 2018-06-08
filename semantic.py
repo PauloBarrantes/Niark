@@ -1,6 +1,5 @@
 from parser import *
 from ASTStructure import *
-from tableOfSymbols import *
 
 '''
 list1 = [1,2,3]
@@ -12,7 +11,6 @@ print (list2)
 print (list1)
 
 '''
-tos =  TableOfSymbols()
 listOfList = []
 
 class decMethod():
@@ -26,14 +24,14 @@ class decVar():
     def __init__(self, name, value, type):
         self.name = name
         self.value = value
-        self.value = type
+        self.type = type
 
 def semantic():
     parse()
     niark = getNiarkCode()
     niark.printObject('')
     globalScope = []
-    listOflist.insert(0,globalScope)
+    listOfList.insert(0,globalScope)
 
     for statement in niark.statements:
         if type(statement) is VariableDeclaration:
@@ -45,11 +43,11 @@ def semantic():
             globalScope.insert(0,decVar1)
         else:
             if type(statement) is Method:
-                newLista = listOflist.insert(0,globalScope)
+                newLista = listOfList.insert(0,globalScope)
                 recursive(statement, newLista)
             else:
                 if type(statement) is VariableAssignation:
-                    if lookup(statement.name,listOflist):
+                    if lookup(statement.name,listOfList):
                         print ("GG")
 
 
@@ -76,4 +74,4 @@ semantic()
 
 for list in listOfList:
     for object in list:
-        print (value2.name)
+        print (object.name, object.type)
