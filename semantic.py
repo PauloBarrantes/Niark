@@ -48,7 +48,11 @@ def semantic():
                 newLista = listOflist.insert(0,globalScope)
                 recursive(statement, newLista)
             else:
-                print ("gg")
+                if type(statement) is VariableAssignation:
+                    if lookup(statement.name,listOflist):
+                        print ("GG")
+
+
 def recursive(object, listaDeListas ):
 
     if type(object) is Method:
@@ -58,9 +62,14 @@ def recursive(object, listaDeListas ):
             else:
                 recursive(instruction)
 
-def lookup(tableOfSymbols):
-    pass
+def lookup(name,tableOfSymbols):
+    encontrado = False
+    for value in tableOfSymbols:
+        for value2 in value:
+            if value2.name == name:
+                encontrado = True
 
+    return encontrado
 semantic()
 
 for value in listOflist:
