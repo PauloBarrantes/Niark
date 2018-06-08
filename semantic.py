@@ -13,7 +13,7 @@ print (list1)
 
 '''
 tos =  TableOfSymbols()
-listOflist = []
+listOfList = []
 
 class decMethod():
     def __init__(self, name, functionDomain, returnType):
@@ -70,8 +70,10 @@ def lookup(name,tableOfSymbols):
                 encontrado = True
 
     return encontrado
+
+
 semantic()
 
-for value in listOflist:
-    for value2 in value:
+for list in listOfList:
+    for object in list:
         print (value2.name)
