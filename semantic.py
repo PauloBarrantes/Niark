@@ -69,9 +69,7 @@ def recursive(object, listaDeListas):
                 decVar1 = decVar(name, value, type1)
                 listaDeListas[0].insert(0,decVar1)
     elif type(object) is VariableAssignation:
-        if lookup(object.name,listaDeListas):
-            pass
-        else:
+        if not lookup(object.name,listaDeListas):
             printError(object.name + " no ha sido declarada" )
 
     elif type(object) is FunctionCall:
@@ -85,13 +83,18 @@ def recursive(object, listaDeListas):
         for instruction in object.instructions:
             recursive(instruction, newTable)# Recursively check internal instructions2
     elif type(object) is IfAndElse:
-        newScope = []
-        newTable = listaDeListas[:]  #[:] hace que la asignacion sea por copia
-        newTable.insert(0, newScope)
+        newScope1 = []
+        newScope2 = []
+
+        newTable1 = listaDeListas[:]  #[:] hace que la asignacion sea por copia
+        newTable2 = listaDeListas[:]  #[:] hace que la asignacion sea por copia
+
+        newTable1.insert(0, newScope1)
+        newTable2.insert(0, newScope2)
         for instruction in object.instructionsIf:
-            recursive(instruction, newTable)
+            recursive(instruction, newTable1)
         for instruction in object.instructionsElse:
-            recursive(instruction, newTable)# Recursively check internal instructions3
+            recursive(instruction, newTable2)# Recursively check internal instructions3
     elif type(object) is For:
         newScope = []
         newTable = listaDeListas[:]  #[:] hace que la asignacion sea por copia
@@ -117,10 +120,9 @@ def recursive(object, listaDeListas):
         recursive(object.term1, listaDeListas)
         recursive(object.term2, listaDeListas)
     elif type(object) is Instruction:
-        print (id)
         recursive(object.value,listaDeListas)
     else:
-        print("Es algo raro :o")
+        print("Es algo raro :o -->")
 
 def lookup(name,tableOfSymbols):
     encontrado = False
