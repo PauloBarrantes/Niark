@@ -1,11 +1,8 @@
 public function Fibonacci(n){
     if (n > 1){
-        $data = 4
-        return Fibonacci(n-1) + Fibonacci(n-2)
+        return Fibonacci(m-1) + Fibonacci(n-2)
     }else{
-        $data = 2
         if (n == 1){
-            gg = 2
             return 1
         }else{
             if (n == 0){

@@ -361,7 +361,7 @@ def p_sendingVariable2(p):
 
 def p_sendingVariable3(p):
     'sendingVariable : variable'
-    p[0] = p[1]
+    p[0] = Variable(p[1],None)
 
 def p_sendingVariable4(p):
     'sendingVariable : functionCall'
@@ -396,7 +396,7 @@ def p_dataLocalizatorType1(p):
 
 def p_dataLocalizatorType2(p):
     'dataLocalizatorType : variable'
-    p[0] = p[1]
+    p[0] = Variable(p[1],None)
 
 def p_dataLocalizatorType3(p):
     'dataLocalizatorType : arithmetic'
@@ -474,7 +474,7 @@ def p_arithmeticDataType1(p):
 
 def p_arithmeticDataType2(p):
     'arithmeticDataType : variable'
-    p[0] = p[1]
+    p[0] = Variable(p[1],None)
 
 def p_arithmeticDataType3(p):
     'arithmeticDataType : functionCall'

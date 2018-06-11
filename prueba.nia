@@ -1,18 +1,5 @@
 public function Fibonacci(n){
-    $data = 9
+    $criba[p]
+    criba[5] = 6
 }
-public function GG(n,k,j){
-    $data = 8
-}
-$DucanAlly = "salvaje"
-public void Jaja(){
-  for($i = 0; i < n; ++i){
-    if(i > 0){
-      $e = 8
-    }else{
-      if(i < 0){
-        $fla = 1
-      }
-    }
-  }
-}
+Fibonacci(1)

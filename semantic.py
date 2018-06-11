@@ -50,6 +50,7 @@ def recursive(object, listaDeListas):
             parameter = object.parameter
             decMethod1 = decMethod(name, functionDomain, returnType, parameter)
             listaDeListas[0].insert(0,decMethod1)
+
             newScope = []
             newTable = listaDeListas[:]  #[:] hace que la asignacion sea por copia
             newTable.insert(0, newScope)
