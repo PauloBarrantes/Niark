@@ -1,2 +1,6 @@
-$data = "holi"
-data = 3
+public function Fibonacci(n){
+    $data = 9
+}
+public function GG(n,k,j){
+    $data = 8
+}
