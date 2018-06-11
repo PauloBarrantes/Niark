@@ -27,10 +27,9 @@ class decVar():
         self.type = type
 
 class decArray(): #En el AST la declaracion de arreglo está como declaración de variable, me parece que vamos a necesitar cambiarlo y usar esto.
-    def __init__(self, name, size, values):
+    def __init__(self, name, size):
         self.name = name
         self.size = size
-        self.values = values
 
 def semantic():
     parse()
@@ -59,15 +58,14 @@ def recursive(object, listaDeListas):
         else:
             printError(object.name+ " fue declarado antes")
     elif type(object) is VariableDeclaration:
-        if type(object) is VariableDeclaration:
-            if lookup(object.variable.name,listaDeListas):
-                printError(object.variable.name + " fue declarada antes")
-            else:
-                name = object.variable.name
-                value = object.variable.value
-                type1 = type(value)
-                decVar1 = decVar(name, value, type1)
-                listaDeListas[0].insert(0,decVar1)
+        if lookup(object.variable.name,listaDeListas):
+            printError(object.variable.name + " fue declarada antes")
+        else:
+            name = object.variable.name
+            value = object.variable.value
+            type1 = type(value)
+            decVar1 = decVar(name, value, type1)
+            listaDeListas[0].insert(0,decVar1)
     elif type(object) is VariableAssignation:
         if not lookup(object.name,listaDeListas):
             printError(object.name + " no ha sido declarada" )
@@ -105,7 +103,12 @@ def recursive(object, listaDeListas):
     elif type(object) is ArrayDeclaration:
         if lookup(object.name,listaDeListas):
             printError(object.name +" el array ya fue declarado")
+        else:
+            name = object.array.name
+            size = object.array.size
 
+            decArray1 = decArray(name, size)
+            listaDeListas[0].insert(0,decArray1)
     elif type(object) is ArrayAssignation:
         if not lookup(object.name,listaDeListas):
             printError(object.name + " no ha sido declarado")
