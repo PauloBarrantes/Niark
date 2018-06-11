@@ -126,7 +126,7 @@ def p_delaration2(p):
 
 def p_delaration3(p):
     'declaration : VARDECLARATION LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
-    p[0] = VariableDeclaration(Array(p[1][1:], p[3]))
+    p[0] = ArrayDeclaration(Array(p[1][1:], p[3]))
 
 
 
