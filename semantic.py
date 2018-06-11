@@ -104,6 +104,8 @@ def recursive(object, listaDeListas):
 <<<<<<< HEAD
         if lookup(object.array.name,listaDeListas):
             printError(object.array.name +" el array ya fue declarado")
+        if lookup(object.name,listaDeListas):
+            printError(object.name +" el array ya fue declarado")
         else:
             name = object.array.name
             size = object.array.size
