@@ -101,6 +101,7 @@ def recursive(object, listaDeListas):
         for instruction in object.instructions:
             recursive(instruction, newTable)# Recursively check internal instructions4
     elif type(object) is ArrayDeclaration:
+<<<<<<< HEAD
         if lookup(object.array.name,listaDeListas):
             printError(object.array.name +" el array ya fue declarado")
         else:
