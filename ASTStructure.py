@@ -207,11 +207,12 @@ class IfAndElse:
 class For:
     id = 'FOR'
     def __init__(self,declaration,conditions,incdec,instructionList):
+        self.declaration = declaration
         self.conditions = conditions
         self.incdec = incdec
 
         self.instructions = []
-        self.instructions.insert(0,declaration)
+#        self.instructions.insert(0,declaration)        //Asignamos como atributo la declaración para que no sea parte del ciclo.
         self.instructions.extend(instructionList.instructions)
 
     def printObject(self,tabs):
