@@ -6,7 +6,6 @@ public function Eratostenes(n){
    k=0
     for($i = 2; i < sqrt(n); ++i){
         w=0
-
         if(criba[i] == 0){
             q=0
 
