@@ -361,7 +361,7 @@ def p_sendingVariable2(p):
 
 def p_sendingVariable3(p):
     'sendingVariable : variable'
-    p[0] = Variable(p[1],None)
+    p[0] = p[1]
 
 def p_sendingVariable4(p):
     'sendingVariable : functionCall'
@@ -373,7 +373,7 @@ def p_sendingVariable4(p):
 #Varialbe definition
 def p_variable1(p):
     'variable : NAME'
-    p[0] = p[1]
+    p[0] = Variable(p[1],None)
 
 def p_variable2(p):
     'variable : vectorVariable'
@@ -385,7 +385,7 @@ def p_variable2(p):
 #Vector	definition
 def p_vectorVariable1(p):
     'vectorVariable : NAME LEFTBRACKET dataLocalizatorType RIGHTBRACKET'
-
+    p[0] = Array(p[1],p[3])
 
 
 
@@ -396,7 +396,7 @@ def p_dataLocalizatorType1(p):
 
 def p_dataLocalizatorType2(p):
     'dataLocalizatorType : variable'
-    p[0] = Variable(p[1],None)
+    p[0] = p[1]
 
 def p_dataLocalizatorType3(p):
     'dataLocalizatorType : arithmetic'
@@ -474,7 +474,7 @@ def p_arithmeticDataType1(p):
 
 def p_arithmeticDataType2(p):
     'arithmeticDataType : variable'
-    p[0] = Variable(p[1],None)
+    p[0] = p[1]
 
 def p_arithmeticDataType3(p):
     'arithmeticDataType : functionCall'
