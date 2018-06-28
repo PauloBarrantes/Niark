@@ -159,9 +159,14 @@ def lookup(name,tableOfSymbols):
     return encontrado
 
 def printError(error):
+    error = True
     print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + error + bcolors.ENDC)
-semantic()
 
-for list in listOfLists:
-    for object in list:
-        print (object.name)
+#semantic()
+
+#for list in listOfLists:
+#    for object in list:
+#        print (object.name)
+
+def getNiark():
+    return listOfLists

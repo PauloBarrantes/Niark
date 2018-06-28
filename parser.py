@@ -501,6 +501,7 @@ def p_arithmeticOp4(p):
 
 def p_error(p):
     if p:
+        error = True
         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.HEADER + p.type+ bcolors.ENDC, bcolors.BOLD + "", p.value,"" + bcolors.ENDC, bcolors.WARNING + "Sucedió en la línea:" + bcolors.ENDC, bcolors.UNDERLINE + "" ,p.lineno,"" + bcolors.ENDC)
          # Just discard the token and tell the parser it's okay.
         parser.errok()

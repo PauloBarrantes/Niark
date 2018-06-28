@@ -99,6 +99,6 @@ class bit:
     state = False
     def __init__(self, nameReg, state):
         self.nameReg = nameReg
-        self.state = state)
+        self.state = state
 
 

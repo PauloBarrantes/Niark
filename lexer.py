@@ -109,11 +109,13 @@ t_RIGHTKEY = r'\}'
 t_ignore = r' '
 
 def t_error(t):
+    error = True
     print("Lexical error in line " ,t.lexer.lineno)
     t.lexer.skip(1)
 
 
 lexer = lex.lex()
+
 
 '''
 name = input("Escriba el nombre del archivo con el código fuente ")
