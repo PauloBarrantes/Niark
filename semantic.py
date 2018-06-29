@@ -1,4 +1,4 @@
-from parser import *
+from newParser import *
 from ASTStructure import *
 
 '''
@@ -164,7 +164,7 @@ def printError(error):
     semanticError = True
     print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + error + bcolors.ENDC)
 
-#semantic()
+semantic()
 
 #for list in listOfLists:
 #    for object in list:
