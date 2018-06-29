@@ -1,4 +1,4 @@
-from newParser import *
+from parser import *
 from ASTStructure import *
 
 '''
@@ -161,7 +161,7 @@ def lookup(name,tableOfSymbols):
 def printError(error):
     print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + error + bcolors.ENDC)
 
-semantic()
+#semantic()
 
 #for list in listOfLists:
 #    for object in list:

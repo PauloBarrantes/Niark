@@ -1,10 +1,8 @@
 import ply.yacc as yacc
-from lexer import tokens, getLexerError
+from lexer import tokens
 from ASTStructure import *
 
 niark = Niark()
-error = getLexerError()
-print(error)
 
 class bcolors:
     HEADER = '\033[95m'
@@ -523,8 +521,6 @@ def parse():
         parser.parse(line)
         break
 
-def getParserError():
-    return error
 
 def getNiarkCode():
     return niark

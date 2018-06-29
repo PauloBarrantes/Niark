@@ -11,27 +11,24 @@ bitmap =  BitMap()
 
 def codeGenerator():
     semantic()
-    file.write(currentLabel,":")
-    currentLabel += 1
-    if True:
-        niark = getNiark()
-        dataHeader = ".data \n"
-        textHeader = ".text \n"
-        mainHeader = "main: \n"
-        bitmap.inicializar()
-        dataSegment.append(dataHeader)
-        textSegment.append(textHeader)
-        textSegment.append(mainHeader)
-        exitSyscall()
-        '''Inicia el algoritmo recursivo de generación de código '''
+    niark = getNiark()
+    dataHeader = ".data \n"
+    textHeader = ".text \n"
+    mainHeader = "main: \n"
+    bitmap.inicializar()
+    dataSegment.append(dataHeader)
+    textSegment.append(textHeader)
+    textSegment.append(mainHeader)
+    syscall()
+    exitSyscall()
+    '''Inicia el algoritmo recursivo de generación de código '''
 
-        '''for statement in niark.statements:
-            recursive(statement, listOfLists)
-          '''
-        generateCode(executable)
-        executable.close()
-    else:
-        print("Please fix errors so we can create an executable.")
+    '''for statement in niark.statements:
+        recursive(statement, listOfLists)
+      '''
+    generateCode(executable)
+    executable.close()
+
 
 
 def recursive(object, listaDeListas):
@@ -66,7 +63,7 @@ def recursive(object, listaDeListas):
         pass
     elif type(object) is Instruction:
         if object.id == 'READ':
-            if type(object.value) is int):
+            if type(object.value) is int:
                 readIntSyscall()
             else:
                 readStringSyscall()
@@ -75,7 +72,7 @@ def recursive(object, listaDeListas):
                 printIntSyscall()
             else:
                 printStringSyscall()
-                
+
     elif type(object) is IncDec:
         regName = bitmap.obtener()
         textSegment.append("li ", regName, ", ", object.variable.value)
@@ -90,20 +87,20 @@ def recursive(object, listaDeListas):
 
 def printIntSyscall(arg):
     printIntSyscall = "li $v0, 1 \n"
-    textSegment.append(printIntSyscall)
+    textSegment.append(str(printIntSyscall) + "li $a0," + str(arg) + "\n")
     syscall()
 
 def printStringSyscall(arg):
     printStringSyscall = "li $v0, 4 \n"
-    textSegment.append(printStringSyscall)
+    textSegment.append(str(printStringSyscall) + "li $a0," + str(arg) + "\n")
     syscall()
 
-def readIntSyscall(arg):
+def readIntSyscall():
     readIntSyscall = "li $v0, 5 \n"
     textSegment.append(readIntSyscall)
     syscall()
 
-def readStringSyscall(arg):
+def readStringSyscall():
     readStringSyscall = "li $v0, 8 \n"
     textSegment.append(readStringSyscall)
     syscall()

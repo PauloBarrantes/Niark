@@ -5,12 +5,15 @@ class BitMap:
     def liberar(self,snameReg):
         encontrado = False
         contador = 0
-        while (contador < 32) and not encontrado:
-            if self.bitmap[contador].state == False:
-                encontrado = True
-            else:
-                contador += 1
-        self.bitmap[contador].state = False
+        if(snameReg != "$a0" and snameReg != "$v0" and snameReg != "$ra" and snameReg != "$sp" and snameReg != "$zero"):
+            while (contador < 32) and not encontrado:
+                if self.bitmap[contador].state == False:
+                    encontrado = True
+                else:
+                    contador += 1
+            self.bitmap[contador].state = False
+        else:
+            print("Freeing invalid register")
 
     def obtener(self):
         print("gg1")
@@ -31,16 +34,16 @@ class BitMap:
     def imprimir(self):
         for bit in self.bitmap:
             print(bit.nameReg, bit.state)
-            
+
     def inicializar(self):
 
         bit1 = bit("$zero",True)
         self.bitmap.append(bit1)
-        bit2 = bit("$v0",False)
+        bit2 = bit("$v0",True)
         self.bitmap.append(bit2)
         bit3 = bit("$v1",False)
         self.bitmap.append(bit3)
-        bit4 = bit("$a0",False)
+        bit4 = bit("$a0",True)
         self.bitmap.append(bit4)
         bit5 = bit("$a1",False)
         self.bitmap.append(bit5)
@@ -90,7 +93,7 @@ class BitMap:
         self.bitmap.append(bit27)
         bit28 = bit("$gp",False)
         self.bitmap.append(bit28)
-        bit29 = bit("$sp",False)
+        bit29 = bit("$sp",True)
         self.bitmap.append(bit29)
         bit30 = bit("$fp",False)
         self.bitmap.append(bit30)
