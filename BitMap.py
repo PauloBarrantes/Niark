@@ -11,6 +11,7 @@ class BitMap:
             else:
                 contador += 1
         self.bitmap[contador].state = False
+
     def obtener(self):
         print("gg1")
         encontrado = False
@@ -26,9 +27,11 @@ class BitMap:
             contador = -1
         self.bitmap[contador].state = True
         return self.bitmap[contador].nameReg
+
     def imprimir(self):
         for bit in self.bitmap:
             print(bit.nameReg, bit.state)
+            
     def inicializar(self):
 
         bit1 = bit("$zero",True)

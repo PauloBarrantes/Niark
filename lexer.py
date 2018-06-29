@@ -1,4 +1,5 @@
 # coding=utf-8
+error = False
 
 import ply.lex as lex
 reserved = {
@@ -113,6 +114,8 @@ def t_error(t):
     print("Lexical error in line " ,t.lexer.lineno)
     t.lexer.skip(1)
 
+def getLexerError():
+    return error
 
 lexer = lex.lex()
 

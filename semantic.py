@@ -12,6 +12,9 @@ print (list1)
 
 '''
 listOfLists = []
+semanticError = getParserError()
+niark = getNiarkCode()
+print(error)
 
 class decMethod():
     def __init__(self, name, functionDomain, returnType, parameter):
@@ -33,7 +36,6 @@ class decArray(): #En el AST la declaracion de arreglo está como declaración d
 
 def semantic():
     parse()
-    niark = getNiarkCode()
     globalScope = []
     listOfLists.insert(0,globalScope)
 
@@ -159,7 +161,7 @@ def lookup(name,tableOfSymbols):
     return encontrado
 
 def printError(error):
-    error = True
+    semanticError = True
     print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + error + bcolors.ENDC)
 
 #semantic()
@@ -168,5 +170,8 @@ def printError(error):
 #    for object in list:
 #        print (object.name)
 
+def getSemanticError():
+    return semanticError
+
 def getNiark():
-    return listOfLists
+    return niark
