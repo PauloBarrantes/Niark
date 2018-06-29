@@ -1,10 +1,8 @@
 import ply.yacc as yacc
-from lexer import tokens, getLexerError
+from lexer import tokens
 from ASTStructure import *
 
 niark = Niark()
-error = getLexerError()
-print(error)
 
 class bcolors:
     HEADER = '\033[95m'
@@ -503,7 +501,6 @@ def p_arithmeticOp4(p):
 
 def p_error(p):
     if p:
-        error = True
         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.HEADER + p.type+ bcolors.ENDC, bcolors.BOLD + "", p.value,"" + bcolors.ENDC, bcolors.WARNING + "Sucedió en la línea:" + bcolors.ENDC, bcolors.UNDERLINE + "" ,p.lineno,"" + bcolors.ENDC)
          # Just discard the token and tell the parser it's okay.
         parser.errok()
@@ -523,8 +520,6 @@ def parse():
         parser.parse(line)
         break
 
-def getParserError():
-    return error
 
 def getNiarkCode():
     return niark

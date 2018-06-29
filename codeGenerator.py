@@ -3,16 +3,17 @@ from semantic import *
 
 ## Variables de Generación de Código
 executable = open("CompiledCode.asm", "w+")
-error = getSemanticError()
 dataSegment = []
 textSegment = []
 mainLabel = []
+currentLabel = 1
 bitmap =  BitMap()
-print(error)
 
 def codeGenerator():
-    if error == False:
-        semantic()
+    semantic()
+    file.write(currentLabel,":")
+    currentLabel += 1
+    if True:
         niark = getNiark()
         dataHeader = ".data \n"
         textHeader = ".text \n"
@@ -25,7 +26,7 @@ def codeGenerator():
         '''Inicia el algoritmo recursivo de generación de código '''
 
         '''for statement in niark.statements:
-          recursive(statement, listOfLists)
+            recursive(statement, listOfLists)
           '''
         generateCode(executable)
         executable.close()
@@ -37,13 +38,16 @@ def recursive(object, listaDeListas):
     if type(object) is Method:
         pass
     elif type(object) is VariableDeclaration:
+        #Libera despues
         pass
     elif type(object) is VariableAssignation:
         pass
     elif type(object) is FunctionCall:
         pass
     elif type(object) is If:
-        pass
+        regName1 = bitmap.obtener()
+        regName2 = bitmap.obtener()
+
     elif type(object) is IfAndElse:
         pass
     elif type(object) is For:
@@ -61,15 +65,25 @@ def recursive(object, listaDeListas):
     elif type(object) is Condition:
         pass
     elif type(object) is Instruction:
-        pass
+        if(object.id == 'READ'):
+            if(type(object.value) is int):
+                readIntSyscall()
+            else:
+                readStringSyscall()
+        else:
+            if(type(object.value) is int):
+                printIntSyscall()
+            else:
+                printStringSyscall()
     elif type(object) is IncDec:
-        regName = obtener()
+        regName = bitmap.obtener()
         textSegment.append("li ", regName, ", ", object.variable.value)
         if(object.operator == "++"):
             textSegment.append("addi ", regName, ", ", "1")
         else:
             textSegment.append("addi ", regName, ", ", "-1")
-    
+        bitmap.liberar(regName)
+
     else:
         print("Es un literal", type(object))
 
@@ -101,6 +115,10 @@ def exitSyscall():
 def syscall():
     syscall = "syscall \n"
     textSegment.append(syscall)
+
+def printLabel():
+    file.write(currentLabel,":")
+    currentLabel += 1
 
 def generateCode(file):
     for line in dataSegment:

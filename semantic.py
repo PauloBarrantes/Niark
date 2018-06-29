@@ -12,9 +12,7 @@ print (list1)
 
 '''
 listOfLists = []
-semanticError = getParserError()
 niark = getNiarkCode()
-print(error)
 
 class decMethod():
     def __init__(self, name, functionDomain, returnType, parameter):
@@ -161,7 +159,6 @@ def lookup(name,tableOfSymbols):
     return encontrado
 
 def printError(error):
-    semanticError = True
     print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.WARNING + error + bcolors.ENDC)
 
 #semantic()
@@ -170,8 +167,6 @@ def printError(error):
 #    for object in list:
 #        print (object.name)
 
-def getSemanticError():
-    return semanticError
 
 def getNiark():
     return niark
