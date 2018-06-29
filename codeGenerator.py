@@ -65,16 +65,17 @@ def recursive(object, listaDeListas):
     elif type(object) is Condition:
         pass
     elif type(object) is Instruction:
-        if(object.id == 'READ'):
-            if(type(object.value) is int):
+        if object.id == 'READ':
+            if type(object.value) is int):
                 readIntSyscall()
             else:
                 readStringSyscall()
-        else:
-            if(type(object.value) is int):
+        elif object.id == 'PRINT':
+            if type(object.value) is int:
                 printIntSyscall()
             else:
                 printStringSyscall()
+                
     elif type(object) is IncDec:
         regName = bitmap.obtener()
         textSegment.append("li ", regName, ", ", object.variable.value)
