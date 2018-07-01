@@ -11,6 +11,7 @@ bitmap =  BitMap()
 
 def codeGenerator():
     semantic()
+    print(type(2))
     niark = getNiark()
     dataHeader = ".data \n"
     textHeader = ".text \n"
@@ -19,31 +20,33 @@ def codeGenerator():
     dataSegment.append(dataHeader)
     textSegment.append(textHeader)
     textSegment.append(mainHeader)
-    syscall()
-    exitSyscall()
     '''Inicia el algoritmo recursivo de generación de código '''
 
     '''for statement in niark.statements:
-        recursive(statement, listOfLists)
+        recursive(statement)
       '''
+    exitSyscall()
     generateCode(executable)
     executable.close()
 
 
 
-def recursive(object, listaDeListas):
+def recursive(object):
     if type(object) is Method:
         pass
     elif type(object) is VariableDeclaration:
-        #Libera despues
-        pass
+        if object.variable.value is not None:
+            if type(object.variable.value) is int
+                dataSegment.append(object.variable.name + ": ")
+            currentLabel += 1
+
     elif type(object) is VariableAssignation:
         pass
     elif type(object) is FunctionCall:
         pass
     elif type(object) is If:
-        regName1 = bitmap.obtener()
-        regName2 = bitmap.obtener()
+        regName1 = recursive(object.conditions.term1)
+        regName2 = recursive(object.conditions.term2)
 
     elif type(object) is IfAndElse:
         pass
@@ -69,9 +72,9 @@ def recursive(object, listaDeListas):
                 readStringSyscall()
         elif object.id == 'PRINT':
             if type(object.value) is int:
-                printIntSyscall()
+                printIntSyscall(object.value)
             else:
-                printStringSyscall()
+                printStringSyscall(object.value)
 
     elif type(object) is IncDec:
         regName = bitmap.obtener()
@@ -92,7 +95,9 @@ def printIntSyscall(arg):
 
 def printStringSyscall(arg):
     printStringSyscall = "li $v0, 4 \n"
-    textSegment.append(str(printStringSyscall) + "li $a0," + str(arg) + "\n")
+    dataSegment.append(str(currentLabel) + ": .asciiz " + "\"" + arg + "\"" + "\n")
+    textSegment.append(str(printStringSyscall) + "la $a0," + str(currentLabel) + "\n")
+    currentLabel += 1
     syscall()
 
 def readIntSyscall():
