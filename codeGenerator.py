@@ -6,6 +6,7 @@ executable = open("CompiledCode.asm", "w+")
 dataSegment = []
 textSegment = []
 mainLabel = []
+diccionarioVarRegs = {}
 currentLabel = 1
 bitmap =  BitMap()
 
@@ -43,7 +44,11 @@ def recursive(object):
     elif type(object) is VariableAssignation:
         pass
     elif type(object) is FunctionCall:
-        pass
+        if object.name == "sqrt":
+            reg = diccionarioVarRegs[object.parameters]
+            code= "addi  $a0, $zero, 15 jal   isqrt # v0 = result"
+        elif:
+            pass
     elif type(object) is If:
         regName1 = recursive(object.conditions.term1)
         regName2 = recursive(object.conditions.term2)
@@ -93,7 +98,7 @@ def printIntSyscall(arg):
     textSegment.append(str(printIntSyscall) + "li $a0," + str(arg) + "\n")
     syscall()
 
-	
+
 
 def readIntSyscall():
     readIntSyscall = "li $v0, 5 \n"
