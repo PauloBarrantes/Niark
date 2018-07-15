@@ -1,2 +1,6 @@
-i=2
-++i
+public void xx(){
+    $gg = 3
+    if(gg < sqrt(6)){
+        print("holaMundo")
+    }
+}

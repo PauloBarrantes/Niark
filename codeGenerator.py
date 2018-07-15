@@ -12,7 +12,7 @@ bitmap =  BitMap()
 
 def codeGenerator():
     semantic()
-    print(type(2))
+
     niark = getNiark()
     dataHeader = ".data \n"
     textHeader = ".text \n"
@@ -22,10 +22,9 @@ def codeGenerator():
     textSegment.append(textHeader)
     textSegment.append(mainHeader)
     '''Inicia el algoritmo recursivo de generación de código '''
-
-    '''for statement in niark.statements:
+    for statement in niark.statements:
+        print("ggfor")
         recursive(statement)
-      '''
     exitSyscall()
     generateCode(executable)
     executable.close()
@@ -37,17 +36,59 @@ def recursive(object):
         pass
     elif type(object) is VariableDeclaration:
         if object.variable.value is not None:
-            if type(object.variable.value) is int
+            if type(object.variable.value) is int:
                 dataSegment.append(object.variable.name + ": ")
             currentLabel += 1
 
     elif type(object) is VariableAssignation:
         pass
     elif type(object) is FunctionCall:
+        print("gg")
         if object.name == "sqrt":
             reg = diccionarioVarRegs[object.parameters]
-            code= "addi  $a0, $zero, 15 jal   isqrt # v0 = result"
-        elif:
+            functionCall= "addi  $a0, $zero, 15 \n jal isqrt # v0 = result"
+            codeSqrt = "isqrt: \
+            # v0 - return / root \
+            # t0 - bit \
+            # t1 - num \
+            # t2,t3 - temps\
+            move  $v0, $zero        # initalize return\
+            move  $t1, $a0          # move a0 to t1\
+            \
+            addi  $t0, $zero, 1 \
+            sll   $t0, $t0, 30      # shift to second-to-top bit\
+            \
+            isqrt_bit: \
+            slt   $t2, $t1, $t0     # num < bit\
+            beq   $t2, $zero, isqrt_loop\
+            \
+            srl   $t0, $t0, 2       # bit >> 2\
+            j     isqrt_bit \
+            \
+            isqrt_loop: \
+            beq   $t0, $zero, isqrt_return\
+            \
+            add   $t3, $v0, $t0     # t3 = return + bit\
+            slt   $t2, $t1, $t3 \
+            beq   $t2, $zero, isqrt_else\
+            \
+            srl   $v0, $v0, 1       # return >> 1\
+            j     isqrt_loop_end\
+            \
+            isqrt_else:\
+            sub   $t1, $t1, $t3     # num -= return + bit\
+            srl   $v0, $v0, 1       # return >> 1\
+            add   $v0, $v0, $t0     # return + bit\
+            \
+            isqrt_loop_end:\
+            srl   $t0, $t0, 2       # bit >> 2\
+            j     isqrt_loop\
+            \
+            isqrt_return:\
+            jr  $ra"
+            textSegment.append(codeSqrt)
+            mainHeader.append(functionCall)
+        elif True:
             pass
     elif type(object) is If:
         regName1 = recursive(object.conditions.term1)
