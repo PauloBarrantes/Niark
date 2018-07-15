@@ -93,12 +93,7 @@ def printIntSyscall(arg):
     textSegment.append(str(printIntSyscall) + "li $a0," + str(arg) + "\n")
     syscall()
 
-def printStringSyscall(arg):
-    printStringSyscall = "li $v0, 4 \n"
-    dataSegment.append(str(currentLabel) + ": .asciiz " + "\"" + arg + "\"" + "\n")
-    textSegment.append(str(printStringSyscall) + "la $a0," + str(currentLabel) + "\n")
-    currentLabel += 1
-    syscall()
+	
 
 def readIntSyscall():
     readIntSyscall = "li $v0, 5 \n"
