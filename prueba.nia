@@ -1,6 +1,3 @@
-public void xx(){
-    $gg = 3
-    if(gg < sqrt(6)){
-        print("holaMundo")
-    }
-}
+$n = 3
+$hola[n]
+hola[n] = True
