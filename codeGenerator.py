@@ -6,7 +6,7 @@ executable = open("CompiledCode.asm", "w+")
 dataSegment = []
 textSegment = []
 mainLabel = []
-diccionarioVarRegs = {}
+dictionaryVarReg = {}
 currentLabel = 1
 bitmap =  BitMap()
 
@@ -35,17 +35,56 @@ def recursive(object):
     if type(object) is Method:
         pass
     elif type(object) is VariableDeclaration:
-        if object.variable.value is not None:
-            if type(object.variable.value) is int:
-                dataSegment.append(object.variable.name + ": ")
-            currentLabel += 1
+        regName = bitmap.obtener()
+        textSegment.append("li", regName, ",", object.variable.value)
+        dictionaryVarReg[object.variable.name] = regName
+
+        '''
+        dataSegment.append(object.variable.name + ": .word",object.variable.value)
+        '''
 
     elif type(object) is VariableAssignation:
         pass
+        '''
+        regName = dictionaryVarReg[object.name]
+        textSegment.append("li ", regName, ", ", object.value)
+        '''
+
+        '''
+        regName = bitmap.obtener()
+
+        textSegment.append("li ", regName, ", ", object.value)
+        textSegment.append("sw ", regName, ",",object.name)
+
+        bitmap.liberar(regName)
+        '''
+
+    elif type(object) is ArrayDeclaration:
+        dataSegment.append(object.array.name + ": .word 0:50")
+
+        regName = bitmap.obtener()
+        textSegment.append("la "+ regName + "," + object.array.name)
+
+        dictionaryVarReg[object.array.name] = regName
+
+    elif type(object) is ArrayAssignation:
+        regName = dictionaryVarReg[object.name] #El registro que contiene la direccion del vector
+        regPos = dictionaryVarReg[object.index] #Registro que contiene el valor del indice
+        regPos4 = bitmap.obtener() #Registro libre que vamos a utilizar para apuntar a la direccion de memoria del indice
+
+        value = 0;
+        if object.value is "True":
+            value = 1
+
+        textSegment.append("mul " + regPos4 + "," + regPos + ", 4") #Como son words lo que guarda el vector hay que multiplicar el indice por 4, el resultao e guarda en regPos4
+        textSegment.append("add " + regPos4 + "," + regPos4 + "," + regName) #Guadamos en regPos4 la pos inicial del vector + el inidice
+        textSegment.append("sw " + regPos4 + "," + str(value)) #Guardamos valor en la direccion del vector
+        bitmap.liberar(regPos4)
+
     elif type(object) is FunctionCall:
         print("gg")
         if object.name == "sqrt":
-            reg = diccionarioVarRegs[object.parameters]
+            reg = dictionaryVarReg[object.parameters]
             functionCall= "addi  $a0, $zero, 15 \n jal isqrt # v0 = result"
             codeSqrt = "isqrt: \
             # v0 - return / root \
@@ -97,10 +136,6 @@ def recursive(object):
     elif type(object) is IfAndElse:
         pass
     elif type(object) is For:
-        pass
-    elif type(object) is ArrayDeclaration:
-        pass
-    elif type(object) is ArrayAssignation:
         pass
     elif type(object) is Variable:
         pass
