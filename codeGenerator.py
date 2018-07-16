@@ -261,6 +261,16 @@ def conditionCode(object,dir):
 
             bitmap.liberar(regResult)
 
+        else:
+            regTerm1 = dictionaryVarReg[object.term1.name]
+            regTerm2 = dictionaryVarReg[object.term2.name]
+            regResult = bitmap.obtener()
+
+            textSegment.append("slt " + regResult + ", " + regTerm1 + ", " + regTerm2 +"\n")
+            textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+
+            bitmap.liberar(regResult)
+
     elif object.operator is ">":
         regTerm1 = dictionaryVarReg[object.term1.name]
         regTerm2 = bitmap.obtener()
