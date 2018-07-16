@@ -276,7 +276,7 @@ def conditionCode(object,dir):
         print("Lo que yo quiera poner")
         if type(object.term1) is Array:
             regTerm1 = dictionaryVarReg[object.term1.name]
-            regPos = dictionaryVarReg[object.term1.size]
+            regPos = dictionaryVarReg[object.term1.size.name]
             regPos4 = bitmap.obtener()
             regValue = bitmap.obtener()
 
