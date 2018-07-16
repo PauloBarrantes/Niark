@@ -140,7 +140,7 @@ def recursive(object,label):
         textSegment.append("Continuation" + label + ":\n")
 
     elif type(object) is For:
-        recursive(object.declaration)
+        recursive(object.declaration, label + object.declaration.id)
         textSegment.append("Loop" + label + ":\n")
 
         conditionCode(object.conditions, "ExitLoop" + label)
