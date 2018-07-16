@@ -144,8 +144,23 @@ def recursive(object):
         pass
     elif type(object) is Array:
         pass
+
     elif type(object) is Arithmetic:
-        pass
+        if object.term1 is 0:
+            textSegment.append("li $t9," + str(object.term2) + "\n")
+        elif object.operator is "+":
+            regTerm1 = dictionaryVarReg[object.term1]
+            regTerm2 = dictionaryVarReg[object.term2]
+            textSegment.append("add $t9," + regTerm1 + "," + regTerm2 + "\n")
+        elif object.operator is "-":
+            regTerm1 = dictionaryVarReg[object.term1]
+            textSegment.append("addi $t9," + regTerm1 + ",-" + object.term2 + "\n")
+        elif object.operator is "/":
+            regTerm1 = dictionaryVarReg[object.term1]
+            regTerm2 = dictionaryVarReg[object.term2]
+            textSegment.append("div " + regTerm1 + "," + regTerm2 + "\n")
+            textSegment.append("mflo $t9\n")
+
     elif type(object) is Condition:
         pass
     elif type(object) is Instruction:
