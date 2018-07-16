@@ -1,17 +1,4 @@
-$n = 5
-if(n > 1){
+$e = 5
+for($i = 0; i < e; ++i){
     print(1)
-}
-$q = 8
-if(q == 8){
-    print(2)
-}
-$r = 2
-if(n < q/r){
-    print(3)
-}
-$l[n]
-l[r] = True
-if(l[r] == True){
-    print(4)
 }
