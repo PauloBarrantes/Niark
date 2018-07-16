@@ -121,7 +121,7 @@ def recursive(object,label):
         elif True:
             pass
     elif type(object) is If:
-        conditionCode(object.conditions,label + "Continuation:")
+        conditionCode(object.conditions,label + "Continuation")
 
         for instruction in object.instructions:
             recursive(instruction,instruction.id)
@@ -223,6 +223,7 @@ def arithmeticCode(object):
         textSegment.append("mflo $t9\n")
 
 def conditionCode(object,dir):
+    print("Entra al primer nivel de ConditionCode", str(object.operator))
     if object.operator is "<=":
         arithmeticCode(object.term2)
 
@@ -268,7 +269,8 @@ def conditionCode(object,dir):
 
         bitmap.liberar(regResult)
 
-    elif object.operator is "==":
+    else:
+        print("Lo que yo quiera poner")
         if type(object.term1) is Array:
             regTerm1 = dictionaryVarReg[object.term1.name]
             regPos = dictionaryVarReg[object.term1.size]
