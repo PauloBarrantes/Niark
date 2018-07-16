@@ -21,17 +21,22 @@ def codeGenerator():
     dataSegment.append(dataHeader)
     textSegment.append(textHeader)
     textSegment.append(mainHeader)
+    q = 0
     '''Inicia el algoritmo recursivo de generación de código '''
     for statement in niark.statements:
-        print("ggfor")
-        recursive(statement)
+        if type(statement) == FunctionCall or type(statement) == Method:
+            recursive(statement.statement.name)
+        else:
+            recursive(statement,str(q))
+            ++q
+
     exitSyscall()
     generateCode(executable)
     executable.close()
 
 
 
-def recursive(object):
+def recursive(object,label):
     if type(object) is Method:
         pass
     elif type(object) is VariableDeclaration:
@@ -39,25 +44,8 @@ def recursive(object):
         textSegment.append("li " + regName + ", " + str(object.variable.value) + "\n")
         dictionaryVarReg[object.variable.name] = regName
 
-        '''
-        dataSegment.append(object.variable.name + ": .word",object.variable.value)
-        '''
-
     elif type(object) is VariableAssignation:
         pass
-        '''
-        regName = dictionaryVarReg[object.name]
-        textSegment.append("li ", regName, ", ", object.value)
-        '''
-
-        '''
-        regName = bitmap.obtener()
-
-        textSegment.append("li " + regName + ", " + object.value)
-        textSegment.append("sw "+ regName + ", " + object.name)
-
-        bitmap.liberar(regName)
-        '''
 
     elif type(object) is ArrayDeclaration:
         dataSegment.append(object.array.name + ": .word 0:50\n")
@@ -133,11 +121,16 @@ def recursive(object):
         elif True:
             pass
     elif type(object) is If:
-        regName1 = recursive(object.conditions.term1)
-        regName2 = recursive(object.conditions.term2)
+        conditionCode(object.conditions,label + "Continuation")
 
+        for instruction in object.instructions:
+            recursive(instruction,instruction.id)
+
+
+        textSegment.append(label + "Continuation:")
     elif type(object) is IfAndElse:
         pass
+
     elif type(object) is For:
         pass
 
@@ -151,7 +144,7 @@ def recursive(object):
         pass
 
     elif type(object) is Condition:
-
+        pass
 
     elif type(object) is Instruction:
         if object.id == 'READ':
@@ -167,11 +160,11 @@ def recursive(object):
 
     elif type(object) is IncDec:
         regName = bitmap.obtener()
-        textSegment.append("li ", regName, ", ", object.variable.value)
+        textSegment.append("li " + regName + ", " + object.variable.value)
         if(object.operator == "++"):
-            textSegment.append("addi ", regName, ", ", "1")
+            textSegment.append("addi " + regName + ", " + "1")
         else:
-            textSegment.append("addi ", regName, ", ", "-1")
+            textSegment.append("addi " + regName + ", " + "-1")
         bitmap.liberar(regName)
 
     else:
@@ -244,6 +237,7 @@ def conditionCode(object,dir):
 
     elif object.operator is "<":
         if type(object.term2) is FunctionCall:
+            textSegment.append("jal " + object.term2.name + "\n")
             regTerm1 = dictionaryVarReg[object.term1.name]
             regResult = bitmap.obtener()
 

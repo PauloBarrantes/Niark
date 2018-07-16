@@ -1,7 +1,12 @@
-$n = 3
-$e=2
-$hola[n]
-hola[n] = True
-n-4
-n/e
-n+e
+$n = 5
+if(n > 1){
+    print(5)
+}
+$q = 10
+if(q == 6){
+    print(6)
+}
+$r = 2
+if(n < q/r){
+    print(7)
+}
