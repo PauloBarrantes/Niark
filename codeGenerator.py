@@ -36,7 +36,7 @@ def recursive(object):
         pass
     elif type(object) is VariableDeclaration:
         regName = bitmap.obtener()
-        textSegment.append("li", regName, ",", object.variable.value)
+        textSegment.append("li " + regName + ", " + str(object.variable.value) + "\n")
         dictionaryVarReg[object.variable.name] = regName
 
         '''
@@ -53,32 +53,32 @@ def recursive(object):
         '''
         regName = bitmap.obtener()
 
-        textSegment.append("li ", regName, ", ", object.value)
-        textSegment.append("sw ", regName, ",",object.name)
+        textSegment.append("li " + regName + ", " + object.value)
+        textSegment.append("sw "+ regName + ", " + object.name)
 
         bitmap.liberar(regName)
         '''
 
     elif type(object) is ArrayDeclaration:
-        dataSegment.append(object.array.name + ": .word 0:50")
+        dataSegment.append(object.array.name + ": .word 0:50\n")
 
         regName = bitmap.obtener()
-        textSegment.append("la "+ regName + "," + object.array.name)
+        textSegment.append("la "+ regName + ", " + object.array.name + "\n")
 
         dictionaryVarReg[object.array.name] = regName
 
     elif type(object) is ArrayAssignation:
         regName = dictionaryVarReg[object.name] #El registro que contiene la direccion del vector
-        regPos = dictionaryVarReg[object.index] #Registro que contiene el valor del indice
+        regPos = dictionaryVarReg[object.index.name] #Registro que contiene el valor del indice
         regPos4 = bitmap.obtener() #Registro libre que vamos a utilizar para apuntar a la direccion de memoria del indice
 
         value = 0;
         if object.value is "True":
             value = 1
 
-        textSegment.append("mul " + regPos4 + "," + regPos + ", 4") #Como son words lo que guarda el vector hay que multiplicar el indice por 4, el resultao e guarda en regPos4
-        textSegment.append("add " + regPos4 + "," + regPos4 + "," + regName) #Guadamos en regPos4 la pos inicial del vector + el inidice
-        textSegment.append("sw " + regPos4 + "," + str(value)) #Guardamos valor en la direccion del vector
+        textSegment.append("mul " + regPos4 + ", " + regPos + ", 4" + "\n") #Como son words lo que guarda el vector hay que multiplicar el indice por 4, el resultao e guarda en regPos4
+        textSegment.append("add " + regPos4 + ", " + regPos4 + ", " + regName + "\n") #Guadamos en regPos4 la pos inicial del vector + el inidice
+        textSegment.append("sw " + regPos4 + ", " + str(value) + "\n") #Guardamos valor en la direccion del vector
         bitmap.liberar(regPos4)
 
     elif type(object) is FunctionCall:
