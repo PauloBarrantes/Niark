@@ -28,7 +28,7 @@ def codeGenerator():
             recursive(statement.statement.name)
         else:
             recursive(statement,str(q))
-            ++q
+            q += 1
 
     exitSyscall()
     generateCode(executable)
@@ -121,13 +121,13 @@ def recursive(object,label):
         elif True:
             pass
     elif type(object) is If:
-        conditionCode(object.conditions,label + "Continuation")
+        conditionCode(object.conditions,label + "Continuation:")
 
         for instruction in object.instructions:
             recursive(instruction,instruction.id)
 
 
-        textSegment.append(label + "Continuation:")
+        textSegment.append(label + "Continuation:\n")
     elif type(object) is IfAndElse:
         pass
 
@@ -217,8 +217,8 @@ def arithmeticCode(object):
         regTerm1 = dictionaryVarReg[object.term1]
         textSegment.append("addi $t9, " + regTerm1 + ", -" + object.term2 + "\n")
     elif object.operator is "/":
-        regTerm1 = dictionaryVarReg[object.term1]
-        regTerm2 = dictionaryVarReg[object.term2]
+        regTerm1 = dictionaryVarReg[object.term1.name]
+        regTerm2 = dictionaryVarReg[object.term2.name]
         textSegment.append("div " + regTerm1 + ", " + regTerm2 + "\n")
         textSegment.append("mflo $t9\n")
 
@@ -262,7 +262,7 @@ def conditionCode(object,dir):
         regTerm2 = bitmap.obtener()
         regResult = bitmap.obtener()
 
-        textSegment.append("li " + regTerm2 + ", " + object.term2 + "\n")
+        textSegment.append("li " + regTerm2 + ", " + str(object.term2) + "\n")
         textSegment.append("slt " + regResult + ", " + regTerm2 + ", " + regTerm1 + "\n")
         textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
 
