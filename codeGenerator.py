@@ -71,15 +71,18 @@ def recursive(object):
         regName = dictionaryVarReg[object.name] #El registro que contiene la direccion del vector
         regPos = dictionaryVarReg[object.index.name] #Registro que contiene el valor del indice
         regPos4 = bitmap.obtener() #Registro libre que vamos a utilizar para apuntar a la direccion de memoria del indice
+        regValue = bitmap.obtener() #Registro que va a guardar el valor que vamos a asignar
 
         value = 0;
         if object.value is "True":
             value = 1
 
+        textSegment.append("li " + regValue + ", " + str(value) + "\n")
         textSegment.append("mul " + regPos4 + ", " + regPos + ", 4" + "\n") #Como son words lo que guarda el vector hay que multiplicar el indice por 4, el resultao e guarda en regPos4
         textSegment.append("add " + regPos4 + ", " + regPos4 + ", " + regName + "\n") #Guadamos en regPos4 la pos inicial del vector + el inidice
-        textSegment.append("sw " + regPos4 + ", " + str(value) + "\n") #Guardamos valor en la direccion del vector
+        textSegment.append("sw " + regValue + ", " + regPos4 + "\n") #Guardamos valor en la direccion del vector
         bitmap.liberar(regPos4)
+        bitmap.liberar(regValue)
 
     elif type(object) is FunctionCall:
         print("gg")

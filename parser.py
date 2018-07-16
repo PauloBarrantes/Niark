@@ -456,6 +456,7 @@ def p_arithmetic3(p):
 
 def p_arithmetic4(p):
     'arithmetic : arithmeticOp arithmeticDataType'
+    p[0] = Arithmetic(0, p[1], p[2])
 
 def p_moreArithmetic1(p):
     'moreArithmetic : arithmeticDataType'
