@@ -121,7 +121,7 @@ def recursive(object,label):
         conditionCode(object.conditions,"Continuation" + label)
 
         for instruction in object.instructions:
-            recursive(instruction,instruction.id)
+            recursive(instruction,label + instruction.id)
 
 
         textSegment.append("Continuation" + label + ":\n")
@@ -129,18 +129,26 @@ def recursive(object,label):
         conditionCode(object.conditions, "Else" + label)
 
         for instruction in object.instructionsIf:
-            recursive(instruction, instruction.id)
-        textSegment.append("j Continuation" + label + ":\n")
+            recursive(instruction, label + instruction.id)
+        textSegment.append("j Continuation" + label + "\n")
 
         textSegment.append("Else" + label + ":\n")
 
         for instruction in object.instructionsElse:
-            recursive(instruction, instruction.id)
+            recursive(instruction, label + instruction.id)
 
         textSegment.append("Continuation" + label + ":\n")
 
     elif type(object) is For:
+        textSegment.append("Loop" + label + ":\n")
 
+        conditionCode(object.conditions, "ExitLoop" + label)
+        for instruction in object.instructions:
+            recursive(instruction, label + instruction.id)
+
+        incDecCode(object.incdec)
+        textSegment.append("j Loop" + label + "\n")
+        textSegment.append("ExitLoop" + label + ":\n")
 
     elif type(object) is Instruction:
         if object.id == 'READ':
@@ -154,14 +162,6 @@ def recursive(object,label):
             else:
                 printStringSyscall(object.value)
 
-    elif type(object) is IncDec:
-        regName = bitmap.obtener()
-        textSegment.append("li " + regName + ", " + object.variable.value)
-        if(object.operator == "++"):
-            textSegment.append("addi " + regName + ", " + "1")
-        else:
-            textSegment.append("addi " + regName + ", " + "-1")
-        bitmap.liberar(regName)
 
     else:
         print("Es un literal", type(object))
@@ -201,6 +201,13 @@ def generateCode(file):
         file.write(line)
     for code in textSegment:
         file.write(code)
+
+def incDecCode(object):
+    regName = dictionaryVarReg[object.variable.name]
+    if (object.operator == "++"):
+        textSegment.append("addi " + regName + ", " + "1")
+    else:
+        textSegment.append("addi " + regName + ", " + "-1")
 
 def arithmeticCode(object):
     if object.term1 is 0:

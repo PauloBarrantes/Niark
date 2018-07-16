@@ -1,12 +1,17 @@
 $n = 5
 if(n > 1){
-    print(5)
+    print(1)
 }
-$q = 10
-if(q == 6){
-    print(6)
+$q = 8
+if(q == 8){
+    print(2)
 }
 $r = 2
 if(n < q/r){
-    print(7)
+    print(3)
+}
+$l[n]
+l[r] = True
+if(l[r] == True){
+    print(4)
 }
