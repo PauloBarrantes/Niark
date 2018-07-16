@@ -206,9 +206,9 @@ def generateCode(file):
 def incDecCode(object):
     regName = dictionaryVarReg[object.variable.name]
     if (object.operator == "++"):
-        textSegment.append("addi " + regName + ", " + "1")
+        textSegment.append("addi " + regName + ", " + "1\n")
     else:
-        textSegment.append("addi " + regName + ", " + "-1")
+        textSegment.append("addi " + regName + ", " + "-1\n")
 
 def arithmeticCode(object):
     if object.term1 is 0:
