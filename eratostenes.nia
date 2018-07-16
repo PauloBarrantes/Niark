@@ -5,7 +5,7 @@ public function Eratostenes(n){
     }
 
     for($i = 2; i < sqrt(n); ++i){
-        if(criba[i] == 0){
+        if(criba[i] == False){
             for($j = i; j < n/i; j++){
                 criba[i+j] = True
             }

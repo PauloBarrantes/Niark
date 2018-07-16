@@ -80,7 +80,7 @@ def recursive(object):
         textSegment.append("li " + regValue + ", " + str(value) + "\n")
         textSegment.append("mul " + regPos4 + ", " + regPos + ", 4" + "\n") #Como son words lo que guarda el vector hay que multiplicar el indice por 4, el resultao e guarda en regPos4
         textSegment.append("add " + regPos4 + ", " + regPos4 + ", " + regName + "\n") #Guadamos en regPos4 la pos inicial del vector + el inidice
-        textSegment.append("sw " + regValue + ", " + regPos4 + "\n") #Guardamos valor en la direccion del vector
+        textSegment.append("sw " + regValue + ", (" + regPos4 + ")\n") #Guardamos valor en la direccion del vector
         bitmap.liberar(regPos4)
         bitmap.liberar(regValue)
 
@@ -140,29 +140,19 @@ def recursive(object):
         pass
     elif type(object) is For:
         pass
+
     elif type(object) is Variable:
         pass
+
     elif type(object) is Array:
         pass
 
     elif type(object) is Arithmetic:
-        if object.term1 is 0:
-            textSegment.append("li $t9," + str(object.term2) + "\n")
-        elif object.operator is "+":
-            regTerm1 = dictionaryVarReg[object.term1]
-            regTerm2 = dictionaryVarReg[object.term2]
-            textSegment.append("add $t9," + regTerm1 + "," + regTerm2 + "\n")
-        elif object.operator is "-":
-            regTerm1 = dictionaryVarReg[object.term1]
-            textSegment.append("addi $t9," + regTerm1 + ",-" + object.term2 + "\n")
-        elif object.operator is "/":
-            regTerm1 = dictionaryVarReg[object.term1]
-            regTerm2 = dictionaryVarReg[object.term2]
-            textSegment.append("div " + regTerm1 + "," + regTerm2 + "\n")
-            textSegment.append("mflo $t9\n")
+        pass
 
     elif type(object) is Condition:
-        pass
+
+
     elif type(object) is Instruction:
         if object.id == 'READ':
             if type(object.value) is int:
@@ -223,5 +213,87 @@ def generateCode(file):
     for code in textSegment:
         file.write(code)
 
+def arithmeticCode(object):
+    if object.term1 is 0:
+        textSegment.append("li $t9, " + str(object.term2) + "\n")
+    elif object.operator is "+":
+        regTerm1 = dictionaryVarReg[object.term1]
+        regTerm2 = dictionaryVarReg[object.term2]
+        textSegment.append("add $t9, " + regTerm1 + ", " + regTerm2 + "\n")
+    elif object.operator is "-":
+        regTerm1 = dictionaryVarReg[object.term1]
+        textSegment.append("addi $t9, " + regTerm1 + ", -" + object.term2 + "\n")
+    elif object.operator is "/":
+        regTerm1 = dictionaryVarReg[object.term1]
+        regTerm2 = dictionaryVarReg[object.term2]
+        textSegment.append("div " + regTerm1 + ", " + regTerm2 + "\n")
+        textSegment.append("mflo $t9\n")
+
+def conditionCode(object,dir):
+    if object.operator is "<=":
+        arithmeticCode(object.term2)
+
+        regTerm1 = dictionaryVarReg[object.term1.name]
+        regResult = bitmap.obtener()
+
+        textSegment.append("bne " + regTerm1 + ", $t9, " + dir + "\n")
+        textSegment.append("slt " + regResult + ", " + regTerm1 + ", $t9\n")
+        textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+
+        bitmap.liberar(regResult)
+
+    elif object.operator is "<":
+        if type(object.term2) is FunctionCall:
+            regTerm1 = dictionaryVarReg[object.term1.name]
+            regResult = bitmap.obtener()
+
+            textSegment.append("slt " + regResult + ", " + regTerm1 + ", $v0\n")
+            textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+
+            bitmap.liberar(regResult)
+
+        elif type(object.term2) is Arithmetic:
+            arithmeticCode(object.term2)
+
+            regTerm1 = dictionaryVarReg[object.term1.name]
+            regResult = bitmap.obtener()
+
+            textSegment.append("slt " + regResult + ", " + regTerm1 + ", $t9\n")
+            textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+
+            bitmap.liberar(regResult)
+
+    elif object.operator is ">":
+        regTerm1 = dictionaryVarReg[object.term1.name]
+        regTerm2 = bitmap.obtener()
+        regResult = bitmap.obtener()
+
+        textSegment.append("li " + regTerm2 + ", " + object.term2 + "\n")
+        textSegment.append("slt " + regResult + ", " + regTerm2 + ", " + regTerm1 + "\n")
+        textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+
+        bitmap.liberar(regResult)
+
+    elif object.operator is "==":
+        if type(object.term1) is Array:
+            regTerm1 = dictionaryVarReg[object.term1.name]
+            regPos = dictionaryVarReg[object.term1.size]
+            regPos4 = bitmap.obtener()
+            regValue = bitmap.obtener()
+
+            textSegment.append("mul " + regPos4 + ", " + regPos + ", 4" + "\n")
+            textSegment.append("add " + regPos4 + ", " + regPos4 + ", " + regTerm1 + "\n")
+            textSegment.append("lw " + regValue + ", (" + regPos4 + ")\n")
+            textSegment.append("bgtz " + regValue + ", " + dir + "\n")
+
+            bitmap.liberar(regPos4)
+
+        else:
+            regTerm1 = dictionaryVarReg[object.term1.name]
+            regTerm2 = bitmap.obtener()
+
+            textSegment.append("li " + regTerm2 + "," + str(object.term2) + "\n")
+            textSegment.append("bne " + regTerm1 + "," + regTerm2 + "," + dir + "\n")
+            bitmap.liberar(regTerm2)
 
 codeGenerator()
