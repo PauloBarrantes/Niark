@@ -44,9 +44,6 @@ def recursive(object,label):
         textSegment.append("li " + regName + ", " + str(object.variable.value) + "\n")
         dictionaryVarReg[object.variable.name] = regName
 
-    elif type(object) is VariableAssignation:
-        pass
-
     elif type(object) is ArrayDeclaration:
         dataSegment.append(object.array.name + ": .word 0:50\n")
 
@@ -121,30 +118,29 @@ def recursive(object,label):
         elif True:
             pass
     elif type(object) is If:
-        conditionCode(object.conditions,label + "Continuation")
+        conditionCode(object.conditions,"Continuation" + label)
 
         for instruction in object.instructions:
             recursive(instruction,instruction.id)
 
 
-        textSegment.append(label + "Continuation:\n")
+        textSegment.append("Continuation" + label + ":\n")
     elif type(object) is IfAndElse:
-        pass
+        conditionCode(object.conditions, "Else" + label)
+
+        for instruction in object.instructionsIf:
+            recursive(instruction, instruction.id)
+        textSegment.append("j Continuation" + label + ":\n")
+
+        textSegment.append("Else" + label + ":\n")
+
+        for instruction in object.instructionsElse:
+            recursive(instruction, instruction.id)
+
+        textSegment.append("Continuation" + label + ":\n")
 
     elif type(object) is For:
-        pass
 
-    elif type(object) is Variable:
-        pass
-
-    elif type(object) is Array:
-        pass
-
-    elif type(object) is Arithmetic:
-        pass
-
-    elif type(object) is Condition:
-        pass
 
     elif type(object) is Instruction:
         if object.id == 'READ':
@@ -171,29 +167,29 @@ def recursive(object,label):
         print("Es un literal", type(object))
 
 def printIntSyscall(arg):
-    printIntSyscall = "li $v0, 1 \n"
+    printIntSyscall = "li $v0, 1\n"
     textSegment.append(str(printIntSyscall) + "li $a0," + str(arg) + "\n")
     syscall()
 
 
 
 def readIntSyscall():
-    readIntSyscall = "li $v0, 5 \n"
+    readIntSyscall = "li $v0, 5\n"
     textSegment.append(readIntSyscall)
     syscall()
 
 def readStringSyscall():
-    readStringSyscall = "li $v0, 8 \n"
+    readStringSyscall = "li $v0, 8\n"
     textSegment.append(readStringSyscall)
     syscall()
 
 def exitSyscall():
-    exitSyscall = "li $v0, 10 \n"
+    exitSyscall = "li $v0, 10\n"
     textSegment.append(exitSyscall)
     syscall()
 
 def syscall():
-    syscall = "syscall \n"
+    syscall = "syscall\n"
     textSegment.append(syscall)
 
 def printLabel():
