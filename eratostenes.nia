@@ -1,15 +1,17 @@
 public function Eratostenes(n){
     $criba[n]
-    for($i = 2; i < n; ++i){
-      criba[i] = False
+    for($e = 2; e < n; ++e){
+      criba[e] = False
     }
 
     for($i = 2; i < sqrt(n); ++i){
         if(criba[i] == False){
             for($j = i; j < n/i; j++){
                 criba[i+j] = True
+                print(i+j)
             }
       }
     }
     return criba
 }
+Eratostenes(5)

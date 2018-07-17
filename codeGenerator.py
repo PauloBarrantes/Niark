@@ -22,16 +22,91 @@ def codeGenerator():
     textSegment.append(textHeader)
 
     q = 0
-    '''Inicia el algoritmo recursivo de generación de código '''
+    '''Inicia el algoritmo recursivo de generación de código'''
     for statement in niark.statements:
         if type(statement) == Method:
             recursive(statement,statement.name)
         elif type(statement) == FunctionCall:
+            codeSqrt = "sqrt: \n \
+move  $v0, $zero \n \
+move  $t1, $a0\n\
+\
+addi  $t0, $zero, 1 \n\
+sll   $t0, $t0, 30 \n\
+\
+isqrt_bit: \n\
+slt   $t2, $t1, $t0\n\
+beq   $t2, $zero, isqrt_loop\n\
+\
+srl   $t0, $t0, 2 \n\
+j     isqrt_bit \n\
+\
+isqrt_loop: \n\
+beq   $t0, $zero, isqrt_return\n\
+\
+add   $t3, $v0, $t0 \n\
+slt   $t2, $t1, $t3 \n\
+beq   $t2, $zero, isqrt_else\n\
+\
+srl   $v0, $v0, 1  \n\
+j     isqrt_loop_end\n\
+\
+isqrt_else:\n\
+sub   $t1, $t1, $t3 \n\
+srl   $v0, $v0, 1 \n\
+add   $v0, $v0, $t0  \n\
+\
+isqrt_loop_end:\n\
+srl   $t0, $t0, 2  \n\
+j     isqrt_loop\n\
+\
+isqrt_return:\n\
+jr  $ra\n"
+            textSegment.append(codeSqrt)
+
             textSegment.append(mainHeader)
             recursive(statement,statement.name)
             textSegment.append("li $v0, 10\n")
             textSegment.append("syscall\n")
         elif type(statement) == Instruction:
+
+            codeSqrt = "sqrt: \n \
+move  $v0, $zero \n \
+move  $t1, $a0\n\
+\
+addi  $t0, $zero, 1 \n\
+sll   $t0, $t0, 30 \n\
+\
+isqrt_bit: \n\
+slt   $t2, $t1, $t0\n\
+beq   $t2, $zero, isqrt_loop\n\
+\
+srl   $t0, $t0, 2 \n\
+j     isqrt_bit \n\
+\
+isqrt_loop: \n\
+beq   $t0, $zero, isqrt_return\n\
+\
+add   $t3, $v0, $t0 \n\
+slt   $t2, $t1, $t3 \n\
+beq   $t2, $zero, isqrt_else\n\
+\
+srl   $v0, $v0, 1  \n\
+j     isqrt_loop_end\n\
+\
+isqrt_else:\n\
+sub   $t1, $t1, $t3 \n\
+srl   $v0, $v0, 1 \n\
+add   $v0, $v0, $t0  \n\
+\
+isqrt_loop_end:\n\
+srl   $t0, $t0, 2  \n\
+j     isqrt_loop\n\
+\
+isqrt_return:\n\
+jr  $ra\n"
+            textSegment.append(codeSqrt)
+
             textSegment.append(mainHeader)
             recursive(statement,q)
             textSegment.append("li $v0, 10\n")
@@ -50,7 +125,7 @@ def recursive(object,label):
             regName = bitmap.obtener()
             dictionaryVarReg[object.variable.name] = regName
             regValue = dictionaryVarReg[object.variable.value.name]
-            textSegment.append("lw " + regName + ", " + regValue + "\n")
+            textSegment.append("move " + regName + ", " + regValue + "\n")
 
         else:
             regName = bitmap.obtener()
@@ -99,12 +174,12 @@ def recursive(object,label):
         elif object.operator is "+":
             if type(object.term1) is FunctionCall:
                 recursive(object.term1,label)
-                regTerm1 = bitmap.obtener()
-                textSegment.append("move " + regTerm1 + ", $v0\n")
+                textSegment.append("sw $v0, 12($sp)\n")
 
                 recursive(object.term2,label)
+                regTerm1 = bitmap.obtener()
+                textSegment.append("lw " + regTerm1 + ", 12($sp)\n")
                 textSegment.append("add $t9, " + regTerm1 + ", $v0\n")
-
                 bitmap.liberar(regTerm1)
             else:
                 regTerm1 = dictionaryVarReg[object.term1.name]
@@ -123,7 +198,9 @@ def recursive(object,label):
                 regTerm1 = dictionaryVarReg[object.term1.name]
                 textSegment.append("addi $t9, " + regTerm1 + ", -" + str(object.term2) + "\n")
         elif object.operator is "/":
-            regTerm1 = dictionaryVarReg[object.term1.name]
+            regTerm1 = bitmap.obtener()
+            textSegment.append("lw " + regTerm1 + ", " + dictionaryVarReg[object.term1.name] + "\n")
+
             regTerm2 = dictionaryVarReg[object.term2.name]
             textSegment.append("div " + regTerm1 + ", " + regTerm2 + "\n")
             textSegment.append("mflo $t9\n")
@@ -164,6 +241,18 @@ def recursive(object,label):
                 textSegment.append("beq " + regResult + ", $0, " + label + "\n")
 
                 bitmap.liberar(regResult)
+
+            elif dictionaryVarReg[object.term2.name] == "8($sp)":
+                regTerm1 = dictionaryVarReg[object.term1.name]
+                regTerm2 = bitmap.obtener()
+                regResult = bitmap.obtener()
+
+                textSegment.append("lw " + regTerm2 + ", " + dictionaryVarReg[object.term2.name] + "\n")
+                textSegment.append("slt " + regResult + ", " + regTerm1 + ", " + regTerm2 + "\n")
+                textSegment.append("beq " + regResult + ", $0, " + label + "\n")
+
+                bitmap.liberar(regResult)
+                bitmap.liberar(regTerm2)
 
             else:
                 regTerm1 = dictionaryVarReg[object.term1.name]
@@ -237,6 +326,10 @@ def recursive(object,label):
             if type(object.value) is int:
                 textSegment.append("li $v0, 1\n" + "li $a0," + str(object.value) + "\n")
                 textSegment.append("syscall\n")
+            elif type(object.value) is Arithmetic:
+                recursive(object.value,label)
+                textSegment.append("li $v0, 1\n" + "move $a0, $t9\n")
+                textSegment.append("syscall\n")
             else:
                 if type(object.value) is FunctionCall:
                     recursive(object.value,label)
@@ -272,16 +365,16 @@ def recursive(object,label):
     elif type(object) is FunctionCall:
         if type(object.parameters) is Arithmetic:
             recursive(object.parameters,label)
-            textSegment.append("sw $t9, ($sp)\n")
+            textSegment.append("sw $t9, -4($sp)\n")
         elif type(object.parameters) is int:
             regValue = bitmap.obtener()
             textSegment.append("li " + regValue + ", " + str(object.parameters) + "\n")
-            textSegment.append("sw " + regValue + ", ($sp)\n")
+            textSegment.append("sw " + regValue + ", -4($sp)\n")
             bitmap.liberar(regValue)
         else:
             pass
 
-        textSegment.append("addiu $sp, $sp, -8\n")
+        textSegment.append("addiu $sp, $sp, -12\n")
         textSegment.append("jal " + object.name + "\n")
 
     elif type(object) is If:
@@ -309,15 +402,15 @@ def recursive(object,label):
 
     elif type(object) is For:
         recursive(object.declaration, label + object.declaration.id)
-        textSegment.append("Loop" + label + ":\n")
+        textSegment.append("Loop" + label + object.declaration.variable.name + ":\n")
 
-        recursive(object.conditions, "ExitLoop" + label)
+        recursive(object.conditions, "ExitLoop" + label + object.declaration.variable.name)
         for instruction in object.instructions:
             recursive(instruction, label + instruction.id)
 
         recursive(object.incdec,label)
-        textSegment.append("j Loop" + label + "\n")
-        textSegment.append("ExitLoop" + label + ":\n")
+        textSegment.append("j Loop" + label + object.declaration.variable.name + "\n")
+        textSegment.append("ExitLoop" + label + object.declaration.variable.name + ":\n")
 
     elif type(object) is Method:
         textSegment.append(label + ":\n")
@@ -328,7 +421,7 @@ def recursive(object,label):
             recursive(instruction, label + instruction.id)
 
         textSegment.append("lw $ra, 4($sp)\n")
-        textSegment.append("addiu $sp, $sp, 8\n")
+        textSegment.append("addiu $sp, $sp, 12\n")
         textSegment.append("jr $ra\n")
 
 
