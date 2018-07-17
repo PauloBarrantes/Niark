@@ -177,7 +177,8 @@ class If:
 
 
 class IfAndElse:
-    id1 = 'IF '
+    id = 'IFANDELSE'
+    id1 = 'IF'
     id2 = 'ELSE'
     def __init__(self,conditions,instructionListIf,instructionListElse):
         self.conditions = conditions

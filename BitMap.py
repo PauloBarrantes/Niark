@@ -16,7 +16,6 @@ class BitMap:
             print("Freeing invalid register")
 
     def obtener(self):
-        print("gg1")
         encontrado = False
         contador = 0
         while contador < 32 and not encontrado:
@@ -25,7 +24,6 @@ class BitMap:
             else:
                 contador += 1
 
-        print("gg4",contador)
         if contador == 32:
             contador = -1
         self.bitmap[contador].state = True
@@ -51,7 +49,7 @@ class BitMap:
         self.bitmap.append(bit6)
         bit7 = bit("$a3",False)
         self.bitmap.append(bit7)
-        bit8 = bit("$t0",False)
+        bit8 = bit("$t0",True)
         self.bitmap.append(bit8)
         bit9= bit("$t1",False)
         self.bitmap.append(bit9)

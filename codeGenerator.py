@@ -14,24 +14,31 @@ def codeGenerator():
     semantic()
 
     niark = getNiark()
-    dataHeader = ".data \n"
-    textHeader = ".text \n"
-    mainHeader = "main: \n"
+    dataHeader = ".data\n"
+    textHeader = ".text\nj main\n"
+    mainHeader = "main:\n"
     bitmap.inicializar()
     dataSegment.append(dataHeader)
     textSegment.append(textHeader)
-    textSegment.append(mainHeader)
+
     q = 0
     '''Inicia el algoritmo recursivo de generación de código '''
     for statement in niark.statements:
-        if type(statement) == FunctionCall or type(statement) == Method:
-            recursive(statement.statement.name)
-        else:
-            recursive(statement,str(q))
-            q += 1
+        if type(statement) == Method:
+            recursive(statement,statement.name)
+        elif type(statement) == FunctionCall:
+            textSegment.append(mainHeader)
+            recursive(statement,statement.name)
+            textSegment.append("li $v0, 10\n")
+            textSegment.append("syscall\n")
+        elif type(statement) == Instruction:
+            textSegment.append(mainHeader)
+            recursive(statement,q)
+            textSegment.append("li $v0, 10\n")
+            textSegment.append("syscall\n")
+            q = q + 1
 
-    textSegment.append("li $v0, 10\n")
-    textSegment.append("syscall\n")
+
     generateCode(executable)
     executable.close()
 
@@ -91,9 +98,9 @@ def recursive(object,label):
             textSegment.append("li $t9, -" + str(object.term2) + "\n")
         elif object.operator is "+":
             if type(object.term1) is FunctionCall:
-                recursive(object.term1)
+                recursive(object.term1,label)
                 regTerm1 = bitmap.obtener()
-                textSegment.append("lw " + regTerm1 + ", $v0\n")
+                textSegment.append("move " + regTerm1 + ", $v0\n")
 
                 recursive(object.term2,label)
                 textSegment.append("add $t9, " + regTerm1 + ", $v0\n")
@@ -105,8 +112,16 @@ def recursive(object,label):
                 textSegment.append("add $t9, " + regTerm1 + ", " + regTerm2 + "\n")
 
         elif object.operator is "-":
-            regTerm1 = dictionaryVarReg[object.term1]
-            textSegment.append("addi $t9, " + regTerm1 + ", -" + object.term2 + "\n")
+            if dictionaryVarReg[object.term1.name] == "8($sp)":
+                regTerm1 = bitmap.obtener()
+
+                textSegment.append("lw " + regTerm1 + ", " + dictionaryVarReg[object.term1.name] + "\n")
+                textSegment.append("addi $t9, " + regTerm1 + ", -" + str(object.term2) + "\n")
+
+                bitmap.liberar(regTerm1)
+            else:
+                regTerm1 = dictionaryVarReg[object.term1.name]
+                textSegment.append("addi $t9, " + regTerm1 + ", -" + str(object.term2) + "\n")
         elif object.operator is "/":
             regTerm1 = dictionaryVarReg[object.term1.name]
             regTerm2 = dictionaryVarReg[object.term2.name]
@@ -114,21 +129,23 @@ def recursive(object,label):
             textSegment.append("mflo $t9\n")
 
     elif type(object) is Condition:
-        if object.operator is "<=":
+        #print(object.operator + ".")
+        #print(str(type(object.operator)))
+        if object.operator == "<=":
+            #print("Hola")
             recursive(object.term2,label)
 
             regTerm1 = dictionaryVarReg[object.term1.name]
             regResult = bitmap.obtener()
 
-            textSegment.append("bne " + regTerm1 + ", $t9, " + label + "\n")
-            textSegment.append("slt " + regResult + ", " + regTerm1 + ", $t9\n")
-            textSegment.append("beq " + regResult + ", $0, " + label + "\n")
+            textSegment.append("slt " + regResult + ", $t9, " + regTerm1 + "\n")
+            textSegment.append("bne " + regResult + ", $0, " + label + "\n")
 
             bitmap.liberar(regResult)
 
         elif object.operator is "<":
             if type(object.term2) is FunctionCall:
-                recursive(object.term2)
+                recursive(object.term2,label)
                 regTerm1 = dictionaryVarReg[object.term1.name]
                 regResult = bitmap.obtener()
 
@@ -138,13 +155,13 @@ def recursive(object,label):
                 bitmap.liberar(regResult)
 
             elif type(object.term2) is Arithmetic:
-                recursive(object.term2)
+                recursive(object.term2,label)
 
                 regTerm1 = dictionaryVarReg[object.term1.name]
                 regResult = bitmap.obtener()
 
                 textSegment.append("slt " + regResult + ", " + regTerm1 + ", $t9\n")
-                textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+                textSegment.append("beq " + regResult + ", $0, " + label + "\n")
 
                 bitmap.liberar(regResult)
 
@@ -154,20 +171,24 @@ def recursive(object,label):
                 regResult = bitmap.obtener()
 
                 textSegment.append("slt " + regResult + ", " + regTerm1 + ", " + regTerm2 + "\n")
-                textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+                textSegment.append("beq " + regResult + ", $0, " + label + "\n")
 
                 bitmap.liberar(regResult)
 
         elif object.operator is ">":
-            regTerm1 = dictionaryVarReg[object.term1.name]
+            regTerm1 = bitmap.obtener()
             regTerm2 = bitmap.obtener()
             regResult = bitmap.obtener()
 
             textSegment.append("li " + regTerm2 + ", " + str(object.term2) + "\n")
+            textSegment.append("lw " + regTerm1 + ", " + dictionaryVarReg[object.term1.name] + "\n")
+
             textSegment.append("slt " + regResult + ", " + regTerm2 + ", " + regTerm1 + "\n")
-            textSegment.append("beq " + regResult + ", $0, " + dir + "\n")
+            textSegment.append("beq " + regResult + ", $0, " + label + "\n")
 
             bitmap.liberar(regResult)
+            bitmap.liberar(regTerm1)
+            bitmap.liberar(regTerm2)
 
         else:
             if type(object.term1) is Array:
@@ -185,30 +206,57 @@ def recursive(object,label):
                 bitmap.liberar(regValue)
 
             else:
-                regTerm1 = dictionaryVarReg[object.term1.name]
-                regTerm2 = bitmap.obtener()
+                if dictionaryVarReg[object.term1.name] == "8($sp)":
+                    regTerm1 = bitmap.obtener()
+                    regTerm2 = bitmap.obtener()
 
-                textSegment.append("li " + regTerm2 + ", " + str(object.term2) + "\n")
-                textSegment.append("bne " + regTerm1 + ", " + regTerm2 + "," + dir + "\n")
-                bitmap.liberar(regTerm2)
+                    textSegment.append("li " + regTerm2 + ", " + str(object.term2) + "\n")
+                    textSegment.append("lw " + regTerm1 + ", " + dictionaryVarReg[object.term1.name] + "\n")
+                    textSegment.append("bne " + regTerm1 + ", " + regTerm2 + "," + label + "\n")
+
+                    bitmap.liberar(regTerm1)
+                    bitmap.liberar(regTerm2)
+                else:
+                    regTerm1 = dictionaryVarReg[object.term1.name]
+                    regTerm2 = bitmap.obtener()
+
+                    textSegment.append("li " + regTerm2 + ", " + str(object.term2) + "\n")
+                    textSegment.append("bne " + regTerm1 + ", " + regTerm2 + "," + label + "\n")
+
+                    bitmap.liberar(regTerm2)
+
 
     elif type(object) is Instruction:
         if object.id == 'READ':
-            if type(object.value) is int:
-                textSegment.append("li $v0, 5\n")
-                textSegment.append("syscall\n")
-            else:
-                textSegment.append("li $v0, 8\n")
-                textSegment.append("syscall\n")
+            textSegment.append("li $v0, 5\n")
+            textSegment.append("syscall\n")
+            regName = dictionaryVarReg[object.value]
+            textSegment.append("move " + regName + ", $v0\n")
+
         elif object.id == 'PRINT':
             if type(object.value) is int:
-                textSegment.append("li $v0, 1\n" + "li $a0," + str(arg) + "\n")
+                textSegment.append("li $v0, 1\n" + "li $a0," + str(object.value) + "\n")
+                textSegment.append("syscall\n")
             else:
-                pass #Hay que tener un codigo
+                if type(object.value) is FunctionCall:
+                    recursive(object.value,label)
+                    textSegment.append("move $a0, $v0\n")
+                    textSegment.append("li $v0, 1\n")
+                elif object.value == "\"*\"":
+                    dataSegment.append("character: .asciiz \"*\"\n")
+                    textSegment.append("li $v0, 4\n" + "la $a0, character\n")
+                elif object.value == "\"\\n\"":
+                    dataSegment.append("newline: .asciiz \"\\n\"\n")
+                    textSegment.append("li $v0, 4\n" + "la $a0, newline\n")
+                else:
+                    dataSegment.append("message: .asciiz " + object.value + "\n")
+                    textSegment.append("li $v0, 4\n" + "la $a0, message\n")
+
+                textSegment.append("syscall\n")
         else:
             if type(object.value) is Arithmetic:
-                recursive(object.value)
-                textSegment.append("li $v0, $t9\n")
+                recursive(object.value,label)
+                textSegment.append("move $v0, $t9\n")
             elif type(object.value) is Variable:
                 textSegment.append("la $v0, " + str(object.value.name) + "\n")
             else:
@@ -223,7 +271,7 @@ def recursive(object,label):
 
     elif type(object) is FunctionCall:
         if type(object.parameters) is Arithmetic:
-            recursive(object.parameters)
+            recursive(object.parameters,label)
             textSegment.append("sw $t9, ($sp)\n")
         elif type(object.parameters) is int:
             regValue = bitmap.obtener()
@@ -234,7 +282,7 @@ def recursive(object,label):
             pass
 
         textSegment.append("addiu $sp, $sp, -8\n")
-        textSegment.append("jal " + label + "\n")
+        textSegment.append("jal " + object.name + "\n")
 
     elif type(object) is If:
         recursive(object.conditions,"Continuation" + label)
@@ -267,7 +315,7 @@ def recursive(object,label):
         for instruction in object.instructions:
             recursive(instruction, label + instruction.id)
 
-        recursive(object.incdec)
+        recursive(object.incdec,label)
         textSegment.append("j Loop" + label + "\n")
         textSegment.append("ExitLoop" + label + ":\n")
 
@@ -275,11 +323,11 @@ def recursive(object,label):
         textSegment.append(label + ":\n")
         textSegment.append("sw $ra, 4($sp)\n")
 
-        dictionaryVarReg[object.parameter.name] = "4($sp)"
+        dictionaryVarReg[object.parameter] = "8($sp)"
         for instruction in object.instructions:
             recursive(instruction, label + instruction.id)
 
-        textSegment.append("sw $ra, 4($sp)\n")
+        textSegment.append("lw $ra, 4($sp)\n")
         textSegment.append("addiu $sp, $sp, 8\n")
         textSegment.append("jr $ra\n")
 

@@ -1,4 +1,6 @@
 $e = 5
 for($i = 0; i < e; ++i){
-    print(1)
+    for($j = 0; j < e; ++j){
+        print(1)
+    }
 }
